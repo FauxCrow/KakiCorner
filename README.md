@@ -2,6 +2,8 @@
 
 This project uses react + javascript to run the app. 
 
+Possibly incorporating firebase as our database later?
+
 **NOTE: Add on here if any other libraries are added.**
 
 # Development Guide
