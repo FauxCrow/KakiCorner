@@ -1,8 +1,8 @@
 # Tech Stack
 
-This project uses react + javascript to run the app. 
+This project uses javascript, react + tailwind css to run the app. 
 
-Possibly incorporating firebase as our database later?
+Possibly incorporating firebase as our database later? I'm a supabase HATER.
 
 **NOTE: Add on here if any other libraries are added.**
 
