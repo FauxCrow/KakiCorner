@@ -1,9 +1,9 @@
 import React from 'react';
-import { CircleQuestionMark, ZoomIn, ZoomOut, Languages } from 'lucide-react';
+import { CircleQuestionMark, ZoomIn, Languages } from 'lucide-react';
 import AccessibilityButton from './AccessibilityButton';
 
 // TODO: function to show tutorial overlay
-// TODO: function to swap between zoom in and zoom out
+// TODO: function to swap between zoom in and zoom out, use ZoomOut
 // TODO: function to change language
 
 export default function AccessibilityBar() {
