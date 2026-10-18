@@ -1,4 +1,15 @@
+import AccessibilityBar from '../components/AccessibilityBar';
+import NavBar from '../components/NavigationBar';
+
 function Profile() {
-  return <h1>Test Profile Page</h1>;
+  return <div className="flex flex-col min-h-screen w-full">
+      <AccessibilityBar></AccessibilityBar>
+  
+      <main className="flex-1 py-32 px-4">
+        <span>This is the Profile Page.</span>
+      </main>
+  
+      <NavBar></NavBar>
+    </div>;
 }
 export default Profile;
