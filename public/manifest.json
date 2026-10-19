@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Kaki Corner",
+  "name": "Kaki Corner",
+  "description": "An Activity Management App for Older Adults",
   "icons": [
     {
       "src": "favicon.ico",
