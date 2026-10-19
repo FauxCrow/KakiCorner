@@ -8,7 +8,7 @@ import AccessibilityButton from './AccessibilityButton';
 
 export default function AccessibilityBar() {
     return (
-        <header className="fixed top-0 left-0 w-full p-4 z-50">
+        <header className="fixed top-0 left-0 w-full p-4 z-50 bg-white">
             <div className="max-w-md mx-auto w-full">
                 <div className="grid grid-cols-3 gap-3 w-full">
                     <AccessibilityButton icon={CircleQuestionMark} title='Help' onClick={() => alert('Help!')} />
