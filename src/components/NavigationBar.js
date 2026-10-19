@@ -7,7 +7,7 @@ export default function NavBar() {
     const navigate = useNavigate();
 
     return (
-        <footer className="fixed bottom-0 left-0 w-full p-4 z-50 bg-white">
+        <footer className="w-full p-4 z-50 bg-white shadow-sm flex-shrink-0">
             <div className="max-w-md mx-auto w-full">
                 <div className="grid grid-cols-3 gap-3 w-full">
                     <NavButton icon={MessageCircle} title='Chats' onClick={() => navigate("/messages")} />

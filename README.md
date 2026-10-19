@@ -38,3 +38,12 @@ To quit testing, use:
 ```
 ^C 
 ``` 
+
+For desktop, you can simple open the link shown in the terminal. For mobile, you can use USB Debugging with Chrome to see it on your android phone:
+
+1. Connect your mobile phone to your laptop using USB Cable.
+2. Enable Developer Options (tap Build number 7 times in Settings) and turn on USB debugging.
+3. Open chrome://inspect (or chrome://inspect/#devices) and check the Discover USB devices box. Accept the debugging prompt on your phone.
+4. In chrome inspect, enable "Discover USB devices" and click on "Port Forwarding...". 
+5. Using the same port number as your development mode server, fill in port number and IP address as "localhost:{port number}"
+6. As long as your webapp is running in development mode, you should now be able to open that link on your mobile chrome using the "http://localhost:{port number}"!! 
