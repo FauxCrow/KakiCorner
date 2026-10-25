@@ -1,0 +1,13 @@
+import AccessibilityBar from '../components/AccessibilityBar';
+import EventCard from '../components/EventCard';
+
+function EventDetails() {
+    return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
+        <AccessibilityBar></AccessibilityBar>
+
+        <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0">
+            <span>This is the Event Details Page.</span>
+        </main>
+    </div>;
+}
+export default EventDetails;

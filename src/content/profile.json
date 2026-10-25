@@ -1,0 +1,31 @@
+{
+    "profiles": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "gender": "M",
+            "age": 64,
+            "personality": "Introvert",
+            "interests": [
+                "Board Games",
+                "Cooking"
+            ],
+            "dietery_restrictions": [
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Jane Doe",
+            "gender": "F",
+            "age": 70,
+            "personality": "Extrovert",
+            "interests": [
+                "Board Games",
+                "Cooking"
+            ],
+            "dietery_restrictions": [
+                "Halal"
+            ]
+        }
+    ]
+}

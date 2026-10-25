@@ -1,0 +1,36 @@
+{
+    "scenes": [
+        {
+            "id": 1,
+            "host": 2,
+            "title": "Event",
+            "tag": "Cooking",
+            "img": "https://",
+            "description": "This is the event description, i'm just yapping so that I can check if it stops after two lines in the event card wowow.",
+            "date": "12/12/2027",
+            "time": "22:00",
+            "location": "Ang Mo Kio Park",
+            "pickup": "Mayflower MRT",
+            "max_slots": 5,
+            "participants_id": [
+                1
+            ]
+        },
+        {
+            "id": 2,
+            "host": 1,
+            "title": "Gaming",
+            "tag": "Board Games",
+            "img": "https://",
+            "description": "This is the event description, i'm just yapping so that I can check if it stops after two lines in the event card wowow.",
+            "date": "02/10/2026",
+            "time": "19:00",
+            "location": "Hougang ABC 02-105",
+            "pickup": "Hougang MRT",
+            "max_slots": 10,
+            "participants_id": [
+                2
+            ]
+        }
+    ]
+}

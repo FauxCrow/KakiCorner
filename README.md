@@ -47,3 +47,10 @@ For desktop, you can simple open the link shown in the terminal. For mobile, you
 4. In chrome inspect, enable "Discover USB devices" and click on "Port Forwarding...". 
 5. Using the same port number as your development mode server, fill in port number and IP address as "localhost:{port number}"
 6. As long as your webapp is running in development mode, you should now be able to open that link on your mobile chrome using the "http://localhost:{port number}"!! 
+
+### Notes from a sleep-deprived dev:
+
+1. For accessibility: text size toggle is working , as long as you use tailwind class in your className ('text-sm' using xs, sm, base, lg, xl or 2xl)
+2. For "login": currently stimulated using 'profile_id' in local storage: if we see the person's profile id saved, stay on home. Else, go to the survey pages.
+3. For data storage, i'm using a content folder to store json files that are codependent: e.g. event participant = array of profile ids
+4. For languages, can look into using google translate api so we don't have to translate words ourselves? But i a bit lazy today HAHAHA
