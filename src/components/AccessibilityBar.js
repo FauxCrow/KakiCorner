@@ -4,7 +4,6 @@ import AccessibilityButton from './AccessibilityButton';
 import { useFontSize } from '../hooks/FontSize';
 
 // TODO: function to show tutorial overlay
-// TODO: function to swap between zoom in and zoom out, use ZoomOut
 // TODO: function to change language
 
 export default function AccessibilityBar() {

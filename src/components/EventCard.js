@@ -20,7 +20,7 @@ export default function EventCard({
                         <h1 className="font=heading text-left text-lg">{event.date}</h1>
                         <h1 className="font=heading text-left text-lg">{event.time}</h1>
                     </div>
-                    <button className="text-right" onClick={() => navigate("/eventdetails/1")} >temp details button</button>
+                    <button className="text-right" onClick={() => navigate(`/eventdetails/${event.id}`)} >temp details button</button>
                 </div>
             </div>
         </div>

@@ -21,19 +21,19 @@ function Events() {
     };
 
     useEffect(() => {
-        const scenes = eventData.scenes || [];
+        const events = eventData.events || [];
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
         let baseEvents = [];
         if (eventType === "created") {
-            baseEvents = scenes.filter(event => event.host === pID);
+            baseEvents = events.filter(event => event.host === pID);
             setTypeTitle("My Created");
         } else if (eventType === "joined") {
-            baseEvents = scenes.filter(event => event.participants_id?.includes(pID));
+            baseEvents = events.filter(event => event.participants_id?.includes(pID));
             setTypeTitle("My Joined");
         } else {
-            baseEvents = scenes;
+            baseEvents = events;
             setTypeTitle("All Events");
         }
 
@@ -59,11 +59,11 @@ function Events() {
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4">
-            <h1 className="text-left font-bold text-xl">{typeTitle} Event</h1>
+            <h1 className="text-left font-bold text-xl w-full mx-auto max-w-md">{typeTitle} Event</h1>
 
             {/* Button Stage */}
             {(eventType === "created" || eventType === "joined") && (
-                <div className="text-left flex flex-row gap-x-4">
+                <div className="text-left flex flex-row gap-x-4 w-full mx-auto max-w-md">
                     <button onClick={() => handleOptionClick(true)} >temp Current</button>
                     <button onClick={() => handleOptionClick(false)} >temp Past</button>
                 </div>
