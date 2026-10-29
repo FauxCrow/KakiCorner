@@ -1,0 +1,37 @@
+{
+    "chats": [
+        {
+            "id": 1,
+            "chat_history": [
+                {
+                    "speaker_id": 2,
+                    "text": "Hello everyone! Please remember to bring your own containers to kepe the food after :)",
+                    "date": "10/12/2027",
+                    "time": "13:05"
+                },
+                {
+                    "speaker_id": 1,
+                    "text": "Looking forward to it!",
+                    "date": "11/12/2027",
+                    "time": "17:26"
+                }
+            ]
+        },{
+            "id": 2,
+            "chat_history": [
+                {
+                    "speaker_id": 1,
+                    "text": "Hi, have brought out two sets of chess to play. Please bring your own sets too.",
+                    "date": "01/10/2026",
+                    "time": "15:42"
+                },
+                {
+                    "speaker_id": 2,
+                    "text": "Okay.",
+                    "date": "02/10/2026",
+                    "time": "08:03"
+                }
+            ]
+        }
+    ]
+}

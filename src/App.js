@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails'
 import EventParticipants from './pages/EventParticipants';
+import MessageChat from './pages/MessageChat';
 
 // Note: HashRouter is used to bypass github 404 error, even if it makes the url look ugly :(
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/events/:type" element={<Events />} />
           <Route path="/eventdetails/:id" element={<EventDetails />} />
           <Route path="/eventparticipants/:id" element={<EventParticipants />} />
+          <Route path="/messages/:id" element={<MessageChat />} />
         </Routes>
       </div>
     </HashRouter>
