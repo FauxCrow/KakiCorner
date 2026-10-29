@@ -2,7 +2,7 @@
 
 This project uses javascript, react + tailwind css to run the app. 
 
-Possibly incorporating firebase as our database later? I'm a supabase HATER.
+We're using json files as a database because i love wizard of oz and i'm a supabase HATER.
 
 **NOTE: Add on here if any other libraries are added.**
 
@@ -30,7 +30,7 @@ For testing within your own local environment in development mode, use:
 
 ``` 
 cd kaki-corner
-npm start 
+npm start OR npm run dev
 ```
 
 To quit testing, use:
