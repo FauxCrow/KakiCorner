@@ -23,7 +23,7 @@ function Home() {
     <AccessibilityBar></AccessibilityBar>
 
     <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-2">
-      <div className="grid grid-cols-2 gap-4 p-4 max-w-4xl mx-auto">
+      <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
         <div className="bg-grey-100 p-6 rounded-xl flex items-center justify-center font-bold text-lg shadow-md min-h-[150px]">
           <button onClick={() => navigate("/")} >not working create</button>
         </div>

@@ -60,8 +60,7 @@ function Events() {
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4">
             <h1 className="text-left font-bold text-xl w-full mx-auto max-w-md">{typeTitle} Event</h1>
-
-            {/* Button Stage */}
+            
             {(eventType === "created" || eventType === "joined") && (
                 <div className="text-left flex flex-row gap-x-4 w-full mx-auto max-w-md">
                     <button onClick={() => handleOptionClick(true)} >temp Current</button>
