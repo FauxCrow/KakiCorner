@@ -1,0 +1,44 @@
+{
+    "activities": [
+        {
+            "id": 1,
+            "title": "Board Games",
+            "img": "https://"
+        },
+        {
+            "id": 2,
+            "title": "Exercise",
+            "img": "https://"
+        },
+        {
+            "id": 3,
+            "title": "Art & Crafts",
+            "img": "https://"
+        },
+        {
+            "id": 4,
+            "title": "Music",
+            "img": "https://"
+        },
+        {
+            "id": 5,
+            "title": "Puzzles",
+            "img": "https://"
+        },
+        {
+            "id": 6,
+            "title": "Baking",
+            "img": "https://"
+        },
+        {
+            "id": 7,
+            "title": "Cooking",
+            "img": "https://"
+        },
+        {
+            "id": 8,
+            "title": "Gardening",
+            "img": "https://"
+        }
+    ]
+}
