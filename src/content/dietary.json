@@ -1,0 +1,24 @@
+{
+    "dietary": [
+        {
+            "id": 1,
+            "title": "Halal",
+            "img": "https://"
+        },
+        {
+            "id": 2,
+            "title": "Vegetarian",
+            "img": "https://"
+        },
+        {
+            "id": 3,
+            "title": "Vegan",
+            "img": "https://"
+        },
+        {
+            "id": 4,
+            "title": "Dairy Free",
+            "img": "https://"
+        }
+    ]
+}
