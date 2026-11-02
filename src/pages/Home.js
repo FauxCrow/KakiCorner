@@ -36,6 +36,9 @@ function Home() {
         <div className="bg-grey-100 p-6 rounded-xl flex items-center justify-center font-bold text-lg shadow-md min-h-[150px]">
           <button onClick={() => navigate("/events/all")} >temp all button</button>
         </div>
+        <div className="bg-grey-100 p-6 rounded-xl flex items-center justify-center font-bold text-lg shadow-md min-h-[150px]">
+          <button onClick={() => navigate("/newuser")} >temp first time loading screen button</button>
+        </div>
       </div>
     </main>
 
