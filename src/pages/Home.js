@@ -25,7 +25,7 @@ function Home() {
     <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-2">
       <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
         <div className="bg-grey-100 p-6 rounded-xl flex items-center justify-center font-bold text-lg shadow-md min-h-[150px]">
-          <button onClick={() => navigate("/")} >not working create</button>
+          <button onClick={() => navigate("/createevent")} >Working create button</button>
         </div>
         <div className="bg-grey-100 p-6 rounded-xl flex items-center justify-center font-bold text-lg shadow-md min-h-[150px]">
           <button onClick={() => navigate("/events/created")} >temp created button</button>
