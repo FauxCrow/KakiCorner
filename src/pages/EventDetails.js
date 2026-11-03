@@ -5,27 +5,75 @@ import eventData from "../content/events.json";
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
+import ActionButton from "../components/ActionButton";
 
 function EventDetails() {
     const { id } = useParams();
+    const pID = localStorage.getItem("profile_id");
+
     const navigate = useNavigate();
 
-    const events = eventData.events || [];
+    const getStoredEvents = () => {
+        const saved = localStorage.getItem("events");
+        return saved ? JSON.parse(saved) : (eventData.events || []);
+    };
+
+    const [events, setEvents] = useState(getStoredEvents());
     const selectedEvent = events.find(event => event.id === Number(id));
 
+    const isParticipating = selectedEvent?.participants_id?.includes(Number(pID)) || selectedEvent?.pending_id?.includes(Number(pID));
+
     const handleEditClick = () => {
-        // TODO
+        navigate(`/createevent`);
     };
 
     const handleDeleteClick = () => {
-        // TODO
+        const updatedEvents = events.filter(event => event.id !== selectedEvent.id);
+        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        navigate(-1);
+    };
+
+    const handleJoinClick = () => {
+        if (selectedEvent.participants_id.length >= selectedEvent.max_slots) {
+            alert("This event is full!");
+            return;
+        }
+
+        const updatedEvents = events.map(event => {
+            if (event.id === selectedEvent.id && !event.pending_id.includes(Number(pID))) {
+                return {
+                    ...event,
+                    pending_id: [...event.pending_id, Number(pID)]
+                };
+            }
+            return event;
+        });
+
+        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        setEvents(updatedEvents);
+    };
+
+    const handleLeaveClick = () => {
+        const updatedEvents = events.map(event => {
+            if (event.id === selectedEvent.id) {
+                return {
+                    ...event,
+                    participants_id: event.participants_id.filter(id => id !== Number(pID)),
+                    pending_id: event.pending_id.filter(id => id !== Number(pID))
+                };
+            }
+            return event;
+        });
+
+        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        setEvents(updatedEvents);
     };
 
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-            <button className="text-left" onClick={() => navigate(-1)} >temp back button</button>
+            <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
             <h1 className="text-left font-bold text-xl">{selectedEvent.tag}</h1>
             <img src={selectedEvent.img} className="rounded-xl"></img>
             <h3 className="text-justify">{selectedEvent.description}</h3>
@@ -38,19 +86,35 @@ function EventDetails() {
 
             <div className="w-full mx-auto max-w-md p-6 z-50 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0 flex flex-col gap-y-4">
                 <div className="flex items-center justify-between w-full gap-2">
-                    <h3 className="text-left">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left!</h3>
+                    {selectedEvent.host === Number(pID) ? (
+                        <h3 className="text-left text-red">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left, {selectedEvent.pending_id.length} pending!</h3>
+                    ) : (
+                        <h3 className="text-left">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left!</h3>
+                    )}
+
                     <h3 className="text-right">{selectedEvent.participants_id.length} / {selectedEvent.max_slots}</h3>
                 </div>
 
                 <ProgressBar value={selectedEvent.participants_id.length} max={selectedEvent.max_slots}></ProgressBar>
 
-                <button onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} >temp see participants</button>
+                <ActionButton title="See Participants" className="self-center bg-gray-300" onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} />
             </div>
 
-            <div className="flex items-center justify-between w-full gap-2">
-                <button className="text-right" onClick={() => handleEditClick} >temp edit button</button>
-                <button className="text-right" onClick={() => handleDeleteClick} >temp delete button</button>
-            </div>
+            {(selectedEvent.host === Number(pID)) && (
+                <div className="flex items-center justify-between w-full gap-2">
+                    <ActionButton title="Edit" className="self-center text-right" onClick={() => handleEditClick()} />
+                    <ActionButton title="Back" className="self-center text-right" onClick={() => handleDeleteClick()} />
+                </div>
+            )}
+
+            {(isParticipating) && (
+                <ActionButton title="Leave" className="self-center text-right" onClick={() => handleLeaveClick()} />
+            )}
+
+            {(!isParticipating && selectedEvent.host !== Number(pID)) && (
+                <ActionButton title="Join" className="self-center text-right" onClick={() => handleJoinClick()} />
+            )}
+
         </main>
     </div>;
 }

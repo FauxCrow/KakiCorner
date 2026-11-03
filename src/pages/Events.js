@@ -4,6 +4,7 @@ import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
 import EventCard from '../components/EventCard';
 import eventData from "../content/events.json";
+import ActionButton from "../components/ActionButton";
 
 function Events() {
     const { type } = useParams();
@@ -21,7 +22,7 @@ function Events() {
     };
 
     useEffect(() => {
-        const events = eventData.events || [];
+        const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
@@ -63,8 +64,8 @@ function Events() {
             
             {(eventType === "created" || eventType === "joined") && (
                 <div className="text-left flex flex-row gap-x-4 w-full mx-auto max-w-md">
-                    <button onClick={() => handleOptionClick(true)} >temp Current</button>
-                    <button onClick={() => handleOptionClick(false)} >temp Past</button>
+                    <ActionButton title="Current" className="self-center" onClick={() => handleOptionClick(true)} />
+                    <ActionButton title="Past" className="self-center" onClick={() => handleOptionClick(false)} />
                 </div>
             )}
 

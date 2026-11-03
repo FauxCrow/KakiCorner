@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import ActionButton from "../components/ActionButton";
 
 export default function EventCard({
     event
@@ -20,7 +21,7 @@ export default function EventCard({
                         <h1 className="font=heading text-left text-lg">{event.date}</h1>
                         <h1 className="font=heading text-left text-lg">{event.time}</h1>
                     </div>
-                    <button className="text-right" onClick={() => navigate(`/eventdetails/${event.id}`)} >temp details button</button>
+                    <ActionButton title="See Details" className="self-center bg-gray-300" onClick={() => navigate(`/eventdetails/${event.id}`)} />
                 </div>
             </div>
         </div>

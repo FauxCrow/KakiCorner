@@ -14,6 +14,9 @@
             "max_slots": 5,
             "participants_id": [
                 1
+            ],
+            "pending_id": [
+                3
             ]
         },
         {
@@ -30,6 +33,9 @@
             "max_slots": 10,
             "participants_id": [
                 2
+            ],
+            "pending_id": [
+                3
             ]
         }
     ]
