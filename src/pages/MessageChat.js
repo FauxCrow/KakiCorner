@@ -6,15 +6,17 @@ import profileData from "../content/profile.json";
 import { useParams, useNavigate } from 'react-router-dom';
 import MessageCard from '../components/MessageCard';
 import { Send } from 'lucide-react';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import ActionButton from "../components/ActionButton";
 
 function MessageChat() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const messagesEndRef = useRef(null);
 
   const chats = chatData.chats || [];
-  const events = eventData.events || [];
-  const profiles = profileData.profiles || [];
+  const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+  const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
 
   const chat = chats.find((c) => c.id === Number(id)) || chats[0];
   const event = events.find((e) => e.id === Number(id)) || events[0];
@@ -58,11 +60,19 @@ function MessageChat() {
     window.location.reload();
   };
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatHistory]);
+
   return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
     <AccessibilityBar></AccessibilityBar>
 
     <div className="py-4 px-4 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-      <button className="text-left" onClick={() => navigate(-1)} >temp back button</button>
+      <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
       <div className="flex items-center w-full gap-6">
         <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
           <img></img>
@@ -74,9 +84,8 @@ function MessageChat() {
     <main className="flex-1 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
         {chatHistory.length > 0 ? (
           chatHistory.map((msg, index) => {
-            const prevMsg = chat.chat_history[index - 1];
+            const prevMsg = chatHistory[index - 1];
             const showDateDivider = !prevMsg || prevMsg.date !== msg.date;
-
             const speakerProfile = profiles.find((p) => p.id === msg.speaker_id);
 
             return (
@@ -96,6 +105,8 @@ function MessageChat() {
         ) : (
           <p className="text-gray-500">No messages yet.</p>
         )}
+
+        <div ref={messagesEndRef} />
       </main>
 
     <footer className="w-full p-4 z-50 bg-white shadow-sm flex-shrink-0 flex items-center gap-2 mx-auto max-w-md">

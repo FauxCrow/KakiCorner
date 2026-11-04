@@ -2,7 +2,7 @@
     "profiles": [
         {
             "id": 1,
-            "name": "John Doe",
+            "name": "Tan Jun Jie",
             "gender": "M",
             "age": 64,
             "personality": "Introvert",
@@ -15,9 +15,23 @@
         },
         {
             "id": 2,
-            "name": "Jane Doe",
+            "name": "Aisyah binti Rashid",
             "gender": "F",
             "age": 70,
+            "personality": "Extrovert",
+            "interests": [
+                "Board Games",
+                "Cooking"
+            ],
+            "dietery_restrictions": [
+                "Halal"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Devi d/o Rajaratnam",
+            "gender": "F",
+            "age": 76,
             "personality": "Extrovert",
             "interests": [
                 "Board Games",

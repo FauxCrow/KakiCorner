@@ -3,9 +3,10 @@ import StepIndicator from '../components/StepIndicator';
 import OptionCard from '../components/OptionCard';
 import CheckboxCard from '../components/CheckboxCard';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import activityData from "../content/activities.json";
 import dietaryData from "../content/dietary.json";
+import profileData from "../content/profile.json";
 
 // Pages 1-2 are setup, pages 3-5 are the 3-step survey
 const SURVEY_OFFSET = 2;
@@ -24,6 +25,7 @@ function NewUser() {
     const navigate = useNavigate();
     const activities = activityData.activities || [];
     const dietaryOptions = dietaryData.dietary || [];
+    const profiles = profileData.profiles || [];
 
     const [step, setStep] = useState(1);
 
@@ -55,8 +57,36 @@ function NewUser() {
     };
 
     const handleCompleteClick = () => {
+        const savedProfiles = JSON.parse(localStorage.getItem("profiles")) || profiles;
+
+        const lastId = savedProfiles.length > 0 ? Math.max(...savedProfiles.map(p => p.id)) : 0;
+        const nextId = lastId + 1;
+
+        const newProfile = {
+            id: nextId,
+            name: localStorage.getItem("name"),
+            gender: localStorage.getItem("gender"),
+            age: localStorage.getItem("age"),
+            personality: personality,
+            interests: interests,
+            dietery_restrictions: dietary
+        };
+
+        const updatedProfiles = [...savedProfiles, newProfile];
+        localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
+        localStorage.setItem("profile_id", nextId);
+
         navigate("/");
     };
+
+    useEffect(() => {
+        const createProfile = async () => {
+            localStorage.setItem("name", "John Doe");
+            localStorage.setItem("age", 0);
+            localStorage.setItem("gender", "M");
+        };
+        createProfile();
+    }, []);
 
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">

@@ -11,7 +11,7 @@ function Messages() {
 
   useEffect(() => {
     const pID = Number(localStorage.getItem("profile_id"));
-    const events = eventData.events || [];
+    const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
     const chats = chatData.chats || [];
 
     const today = new Date();
@@ -32,12 +32,20 @@ function Messages() {
 
     myEvents.forEach((event) => {
       const eventDate = parseLocalDate(event.date);
-      const matchingChat = chats.find((c) => c.id === event.id);
+      const storageKey = `chat_history_${event.id}`;
       let lastMessageText = "No messages yet.";
 
-      if (matchingChat && matchingChat.chat_history && matchingChat.chat_history.length > 0) {
-        const lastMessage = matchingChat.chat_history[matchingChat.chat_history.length - 1];
-        lastMessageText = lastMessage.text;
+      if (localStorage.getItem(storageKey) != null) {
+        const saved_chat = JSON.parse(localStorage.getItem(storageKey));
+        lastMessageText = saved_chat[saved_chat.length - 1].text;
+      }
+      else {
+        const matchingChat = chats.find((c) => c.id === event.id);
+
+        if (matchingChat && matchingChat.chat_history && matchingChat.chat_history.length > 0) {
+          const lastMessage = matchingChat.chat_history[matchingChat.chat_history.length - 1];
+          lastMessageText = lastMessage.text;
+        }
       }
 
       const chatItem = {
@@ -69,14 +77,14 @@ function Messages() {
       <h1 className="text-left font-bold text-xl w-full mx-auto max-w-md">Active Chats</h1>
       {activeChats.length > 0 ? (
         activeChats.map((chat) => (
-            <ChatCard 
-              key={chat.chat_id}
-              chat_id={chat.chat_id}
-              name={chat.name}
-              date={chat.date}
-              last_chat={chat.last_chat}
-            />
-          ))
+          <ChatCard
+            key={chat.chat_id}
+            chat_id={chat.chat_id}
+            name={chat.name}
+            date={chat.date}
+            last_chat={chat.last_chat}
+          />
+        ))
       ) : (
         <p className="text-gray-500">No active chats.</p>
       )}
@@ -85,14 +93,14 @@ function Messages() {
 
       {archivedChats.length > 0 ? (
         archivedChats.map((chat) => (
-            <ChatCard 
-              key={chat.chat_id}
-              chat_id={chat.chat_id}
-              name={chat.name}
-              date={chat.date}
-              last_chat={chat.last_chat}
-            />
-          ))
+          <ChatCard
+            key={chat.chat_id}
+            chat_id={chat.chat_id}
+            name={chat.name}
+            date={chat.date}
+            last_chat={chat.last_chat}
+          />
+        ))
       ) : (
         <p className="text-gray-500">No archived chats.</p>
       )}

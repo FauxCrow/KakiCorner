@@ -1,12 +1,15 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
 import profileData from "../content/profile.json";
+import ActionButton from "../components/ActionButton";
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const pID = localStorage.getItem("profile_id");
-  const profiles = profileData.profiles || [];
+  const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
   const profile = profiles.find((p) => p.id === Number(pID)) || profiles[0];
   const gender = profile.gender === "M" ? "Male" : "Female";
+  const navigate = useNavigate();
 
   return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
     <AccessibilityBar></AccessibilityBar>
@@ -27,13 +30,13 @@ function Profile() {
         <div className="flex flex-col gap-y-4">
           <div className="flex items-center justify-between w-full gap-2">
             <h1 className="font=heading text-left text-lg">Interests</h1>
-            <button className="text-right" onClick >temp edit button</button>
+            <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/newuser`)} />
           </div>
 
           <div className="grid grid-cols-3 gap-2">
             {profile.interests.length > 0 ? (
               profile.interests.map((interests) => (
-                <div className="bg-white rounded-xl flex items-center justify-center font-bold text-md shadow-md min-h-[75px]">{interests}</div>
+                <div key={interests} className="bg-white rounded-xl flex items-center justify-center font-bold text-md shadow-md min-h-[75px]">{interests}</div>
               ))
             ) : (
               <p className="text-gray-500 text-left col-span-full">No listed interests.</p>
@@ -46,7 +49,7 @@ function Profile() {
           <div className="grid grid-cols-3 gap-2">
             {profile.dietery_restrictions.length > 0 ? (
               profile.dietery_restrictions.map((dietery) => (
-                <div className="bg-white rounded-xl flex items-center justify-center font-bold text-md shadow-md min-h-[75px]">{dietery}</div>
+                <div key={dietery} className="bg-white rounded-xl flex items-center justify-center font-bold text-md shadow-md min-h-[75px]">{dietery}</div>
               ))
             ) : (
               <p className="text-gray-500 text-left col-span-full">No listed dietery restrictions.</p>
