@@ -84,7 +84,7 @@ function MessageChat() {
     <main className="flex-1 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
         {chatHistory.length > 0 ? (
           chatHistory.map((msg, index) => {
-            const prevMsg = chat.chat_history[index - 1];
+            const prevMsg = chatHistory[index - 1];
             const showDateDivider = !prevMsg || prevMsg.date !== msg.date;
             const speakerProfile = profiles.find((p) => p.id === msg.speaker_id);
 

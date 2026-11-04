@@ -103,7 +103,7 @@ function EventDetails() {
             {(selectedEvent.host === Number(pID)) && (
                 <div className="flex items-center justify-between w-full gap-2">
                     <ActionButton title="Edit" className="self-center text-right" onClick={() => handleEditClick()} />
-                    <ActionButton title="Back" className="self-center text-right" onClick={() => handleDeleteClick()} />
+                    <ActionButton title="Delete" className="self-center text-right" onClick={() => handleDeleteClick()} />
                 </div>
             )}
 

@@ -41,7 +41,7 @@ function Events() {
         if (eventType === "created" || eventType === "joined") {
             const dateFiltered = baseEvents.filter(event => {
                 const [day, month, year] = event.date.split('/');
-                const [hours, minutes] = event.time ? event.time.split(':') : [0, 0];
+                const [hours, minutes] = event.time ? event.time.slice(0, -3).split(':') : [0, 0];
                 const eventDateTime = new Date(year, month - 1, day, hours, minutes);
 
                 if (isCurrentTab) {

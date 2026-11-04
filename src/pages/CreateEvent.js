@@ -8,6 +8,7 @@ import EventOverviewCard from '../components/EventOverviewCard';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import activityData from "../content/activities.json";
+import eventData from "../content/events.json";
 
 const TOTAL_STEPS = 5;
 
@@ -48,6 +49,7 @@ function CreateEvent() {
     const navigate = useNavigate();
     const activities = activityData.activities || [];
 
+    const pID = localStorage.getItem("profile_id");
     const [step, setStep] = useState(1);
 
     const [activity, setActivity] = useState(null);
@@ -89,6 +91,37 @@ function CreateEvent() {
     };
 
     const handleCompleteClick = () => {
+        const existingEvents = JSON.parse(localStorage.getItem("events")) || eventData.events;
+        const newId = existingEvents.length > 0 ? Math.max(...existingEvents.map(e => e.id)) + 1 : 1;
+
+        const monthMap = {
+            "January": "01", "February": "02", "March": "03", "April": "04",
+            "May": "05", "June": "06", "July": "07", "August": "08",
+            "September": "09", "October": "10", "November": "11", "December": "12"
+        };
+
+        const monthNum = monthMap[month] || "01";
+        const dateStr = `${day}/${monthNum}/${year}`;
+
+        const newEvent = {
+            id: newId,
+            host: Number(pID),
+            title: activity || "Untitled Event",
+            tag: activity || "General",
+            img: "https://",
+            description: description,
+            date: dateStr,
+            time: `${hour}:${minute} ${period}`,
+            location: location || "TBD",
+            pickup: pickup || "TBD",
+            max_slots: Number(participants),
+            participants_id: [],
+            pending_id: []
+        };
+
+        const updatedEvents = [...existingEvents, newEvent];
+        localStorage.setItem("events", JSON.stringify(updatedEvents));
+
         navigate("/events/created");
     };
 
