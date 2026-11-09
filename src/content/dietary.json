@@ -3,22 +3,34 @@
         {
             "id": 1,
             "title": "Halal",
-            "img": "https://"
+            "img": "https://",
+            "icon": "MoonStar",
+            "color": "#16A34A"
         },
         {
             "id": 2,
             "title": "Vegetarian",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Carrot",
+            "color": "#EA580C"
         },
         {
             "id": 3,
             "title": "Vegan",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Leaf",
+            "color": "#65A30D"
         },
         {
             "id": 4,
             "title": "Dairy Free",
-            "img": "https://"
+            "img": "https://",
+            "icon": "MilkOff",
+            "color": "#2563EB"
         }
-    ]
+    ],
+    "others": {
+        "icon": "UtensilsCrossed",
+        "color": "#9333EA"
+    }
 }

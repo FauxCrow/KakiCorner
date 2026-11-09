@@ -1,37 +1,50 @@
 import React from 'react';
-import profileData from "../content/profile.json";
+// import profileData from "../content/profile.json";
 import ActionButton from "../components/ActionButton";
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
 import { useState } from "react";
+import { getEvents, saveEvents, getProfiles } from "../utils/db";
 
 export default function ParticipantCard({
     id = 1,
     event_id = 0,
     isOwner = false
 }) {
-    const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+    // const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+    const profiles = getProfiles();
     const profile = profiles.find((p) => p.id === Number(id)) || profiles[0];
-    
-    const getStoredEvents = () => {
-        const saved = localStorage.getItem("events");
-        return saved ? JSON.parse(saved) : (eventData.events || []);
-    };
 
-    const [events, setEvents] = useState(getStoredEvents());
+    // const getStoredEvents = () => {
+    //     const saved = localStorage.getItem("events");
+    //     return saved ? JSON.parse(saved) : (eventData.events || []);
+    // };
+
+    // const [events, setEvents] = useState(getStoredEvents());
+    const [events, setEvents] = useState(getEvents());
 
     const handleAcceptClick = () => {
+        // Don't accept more people than there are slots
+        const thisEvent = events.find((event) => event.id === event_id);
+        if (thisEvent.participants_id.length >= thisEvent.max_slots) {
+            alert("This event is full!");
+            return;
+        }
+
         const updatedEvents = events.map(event => {
             if (event.id === event_id) {
                 return {
                     ...event,
                     participants_id: [...event.participants_id, id],
-                    pending_id: event.pending_id.filter(id => id !== id)
+                    // Bug: the inner "id" hid the card's id, so every pending person was removed
+                    // pending_id: event.pending_id.filter(id => id !== id)
+                    pending_id: event.pending_id.filter((personId) => personId !== id)
                 };
             }
             return event;
         });
 
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        saveEvents(updatedEvents);
         setEvents(updatedEvents);
         window.location.reload();
     };
@@ -41,13 +54,15 @@ export default function ParticipantCard({
             if (event.id === event_id) {
                 return {
                     ...event,
-                    pending_id: event.pending_id.filter(id => id !== id)
+                    // pending_id: event.pending_id.filter(id => id !== id)
+                    pending_id: event.pending_id.filter((personId) => personId !== id)
                 };
             }
             return event;
         });
 
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        saveEvents(updatedEvents);
         setEvents(updatedEvents);
         window.location.reload();
     };

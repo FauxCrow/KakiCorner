@@ -3,9 +3,11 @@
         {
             "id": 1,
             "name": "Tan Jun Jie",
+            "first_name": "Jun Jie",
+            "language": "zh-CN",
             "gender": "M",
             "age": 64,
-            "personality": "Introvert",
+            "personality": "I prefer small, quiet groups.",
             "interests": [
                 "Board Games",
                 "Cooking"
@@ -16,9 +18,11 @@
         {
             "id": 2,
             "name": "Aisyah binti Rashid",
+            "first_name": "Aisyah",
+            "language": "ms",
             "gender": "F",
             "age": 70,
-            "personality": "Extrovert",
+            "personality": "I like to make new friends.",
             "interests": [
                 "Board Games",
                 "Cooking"
@@ -30,9 +34,11 @@
         {
             "id": 3,
             "name": "Devi d/o Rajaratnam",
+            "first_name": "Devi",
+            "language": "ta",
             "gender": "F",
             "age": 76,
-            "personality": "Extrovert",
+            "personality": "I enjoy trying new things.",
             "interests": [
                 "Board Games",
                 "Cooking"
