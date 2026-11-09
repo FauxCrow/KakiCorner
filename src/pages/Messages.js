@@ -1,6 +1,7 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
+import { getEvents, getCurrentUserId } from "../utils/db";
 import chatData from "../content/chats.json";
 import { useEffect, useState } from "react";
 import ChatCard from '../components/ChatCard';
@@ -10,8 +11,10 @@ function Messages() {
   const [archivedChats, setArchivedChats] = useState([]);
 
   useEffect(() => {
-    const pID = Number(localStorage.getItem("profile_id"));
-    const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+    // const pID = Number(localStorage.getItem("profile_id"));
+    // const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+    const pID = getCurrentUserId();
+    const events = getEvents();
     const chats = chatData.chats || [];
 
     const today = new Date();
@@ -51,6 +54,7 @@ function Messages() {
       const chatItem = {
         chat_id: event.id,
         name: event.title,
+        tag: event.tag,
         date: event.date,
         last_chat: lastMessageText,
         parsedDate: eventDate
@@ -81,6 +85,7 @@ function Messages() {
             key={chat.chat_id}
             chat_id={chat.chat_id}
             name={chat.name}
+            tag={chat.tag}
             date={chat.date}
             last_chat={chat.last_chat}
           />
@@ -97,6 +102,7 @@ function Messages() {
             key={chat.chat_id}
             chat_id={chat.chat_id}
             name={chat.name}
+            tag={chat.tag}
             date={chat.date}
             last_chat={chat.last_chat}
           />

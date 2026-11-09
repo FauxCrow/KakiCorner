@@ -1,12 +1,16 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
-import profileData from "../content/profile.json";
+// import profileData from "../content/profile.json";
+import { getProfiles, getCurrentUserId } from "../utils/db";
 import ActionButton from "../components/ActionButton";
 import { useNavigate } from 'react-router-dom';
+import Avatar from '../components/Avatar';
 
 function Profile() {
-  const pID = localStorage.getItem("profile_id");
-  const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+  // const pID = localStorage.getItem("profile_id");
+  // const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+  const pID = getCurrentUserId();
+  const profiles = getProfiles();
   const profile = profiles.find((p) => p.id === Number(pID)) || profiles[0];
   const gender = profile.gender === "M" ? "Male" : "Female";
   const navigate = useNavigate();
@@ -15,9 +19,11 @@ function Profile() {
     <AccessibilityBar></AccessibilityBar>
 
     <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md items-center">
-      <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+      {/* <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
         <img></img>
-      </div>
+      </div> */}
+      <Avatar />
+
 
       <div className="flex flex-col gap-y-2 items-center">
         <h1 className="font=heading text-left text-lg">{profile.name}</h1>
@@ -30,7 +36,8 @@ function Profile() {
         <div className="flex flex-col gap-y-4">
           <div className="flex items-center justify-between w-full gap-2">
             <h1 className="font=heading text-left text-lg">Interests</h1>
-            <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/newuser`)} />
+            {/* <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/newuser`)} /> */}
+            <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/editprofile`)} />
           </div>
 
           <div className="grid grid-cols-3 gap-2">

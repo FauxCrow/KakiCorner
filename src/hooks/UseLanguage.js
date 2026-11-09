@@ -1,5 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 
+// Deletes the saved language cookie so the page loads in English (used on a fresh open)
+export function resetLanguageToEnglish() {
+    const expired = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    document.cookie = expired;
+    document.cookie = `${expired}; domain=${window.location.hostname}`;
+    document.cookie = `${expired}; domain=.${window.location.hostname}`;
+}
+
 export function useLanguage() {
     const [isLangOpen, setIsLangOpen] = useState(false);
     const menuRef = useRef(null);
