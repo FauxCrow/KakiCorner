@@ -6,7 +6,10 @@ import OptionCard from '../components/OptionCard';
 import StepperInput from '../components/StepperInput';
 import EventOverviewCard from '../components/EventOverviewCard';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+// import { useState } from "react";
+import { useState, useEffect } from "react";
+import SuggestionList from '../components/SuggestionList';
+import { DEFAULT_PICKUPS, searchAddress, getPickupOptions } from "../utils/location";
 import activityData from "../content/activities.json";
 // import eventData from "../content/events.json";
 // import { addEvent, getCurrentUserId } from "../utils/db";
@@ -28,7 +31,7 @@ const MONTHS = [
     "July", "August", "September", "October", "November", "December"
 ];
 
-const PICKUP_LOCATIONS = ["Hougang MRT Gantry", "Blk ABC", "Hougang Bus Interchange"];
+// const PICKUP_LOCATIONS = ["Hougang MRT Gantry", "Blk ABC", "Hougang Bus Interchange"];
 
 // Helpers for the +/- inputs
 const pad = (number) => String(number).padStart(2, "0");
@@ -87,6 +90,11 @@ function CreateEvent() {
 
     const [location, setLocation] = useState("");
     const [pickup, setPickup] = useState(null);
+    const [pickupOptions, setPickupOptions] = useState(DEFAULT_PICKUPS);
+
+    // searchText only changes when the user types, so picking a suggestion doesn't search again
+    const [searchText, setSearchText] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
 
     const [participants, setParticipants] = useState("10");
 
@@ -126,7 +134,11 @@ function CreateEvent() {
 
         setDescription(lastEvent?.description || "");
         setLocation(lastEvent?.location || "");
-        setPickup(lastEvent?.pickup || null);
+        // setPickup(lastEvent?.pickup || null);
+        setPickupOptions(lastEvent?.pickup_options || DEFAULT_PICKUPS);
+        setPickup(lastEvent?.pickup_options ? lastEvent.pickup : null);
+        setSearchText("");
+        setSuggestions([]);
         setParticipants(String(lastEvent?.max_slots || 10));
 
         if (lastEvent?.time) {
@@ -151,6 +163,46 @@ function CreateEvent() {
         const next = shiftMonth(delta);
         setMonth(next.month);
         setDay(next.day);
+    };
+
+    // ---------- Location search ----------
+
+    // Ask OneMap for suggestions once the user pauses typing (it blocks us if we ask too often)
+    useEffect(() => {
+        if (searchText.trim().length < 3) {
+            setSuggestions([]);
+            return;
+        }
+
+        let isLatest = true;
+        const timer = setTimeout(async () => {
+            const results = await searchAddress(searchText.trim());
+            if (isLatest) setSuggestions(results);
+        }, 600);
+
+        return () => {
+            isLatest = false;
+            clearTimeout(timer);
+        };
+    }, [searchText]);
+
+    const handleLocationChange = (value) => {
+        setLocation(value);
+        setSearchText(value);
+
+        // Typing again means the earlier address's pickup choices no longer apply
+        if (pickupOptions !== DEFAULT_PICKUPS) {
+            setPickupOptions(DEFAULT_PICKUPS);
+            setPickup(null);
+        }
+    };
+
+    const handleSuggestionClick = (place) => {
+        setLocation(place.address);
+        setSearchText("");
+        setSuggestions([]);
+        setPickupOptions(getPickupOptions(place));
+        setPickup(null);
     };
 
     // ---------- Date & time checks ----------
@@ -228,6 +280,7 @@ function CreateEvent() {
             time: `${hour}:${minute} ${period}`,
             location: location || "TBD",
             pickup: pickup || "TBD",
+            pickup_options: pickupOptions,
             max_slots: Number(participants),
             participants_id: [],
             pending_id: []
@@ -370,19 +423,29 @@ function CreateEvent() {
             {/* Step 4: Location & Pickup */}
             {step === 4 && (
                 <>
-                    <input
+                    {/* <input
                         type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="Location..."
                         className="w-full p-4 rounded-2xl border-2 border-gray-200 text-sm placeholder:text-gray-400 focus:outline-none"
+                    /> */}
+                    <input
+                        type="text"
+                        value={location}
+                        onChange={(e) => handleLocationChange(e.target.value)}
+                        placeholder="Type an address or postal code"
+                        className="w-full p-4 rounded-2xl border-2 border-gray-200 text-sm placeholder:text-gray-400 focus:outline-none"
                     />
+
+                    <SuggestionList suggestions={suggestions} onSelect={handleSuggestionClick} />
 
                     <h2 className="text-left text-base">Pickup Location:</h2>
                     <p className="text-left text-sm text-gray-500 -mt-4">Further details will be announced in the group chat.</p>
 
                     <div className="grid grid-cols-2 gap-4">
-                        {PICKUP_LOCATIONS.map((item) => (
+                        {/* {PICKUP_LOCATIONS.map((item) => ( */}
+                        {pickupOptions.map((item) => (
                             <OptionCard
                                 key={item}
                                 title={item}
