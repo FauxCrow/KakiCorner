@@ -6,6 +6,7 @@ import EventCard from '../components/EventCard';
 // import eventData from "../content/events.json";
 import { getEvents, getCurrentUserId } from "../utils/db";
 import ActionButton from "../components/ActionButton";
+import { isPastEvent } from "../utils/date";
 
 function Events() {
     const { type } = useParams();
@@ -26,8 +27,8 @@ function Events() {
     useEffect(() => {
         // const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
         const events = getEvents();
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        // const today = new Date();
+        // today.setHours(0, 0, 0, 0);
 
         let baseEvents = [];
         if (eventType === "created") {
@@ -42,17 +43,18 @@ function Events() {
         }
 
         if (eventType === "created" || eventType === "joined") {
-            const dateFiltered = baseEvents.filter(event => {
-                const [day, month, year] = event.date.split('/');
-                const [hours, minutes] = event.time ? event.time.slice(0, -3).split(':') : [0, 0];
-                const eventDateTime = new Date(year, month - 1, day, hours, minutes);
+            // const dateFiltered = baseEvents.filter(event => {
+            //     const [day, month, year] = event.date.split('/');
+            //     const [hours, minutes] = event.time ? event.time.slice(0, -3).split(':') : [0, 0];
+            //     const eventDateTime = new Date(year, month - 1, day, hours, minutes);
 
-                if (isCurrentTab) {
-                    return eventDateTime >= today;
-                } else {
-                    return eventDateTime < today;
-                }
-            });
+            //     if (isCurrentTab) {
+            //         return eventDateTime >= today;
+            //     } else {
+            //         return eventDateTime < today;
+            //     }
+            // });
+            const dateFiltered = baseEvents.filter(event => (isCurrentTab ? !isPastEvent(event) : isPastEvent(event)));
             setFilteredEvents(dateFiltered);
         } else {
             setFilteredEvents(baseEvents);

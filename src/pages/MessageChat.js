@@ -9,6 +9,7 @@ import MessageCard from '../components/MessageCard';
 import { Send } from 'lucide-react';
 import { useEffect, useState, useRef } from "react";
 import ActionButton from "../components/ActionButton";
+import ActivityIcon from "../components/ActivityIcon";
 
 function MessageChat() {
   const { id } = useParams();
@@ -77,9 +78,10 @@ function MessageChat() {
     <div className="py-4 px-4 flex flex-col gap-y-4 w-full mx-auto max-w-md">
       <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
       <div className="flex items-center w-full gap-6">
-        <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+        {/* <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
           <img></img>
-        </div>
+        </div> */}
+        <ActivityIcon tag={event.tag} size={24} className="w-12 h-12 rounded-full" />
         <h1 className="font-heading text-left text-lg font-bold">{event.title}</h1>
       </div>
     </div>

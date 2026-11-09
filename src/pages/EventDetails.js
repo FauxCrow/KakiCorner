@@ -7,6 +7,8 @@ import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
 import ActionButton from "../components/ActionButton";
+import ActivityIcon from "../components/ActivityIcon";
+import { formatDate } from "../utils/date";
 
 function EventDetails() {
     const { id } = useParams();
@@ -81,10 +83,12 @@ function EventDetails() {
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
             <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
             <h1 className="text-left font-bold text-xl">{selectedEvent.tag}</h1>
-            <img src={selectedEvent.img} className="rounded-xl"></img>
+            {/* <img src={selectedEvent.img} className="rounded-xl"></img> */}
+            <ActivityIcon tag={selectedEvent.tag} size={72} className="w-full h-40 rounded-xl" />
             <h3 className="text-justify">{selectedEvent.description}</h3>
 
-            <EventIconLine icon={CalendarDays} info={selectedEvent.date}></EventIconLine>
+            {/* <EventIconLine icon={CalendarDays} info={selectedEvent.date}></EventIconLine> */}
+            <EventIconLine icon={CalendarDays} info={formatDate(selectedEvent.date)}></EventIconLine>
             <EventIconLine icon={Clock} info={selectedEvent.time}></EventIconLine>
             <EventIconLine icon={MapPin} info={selectedEvent.pickup}></EventIconLine>
 

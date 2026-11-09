@@ -54,6 +54,7 @@ function Messages() {
       const chatItem = {
         chat_id: event.id,
         name: event.title,
+        tag: event.tag,
         date: event.date,
         last_chat: lastMessageText,
         parsedDate: eventDate
@@ -84,6 +85,7 @@ function Messages() {
             key={chat.chat_id}
             chat_id={chat.chat_id}
             name={chat.name}
+            tag={chat.tag}
             date={chat.date}
             last_chat={chat.last_chat}
           />
@@ -100,6 +102,7 @@ function Messages() {
             key={chat.chat_id}
             chat_id={chat.chat_id}
             name={chat.name}
+            tag={chat.tag}
             date={chat.date}
             last_chat={chat.last_chat}
           />
