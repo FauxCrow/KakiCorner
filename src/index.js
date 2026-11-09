@@ -5,6 +5,29 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { FontSizeProvider } from './hooks/FontSize';
 
+if (typeof window !== 'undefined') {
+  const originalRemoveChild = Node.prototype.removeChild;
+  Node.prototype.removeChild = function (child) {
+    if (child.parentNode !== this) {
+      if (child.parentNode) {
+        return child.parentNode.removeChild(child);
+      }
+      return child;
+    }
+    return originalRemoveChild.call(this, child);
+  };
+
+  const originalInsertBefore = Node.prototype.insertBefore;
+  Node.prototype.insertBefore = function (newNode, referenceNode) {
+    if (referenceNode && referenceNode.parentNode !== this) {
+      if (this) {
+        return this.appendChild(newNode);
+      }
+    }
+    return originalInsertBefore.call(this, newNode, referenceNode);
+  };
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

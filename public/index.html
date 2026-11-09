@@ -22,20 +22,6 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        {
-          pageLanguage: 'en',
-          includedLanguages: 'en,zh-CN,ms,ta',
-          autoDisplay: false
-        },
-        'google_translate_element'
-      );
-    }
-  </script>
-  <script type="text/javascript"
-    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <title>React App</title>
 </head>
 
@@ -52,6 +38,17 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <div class="gtranslate_wrapper" style="display: none;"></div>
+  
+  <script>
+    window.gtranslateSettings = {
+      "default_language": "en",
+      "languages": ["en", "zh-CN", "ms", "ta"],
+      "wrapper_selector": ".gtranslate_wrapper",
+      "flag_style": "2d"
+    }
+  </script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dropdown.js" defer></script>
 </body>
 
 </html>
