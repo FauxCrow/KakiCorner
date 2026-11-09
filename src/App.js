@@ -39,6 +39,7 @@ function App() {
           <Route path="/messages/:id" element={<MessageChat />} />
           <Route path="/createevent" element={<CreateEvent />} />
           <Route path="/newuser" element={<NewUser />} />
+          <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
         </Routes>
       </div>
     </HashRouter>

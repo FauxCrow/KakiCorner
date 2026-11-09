@@ -10,7 +10,8 @@ import activityData from "../content/activities.json";
 import dietaryData from "../content/dietary.json";
 // import profileData from "../content/profile.json";
 import languageData from "../content/languages.json";
-import { addProfile, setCurrentUserId } from "../utils/db";
+// import { addProfile, setCurrentUserId } from "../utils/db";
+import { addProfile, setCurrentUserId, getCurrentUser, updateProfile } from "../utils/db";
 import { randomPerson } from "../utils/randomProfile";
 import { useLanguage } from '../hooks/UseLanguage';
 
@@ -27,7 +28,8 @@ const PERSONALITIES = [
     "I like learning from others."
 ];
 
-function NewUser() {
+// function NewUser() {
+function NewUser({ isEdit = false }) {
     const navigate = useNavigate();
     const activities = activityData.activities || [];
     const dietaryOptions = dietaryData.dietary || [];
@@ -35,24 +37,41 @@ function NewUser() {
     const languages = languageData.languages || [];
     const { changeLanguage } = useLanguage();
 
+    // Edit Profile reuses this page, starting at the interests page with the user's current answers
+    const [currentUser] = useState(() => (isEdit ? getCurrentUser() : null));
+    const presetDietary = dietaryOptions.map((item) => item.title);
+    const savedDietary = currentUser?.dietery_restrictions || [];
+
     // If translating had to reload the page, carry on from page 2 with the language already picked
-    const savedLanguage = sessionStorage.getItem("newuser_language");
+    // const savedLanguage = sessionStorage.getItem("newuser_language");
+    const savedLanguage = isEdit ? null : sessionStorage.getItem("newuser_language");
 
     // const [step, setStep] = useState(1);
-    const [step, setStep] = useState(savedLanguage ? 2 : 1);
+    // const [step, setStep] = useState(savedLanguage ? 2 : 1);
+    const [step, setStep] = useState(isEdit ? 3 : savedLanguage ? 2 : 1);
 
     // const [language, setLanguage] = useState(null);
     const [language, setLanguage] = useState(savedLanguage);
-    const [interests, setInterests] = useState([]);
-    const [personality, setPersonality] = useState(null);
-    const [dietary, setDietary] = useState([]);
-    const [customDietary, setCustomDietary] = useState([]);
+    // const [interests, setInterests] = useState([]);
+    // const [personality, setPersonality] = useState(null);
+    // const [dietary, setDietary] = useState([]);
+    // const [customDietary, setCustomDietary] = useState([]);
+    const [interests, setInterests] = useState(currentUser?.interests || []);
+    const [personality, setPersonality] = useState(currentUser?.personality || null);
+    const [dietary, setDietary] = useState(savedDietary.filter((item) => presetDietary.includes(item)));
+    const [customDietary, setCustomDietary] = useState(
+        savedDietary
+            .filter((item) => !presetDietary.includes(item))
+            .map((text, index) => ({ id: index + 1, text: text, isChecked: true }))
+    );
 
     const othersStyle = dietaryData.others || {};
 
     const handleBackClick = () => {
         // setStep(step - 1);
-        if (step === 1) {
+        if (isEdit && step === 3) {
+            navigate("/profile");
+        } else if (step === 1) {
             sessionStorage.removeItem("newuser_language");
             navigate("/");
         } else {
@@ -94,6 +113,19 @@ function NewUser() {
     };
 
     const handleCompleteClick = () => {
+        // Ticked preset options + ticked "Others" rows that aren't empty
+        const dietaryList = [
+            ...dietary,
+            ...customDietary.filter((item) => item.isChecked && item.text.trim()).map((item) => item.text.trim())
+        ];
+
+        // Edit Profile: update the same user instead of creating a new one
+        if (isEdit) {
+            updateProfile({ ...currentUser, personality: personality, interests: interests, dietery_restrictions: dietaryList });
+            navigate("/profile");
+            return;
+        }
+
         // const savedProfiles = JSON.parse(localStorage.getItem("profiles")) || profiles;
 
         // const lastId = savedProfiles.length > 0 ? Math.max(...savedProfiles.map(p => p.id)) : 0;
@@ -110,10 +142,11 @@ function NewUser() {
             personality: personality,
             interests: interests,
             // dietery_restrictions: dietary
-            dietery_restrictions: [
-                ...dietary,
-                ...customDietary.filter((item) => item.isChecked && item.text.trim()).map((item) => item.text.trim())
-            ]
+            // dietery_restrictions: [
+            //     ...dietary,
+            //     ...customDietary.filter((item) => item.isChecked && item.text.trim()).map((item) => item.text.trim())
+            // ]
+            dietery_restrictions: dietaryList
         };
 
         // const updatedProfiles = [...savedProfiles, newProfile];

@@ -7,7 +7,7 @@
             "language": "zh-CN",
             "gender": "M",
             "age": 64,
-            "personality": "Introvert",
+            "personality": "I prefer small, quiet groups.",
             "interests": [
                 "Board Games",
                 "Cooking"
@@ -22,7 +22,7 @@
             "language": "ms",
             "gender": "F",
             "age": 70,
-            "personality": "Extrovert",
+            "personality": "I like to make new friends.",
             "interests": [
                 "Board Games",
                 "Cooking"
@@ -38,7 +38,7 @@
             "language": "ta",
             "gender": "F",
             "age": 76,
-            "personality": "Extrovert",
+            "personality": "I enjoy trying new things.",
             "interests": [
                 "Board Games",
                 "Cooking"
