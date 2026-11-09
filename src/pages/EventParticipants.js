@@ -1,7 +1,8 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
+import { getEvents, getCurrentUserId } from "../utils/db";
 import ParticipantCard from '../components/ParticipantCard';
 import ActionButton from "../components/ActionButton";
 
@@ -9,9 +10,11 @@ function EventParticipants() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const pID = localStorage.getItem("profile_id");
+    // const pID = localStorage.getItem("profile_id");
+    const pID = getCurrentUserId();
 
-    const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+    // const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+    const events = getEvents();
     const selectedEvent = events.find(event => event.id === Number(id));
 
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">

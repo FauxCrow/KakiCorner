@@ -1,8 +1,9 @@
 import React from 'react';
 import AccessibilityBar from '../components/AccessibilityBar';
 import chatData from "../content/chats.json";
-import eventData from "../content/events.json";
-import profileData from "../content/profile.json";
+// import eventData from "../content/events.json";
+// import profileData from "../content/profile.json";
+import { getEvents, getProfiles } from "../utils/db";
 import { useParams, useNavigate } from 'react-router-dom';
 import MessageCard from '../components/MessageCard';
 import { Send } from 'lucide-react';
@@ -15,8 +16,10 @@ function MessageChat() {
   const messagesEndRef = useRef(null);
 
   const chats = chatData.chats || [];
-  const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
-  const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+  // const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+  // const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+  const events = getEvents();
+  const profiles = getProfiles();
 
   const chat = chats.find((c) => c.id === Number(id)) || chats[0];
   const event = events.find((e) => e.id === Number(id)) || events[0];

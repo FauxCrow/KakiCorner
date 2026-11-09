@@ -2,24 +2,27 @@ import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
+import { getCurrentUserId } from "../utils/db";
 
 function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadInitialData = async () => {
-      const pID = localStorage.getItem("profile_id");
+      // const pID = localStorage.getItem("profile_id");
+      const pID = getCurrentUserId();
       if (!pID) {
         navigate("/newuser")
         return;
       }
 
-      const savedEvents = localStorage.getItem("events");
-      if (!savedEvents) {
-        const initialEvents = eventData.events || [];
-        localStorage.setItem("events", JSON.stringify(initialEvents));
-      }
+      // Seeding now happens automatically inside db.js
+      // const savedEvents = localStorage.getItem("events");
+      // if (!savedEvents) {
+      //   const initialEvents = eventData.events || [];
+      //   localStorage.setItem("events", JSON.stringify(initialEvents));
+      // }
     };
     loadInitialData();
   }, [navigate]);

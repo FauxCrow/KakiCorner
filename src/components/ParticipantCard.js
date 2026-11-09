@@ -1,23 +1,26 @@
 import React from 'react';
-import profileData from "../content/profile.json";
+// import profileData from "../content/profile.json";
 import ActionButton from "../components/ActionButton";
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
 import { useState } from "react";
+import { getEvents, saveEvents, getProfiles } from "../utils/db";
 
 export default function ParticipantCard({
     id = 1,
     event_id = 0,
     isOwner = false
 }) {
-    const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+    // const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+    const profiles = getProfiles();
     const profile = profiles.find((p) => p.id === Number(id)) || profiles[0];
-    
-    const getStoredEvents = () => {
-        const saved = localStorage.getItem("events");
-        return saved ? JSON.parse(saved) : (eventData.events || []);
-    };
 
-    const [events, setEvents] = useState(getStoredEvents());
+    // const getStoredEvents = () => {
+    //     const saved = localStorage.getItem("events");
+    //     return saved ? JSON.parse(saved) : (eventData.events || []);
+    // };
+
+    // const [events, setEvents] = useState(getStoredEvents());
+    const [events, setEvents] = useState(getEvents());
 
     const handleAcceptClick = () => {
         const updatedEvents = events.map(event => {
@@ -31,7 +34,8 @@ export default function ParticipantCard({
             return event;
         });
 
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        saveEvents(updatedEvents);
         setEvents(updatedEvents);
         window.location.reload();
     };
@@ -47,7 +51,8 @@ export default function ParticipantCard({
             return event;
         });
 
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        saveEvents(updatedEvents);
         setEvents(updatedEvents);
         window.location.reload();
     };

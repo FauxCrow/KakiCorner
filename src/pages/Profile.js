@@ -1,12 +1,15 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
-import profileData from "../content/profile.json";
+// import profileData from "../content/profile.json";
+import { getProfiles, getCurrentUserId } from "../utils/db";
 import ActionButton from "../components/ActionButton";
 import { useNavigate } from 'react-router-dom';
 
 function Profile() {
-  const pID = localStorage.getItem("profile_id");
-  const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+  // const pID = localStorage.getItem("profile_id");
+  // const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
+  const pID = getCurrentUserId();
+  const profiles = getProfiles();
   const profile = profiles.find((p) => p.id === Number(pID)) || profiles[0];
   const gender = profile.gender === "M" ? "Male" : "Female";
   const navigate = useNavigate();

@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import activityData from "../content/activities.json";
 import dietaryData from "../content/dietary.json";
-import profileData from "../content/profile.json";
+// import profileData from "../content/profile.json";
+import { addProfile, setCurrentUserId } from "../utils/db";
 
 // Pages 1-2 are setup, pages 3-5 are the 3-step survey
 const SURVEY_OFFSET = 2;
@@ -25,7 +26,7 @@ function NewUser() {
     const navigate = useNavigate();
     const activities = activityData.activities || [];
     const dietaryOptions = dietaryData.dietary || [];
-    const profiles = profileData.profiles || [];
+    // const profiles = profileData.profiles || [];
 
     const [step, setStep] = useState(1);
 
@@ -57,13 +58,14 @@ function NewUser() {
     };
 
     const handleCompleteClick = () => {
-        const savedProfiles = JSON.parse(localStorage.getItem("profiles")) || profiles;
+        // const savedProfiles = JSON.parse(localStorage.getItem("profiles")) || profiles;
 
-        const lastId = savedProfiles.length > 0 ? Math.max(...savedProfiles.map(p => p.id)) : 0;
-        const nextId = lastId + 1;
+        // const lastId = savedProfiles.length > 0 ? Math.max(...savedProfiles.map(p => p.id)) : 0;
+        // const nextId = lastId + 1;
 
+        // id is now given by addProfile()
         const newProfile = {
-            id: nextId,
+            // id: nextId,
             name: localStorage.getItem("name"),
             gender: localStorage.getItem("gender"),
             age: localStorage.getItem("age"),
@@ -72,9 +74,11 @@ function NewUser() {
             dietery_restrictions: dietary
         };
 
-        const updatedProfiles = [...savedProfiles, newProfile];
-        localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
-        localStorage.setItem("profile_id", nextId);
+        // const updatedProfiles = [...savedProfiles, newProfile];
+        // localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
+        // localStorage.setItem("profile_id", nextId);
+        const savedProfile = addProfile(newProfile);
+        setCurrentUserId(savedProfile.id);
 
         navigate("/");
     };

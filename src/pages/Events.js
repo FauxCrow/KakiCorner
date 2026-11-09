@@ -3,14 +3,16 @@ import { useEffect, useState } from "react";
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
 import EventCard from '../components/EventCard';
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
+import { getEvents, getCurrentUserId } from "../utils/db";
 import ActionButton from "../components/ActionButton";
 
 function Events() {
     const { type } = useParams();
     const eventType = type || "all";
 
-    const pID = Number(localStorage.getItem("profile_id"));
+    // const pID = Number(localStorage.getItem("profile_id"));
+    const pID = getCurrentUserId();
 
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [typeTitle, setTypeTitle] = useState();
@@ -22,7 +24,8 @@ function Events() {
     };
 
     useEffect(() => {
-        const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+        // const events = JSON.parse(localStorage.getItem("events")) || eventData.events;
+        const events = getEvents();
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 

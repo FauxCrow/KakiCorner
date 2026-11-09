@@ -8,7 +8,8 @@ import EventOverviewCard from '../components/EventOverviewCard';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import activityData from "../content/activities.json";
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
+import { addEvent, getCurrentUserId } from "../utils/db";
 
 const TOTAL_STEPS = 5;
 
@@ -49,7 +50,8 @@ function CreateEvent() {
     const navigate = useNavigate();
     const activities = activityData.activities || [];
 
-    const pID = localStorage.getItem("profile_id");
+    // const pID = localStorage.getItem("profile_id");
+    const pID = getCurrentUserId();
     const [step, setStep] = useState(1);
 
     const [activity, setActivity] = useState(null);
@@ -91,8 +93,8 @@ function CreateEvent() {
     };
 
     const handleCompleteClick = () => {
-        const existingEvents = JSON.parse(localStorage.getItem("events")) || eventData.events;
-        const newId = existingEvents.length > 0 ? Math.max(...existingEvents.map(e => e.id)) + 1 : 1;
+        // const existingEvents = JSON.parse(localStorage.getItem("events")) || eventData.events;
+        // const newId = existingEvents.length > 0 ? Math.max(...existingEvents.map(e => e.id)) + 1 : 1;
 
         const monthMap = {
             "January": "01", "February": "02", "March": "03", "April": "04",
@@ -103,8 +105,9 @@ function CreateEvent() {
         const monthNum = monthMap[month] || "01";
         const dateStr = `${day}/${monthNum}/${year}`;
 
+        // id is now given by addEvent()
         const newEvent = {
-            id: newId,
+            // id: newId,
             host: Number(pID),
             title: activity || "Untitled Event",
             tag: activity || "General",
@@ -119,8 +122,9 @@ function CreateEvent() {
             pending_id: []
         };
 
-        const updatedEvents = [...existingEvents, newEvent];
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // const updatedEvents = [...existingEvents, newEvent];
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        addEvent(newEvent);
 
         navigate("/events/created");
     };

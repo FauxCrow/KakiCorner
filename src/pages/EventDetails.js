@@ -1,7 +1,8 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import eventData from "../content/events.json";
+// import eventData from "../content/events.json";
+import { getEvents, saveEvents, deleteEvent, getCurrentUserId } from "../utils/db";
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
@@ -9,16 +10,18 @@ import ActionButton from "../components/ActionButton";
 
 function EventDetails() {
     const { id } = useParams();
-    const pID = localStorage.getItem("profile_id");
+    // const pID = localStorage.getItem("profile_id");
+    const pID = getCurrentUserId();
 
     const navigate = useNavigate();
 
-    const getStoredEvents = () => {
-        const saved = localStorage.getItem("events");
-        return saved ? JSON.parse(saved) : (eventData.events || []);
-    };
+    // const getStoredEvents = () => {
+    //     const saved = localStorage.getItem("events");
+    //     return saved ? JSON.parse(saved) : (eventData.events || []);
+    // };
 
-    const [events, setEvents] = useState(getStoredEvents());
+    // const [events, setEvents] = useState(getStoredEvents());
+    const [events, setEvents] = useState(getEvents());
     const selectedEvent = events.find(event => event.id === Number(id));
 
     const isParticipating = selectedEvent?.participants_id?.includes(Number(pID)) || selectedEvent?.pending_id?.includes(Number(pID));
@@ -28,8 +31,9 @@ function EventDetails() {
     };
 
     const handleDeleteClick = () => {
-        const updatedEvents = events.filter(event => event.id !== selectedEvent.id);
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // const updatedEvents = events.filter(event => event.id !== selectedEvent.id);
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        deleteEvent(selectedEvent.id);
         navigate(-1);
     };
 
@@ -49,7 +53,8 @@ function EventDetails() {
             return event;
         });
 
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        saveEvents(updatedEvents);
         setEvents(updatedEvents);
     };
 
@@ -65,7 +70,8 @@ function EventDetails() {
             return event;
         });
 
-        localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        saveEvents(updatedEvents);
         setEvents(updatedEvents);
     };
 
