@@ -11,6 +11,7 @@
             "time": "10:00 PM",
             "location": "Ang Mo Kio Park",
             "pickup": "Mayflower MRT",
+            "region": "Central",
             "max_slots": 5,
             "participants_id": [
                 1
@@ -30,6 +31,7 @@
             "time": "7:00 PM",
             "location": "Hougang ABC 02-105",
             "pickup": "Hougang MRT",
+            "region": "North-East",
             "max_slots": 10,
             "participants_id": [
                 2
