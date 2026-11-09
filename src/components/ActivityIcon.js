@@ -8,7 +8,9 @@ export default function ActivityIcon({
     size,
     className
 }) {
-    const activity = (activityData.activities || []).find((item) => item.title === tag);
+    // const activity = (activityData.activities || []).find((item) => item.title === tag);
+    const allTypes = [...(activityData.activities || []), activityData.others];
+    const activity = allTypes.find((item) => item?.title === tag);
 
     return <IconBadge icon={activity?.icon} color={activity?.color} size={size} className={className} />;
 }

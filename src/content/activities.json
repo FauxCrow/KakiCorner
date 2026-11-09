@@ -56,5 +56,10 @@
             "icon": "Sprout",
             "color": "#16A34A"
         }
-    ]
+    ],
+    "others": {
+        "title": "Others",
+        "icon": "Sparkles",
+        "color": "#6B7280"
+    }
 }
