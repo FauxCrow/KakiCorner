@@ -16,7 +16,8 @@ import activityData from "../content/activities.json";
 // import { addEvent, getCurrentUserId } from "../utils/db";
 // import { addEvent, getCurrentUserId, getEvents } from "../utils/db";
 import { addEvent, getCurrentUserId, getEvents, getEventById, updateEvent } from "../utils/db";
-import { toDateTime } from "../utils/date";
+// import { toDateTime } from "../utils/date";
+import { toDateTime, formatDate } from "../utils/date";
 
 const TOTAL_STEPS = 5;
 
@@ -289,6 +290,13 @@ function CreateEvent({ isEdit = false }) {
 
     const dateError = getDateError();
 
+    // ---------- Event overview ----------
+
+    // e.g. "Cooking on 12 December 2027 at 10:00 PM."
+    const whenText = `${activity} on ${formatDate(`${day}/${findMonthIndex(month) + 1}/${year}`)} at ${Number(hour)}:${minute} ${period}.`;
+    const whereText = `Event will be held at ${location.trim() || "a location to be added"}.`;
+    const pickupText = pickup ? `You will meet the participants at ${pickup}.` : "Pickup point not chosen yet.";
+
     const handleCompleteClick = () => {
         // const existingEvents = JSON.parse(localStorage.getItem("events")) || eventData.events;
         // const newId = existingEvents.length > 0 ? Math.max(...existingEvents.map(e => e.id)) + 1 : 1;
@@ -511,7 +519,8 @@ function CreateEvent({ isEdit = false }) {
                         <p className="text-left text-sm text-gray-500 -mt-4">Please add an address to select a pickup point.</p>
                     )}
 
-                    <EventOverviewCard details={["Board Games on 01 October 2026 at 11:45PM."]} />
+                    {/* <EventOverviewCard details={["Board Games on 01 October 2026 at 11:45PM."]} /> */}
+                    <EventOverviewCard details={[whenText]} />
 
                     {!location.trim() && (
                         <p className="text-center text-sm text-gray-500">Please enter a location to continue.</p>
@@ -543,11 +552,12 @@ function CreateEvent({ isEdit = false }) {
                         </p>
                     )}
 
-                    <EventOverviewCard details={[
+                    {/* <EventOverviewCard details={[
                         "Board Games on 01 October 2026 at 11:45PM.",
                         "Event will be held at Location.",
                         "You will meet the participants at Hougang MRT Gantry."
-                    ]} />
+                    ]} /> */}
+                    <EventOverviewCard details={[whenText, whereText, pickupText]} />
 
                     {/* <ActionButton title="Complete" className="self-center" onClick={handleCompleteClick} /> */}
                     <ActionButton title="Complete" className="self-center" disabled={Number(participants) < minSlots} onClick={handleCompleteClick} />
