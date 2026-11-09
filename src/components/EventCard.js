@@ -8,7 +8,7 @@ export default function EventCard({
     const navigate = useNavigate();
 
     return (
-        <div className="w-full mx-auto max-w-md p-6 z-50 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0">
+        <div className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0">
             <div className="flex flex-col gap-y-2">
                 <div className="flex items-center justify-between w-full gap-2">
                     <h1 className="font=heading font-bold">{event.tag}</h1>

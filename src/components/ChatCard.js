@@ -10,7 +10,7 @@ export default function ChatCard({
     const navigate = useNavigate();
 
     return (
-        <button className="w-full mx-auto max-w-md p-6 z-50 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0" onClick={() => navigate(`/messages/${chat_id}`)}>
+        <button className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0" onClick={() => navigate(`/messages/${chat_id}`)}>
             <div className="flex items-center w-full gap-6">
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
                     <img></img>

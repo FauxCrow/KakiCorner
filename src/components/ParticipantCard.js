@@ -53,7 +53,7 @@ export default function ParticipantCard({
     };
 
     return (
-        <div className="w-full mx-auto max-w-md p-6 z-50 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0">
+        <div className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0">
             <div className="flex flex-col w-full gap-y-4">
                 <div className="flex items-center w-full gap-6">
                     <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
