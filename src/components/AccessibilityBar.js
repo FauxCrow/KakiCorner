@@ -2,38 +2,14 @@ import React from 'react';
 import { CircleQuestionMark, ZoomIn, ZoomOut, Languages } from 'lucide-react';
 import AccessibilityButton from './AccessibilityButton';
 import { useFontSize } from '../hooks/FontSize';
-import { useEffect, useState, useRef } from "react";
+import { useLanguage } from '../hooks/UseLanguage';
 
 // TODO: function to show tutorial overlay
 // TODO: function to change language
 
 export default function AccessibilityBar() {
     const { toggleSize, isLarge } = useFontSize();
-
-    const [isLangOpen, setIsLangOpen] = useState(false);
-    const menuRef = useRef(null);
-
-    // Closes popup when clicking outside of it
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setIsLangOpen(false);
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    // Function to change language via Google Translate Cookie & reload
-    const changeLanguage = (langCode) => {
-        const cookieValue = langCode === 'en' ? '/en/en' : `/en/${langCode}`;
-
-        document.cookie = `googtrans=${cookieValue}; path=/; domain=${window.location.hostname}`;
-        document.cookie = `googtrans=${cookieValue}; path=/;`; // fallback for localhost
-
-        setIsLangOpen(false);
-        window.location.reload(); // Reloads app to cleanly render translated DOM elements
-    };
+    const { isLangOpen, menuRef, changeLanguage, toggleLangMenu } = useLanguage();
 
     return (
         <header className="w-full p-4 z-50 bg-white shadow-sm flex-shrink-0 relative overflow-visible">
@@ -46,7 +22,7 @@ export default function AccessibilityBar() {
                             icon={Languages} 
                             title='Language' 
                             iconSize={isLarge ? 28 : 24} 
-                            onClick={() => setIsLangOpen(!isLangOpen)} 
+                            onClick={toggleLangMenu}
                         />
 
                         {/* Language Selection Popup Menu */}
