@@ -117,8 +117,10 @@ function EventDetails() {
 
             <div className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0 flex flex-col gap-y-4">
                 <div className="flex items-center justify-between w-full gap-2">
+                    {/* "text-red" isn't a Tailwind colour, so it never showed red */}
+                    {/* <h3 className="text-left text-red">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left, {selectedEvent.pending_id.length} pending!</h3> */}
                     {selectedEvent.host === Number(pID) ? (
-                        <h3 className="text-left text-red">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left, {selectedEvent.pending_id.length} pending!</h3>
+                        <h3 className="text-left text-red-600">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left, {selectedEvent.pending_id.length} pending!</h3>
                     ) : (
                         <h3 className="text-left">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left!</h3>
                     )}

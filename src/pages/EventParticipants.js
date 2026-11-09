@@ -49,9 +49,15 @@ function EventParticipants() {
 
             {/* {(selectedEvent.host === Number(pID) && selectedEvent.pending_id.length > 0) && ( */}
             {(selectedEvent.host === Number(pID) && selectedEvent.pending_id.length > 0 && !isPast) && (
-                selectedEvent.pending_id.map((participant) => (
-                    <ParticipantCard key={participant} id={participant} event_id={selectedEvent.id} isOwner={selectedEvent.host === Number(pID)}></ParticipantCard>
-                ))
+                // selectedEvent.pending_id.map((participant) => (
+                //     <ParticipantCard key={participant} id={participant} event_id={selectedEvent.id} isOwner={selectedEvent.host === Number(pID)}></ParticipantCard>
+                // ))
+                <>
+                    <h2 className="text-left font-bold text-lg pt-2">Pending Requests</h2>
+                    {selectedEvent.pending_id.map((participant) => (
+                        <ParticipantCard key={participant} id={participant} event_id={selectedEvent.id} isOwner={selectedEvent.host === Number(pID)}></ParticipantCard>
+                    ))}
+                </>
             )}
         </main>
     </div>;

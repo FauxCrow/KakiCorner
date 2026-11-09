@@ -23,12 +23,21 @@ export default function ParticipantCard({
     const [events, setEvents] = useState(getEvents());
 
     const handleAcceptClick = () => {
+        // Don't accept more people than there are slots
+        const thisEvent = events.find((event) => event.id === event_id);
+        if (thisEvent.participants_id.length >= thisEvent.max_slots) {
+            alert("This event is full!");
+            return;
+        }
+
         const updatedEvents = events.map(event => {
             if (event.id === event_id) {
                 return {
                     ...event,
                     participants_id: [...event.participants_id, id],
-                    pending_id: event.pending_id.filter(id => id !== id)
+                    // Bug: the inner "id" hid the card's id, so every pending person was removed
+                    // pending_id: event.pending_id.filter(id => id !== id)
+                    pending_id: event.pending_id.filter((personId) => personId !== id)
                 };
             }
             return event;
@@ -45,7 +54,8 @@ export default function ParticipantCard({
             if (event.id === event_id) {
                 return {
                     ...event,
-                    pending_id: event.pending_id.filter(id => id !== id)
+                    // pending_id: event.pending_id.filter(id => id !== id)
+                    pending_id: event.pending_id.filter((personId) => personId !== id)
                 };
             }
             return event;
