@@ -84,7 +84,7 @@ function EventDetails() {
 
             <h2 className="text-left font-bold">Participants</h2>
 
-            <div className="w-full mx-auto max-w-md p-6 z-50 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0 flex flex-col gap-y-4">
+            <div className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0 flex flex-col gap-y-4">
                 <div className="flex items-center justify-between w-full gap-2">
                     {selectedEvent.host === Number(pID) ? (
                         <h3 className="text-left text-red">{selectedEvent.max_slots - selectedEvent.participants_id.length} slots left, {selectedEvent.pending_id.length} pending!</h3>
