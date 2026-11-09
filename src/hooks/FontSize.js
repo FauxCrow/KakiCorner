@@ -3,17 +3,22 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const FontSize = createContext();
 
 export const FontSizeProvider = ({ children }) => {
-  const [scale, setScale] = useState(1);
+  const [isLarge, setIsLarge] = useState(false);
 
-  useEffect(() => {
-    document.documentElement.style.setProperty('--font-scale', scale);
-  }, [scale]);
-
-  const toggleSize = () => setScale(prev => (prev === 1 ? 1.25 : 1));
-  const isLarge = scale === 1.25;
+  const toggleSize = () => {
+    setIsLarge(prev => {
+      const nextState = !prev;
+      const newScale = nextState ? 1.25 : 1;
+      
+      document.documentElement.style.setProperty('--font-scale', newScale);
+      document.documentElement.setAttribute('data-font-size', nextState ? 'large' : 'normal');
+      
+      return nextState;
+    });
+  };
 
   return (
-    <FontSize.Provider value={{ scale, toggleSize, isLarge }}>
+    <FontSize.Provider value={{ toggleSize, isLarge }}>
       {children}
     </FontSize.Provider>
   );

@@ -15,15 +15,18 @@ export function useLanguage() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // Function to change language via Google Translate Cookie & reload
+    // Function to trigger GTranslate
     const changeLanguage = (langCode) => {
-        const cookieValue = langCode === 'en' ? '/en/en' : `/en/${langCode}`;
-
-        document.cookie = `googtrans=${cookieValue}; path=/; domain=${window.location.hostname}`;
-        document.cookie = `googtrans=${cookieValue}; path=/;`;
-
         setIsLangOpen(false);
-        window.location.reload();
+
+        if (typeof window.doGTranslate === 'function') {
+            window.doGTranslate(`en|${langCode}`);
+        } else {
+            const cookieValue = langCode === 'en' ? '/en/en' : `/en/${langCode}`;
+            document.cookie = `googtrans=${cookieValue}; path=/; domain=${window.location.hostname}`;
+            document.cookie = `googtrans=${cookieValue}; path=/;`;
+            window.location.reload();
+        }
     };
 
     const toggleLangMenu = () => setIsLangOpen((prev) => !prev);

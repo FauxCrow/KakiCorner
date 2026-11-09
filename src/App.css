@@ -71,3 +71,7 @@ body {
 .skiptranslate > iframe {
   display: none !important;
 }
+
+.translated-ltr span, .translated-rtl span {
+  transition: opacity 0.15s ease-in-out;
+}
