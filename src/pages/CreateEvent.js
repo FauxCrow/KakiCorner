@@ -5,7 +5,8 @@ import ActivityCard from '../components/ActivityCard';
 import OptionCard from '../components/OptionCard';
 import StepperInput from '../components/StepperInput';
 import EventOverviewCard from '../components/EventOverviewCard';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { useState } from "react";
 import { useState, useEffect } from "react";
 import SuggestionList from '../components/SuggestionList';
@@ -13,7 +14,8 @@ import { DEFAULT_PICKUPS, searchAddress, getPickupOptions } from "../utils/locat
 import activityData from "../content/activities.json";
 // import eventData from "../content/events.json";
 // import { addEvent, getCurrentUserId } from "../utils/db";
-import { addEvent, getCurrentUserId, getEvents } from "../utils/db";
+// import { addEvent, getCurrentUserId, getEvents } from "../utils/db";
+import { addEvent, getCurrentUserId, getEvents, getEventById, updateEvent } from "../utils/db";
 import { toDateTime } from "../utils/date";
 
 const TOTAL_STEPS = 5;
@@ -62,8 +64,13 @@ const getDefaultStart = () => {
     return start;
 };
 
-function CreateEvent() {
+// function CreateEvent() {
+function CreateEvent({ isEdit = false }) {
     const navigate = useNavigate();
+
+    // Edit Event reuses this wizard: load the event once, using the id in the address
+    const { id } = useParams();
+    const [editingEvent] = useState(() => (isEdit ? getEventById(id) : null));
     // const activities = activityData.activities || [];
     const activities = [...(activityData.activities || []), activityData.others];
 
@@ -98,6 +105,18 @@ function CreateEvent() {
 
     const [participants, setParticipants] = useState("10");
 
+    // Can't lower the slots below the people already accepted
+    const minSlots = Math.max(1, editingEvent?.participants_id?.length || 0);
+
+    // Edit Event: fill every step with the event's saved values when the page opens
+    useEffect(() => {
+        if (editingEvent) {
+            setActivity(editingEvent.tag);
+            prefillFromLastEvent(editingEvent.tag, editingEvent);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const handleBackClick = () => {
         if (step === 1) {
             navigate(-1);
@@ -115,7 +134,9 @@ function CreateEvent() {
     //     setStep(2);
     // };
     const handleActivityClick = (title) => {
-        if (title !== activity) {
+        // if (title !== activity) {
+        // When editing, changing the type keeps what's already filled in
+        if (title !== activity && !isEdit) {
             prefillFromLastEvent(title);
         }
         setActivity(title);
@@ -123,14 +144,29 @@ function CreateEvent() {
     };
 
     // Fill steps 2-5 from this user's latest event of the same type; the date always resets to today
-    const prefillFromLastEvent = (title) => {
-        const lastEvent = getEvents()
+    // const prefillFromLastEvent = (title) => {
+    //     const lastEvent = getEvents()
+    //         .filter((event) => event.host === Number(pID) && event.tag === title)
+    //         .sort((a, b) => b.id - a.id)[0];
+    // Edit Event passes the event itself, and then its own date is kept
+    const prefillFromLastEvent = (title, eventToEdit = null) => {
+        const lastEvent = eventToEdit || getEvents()
             .filter((event) => event.host === Number(pID) && event.tag === title)
             .sort((a, b) => b.id - a.id)[0];
 
-        setDay(pad(defaultStart.getDate()));
-        setMonth(MONTHS[defaultStart.getMonth()]);
-        setYear(String(defaultStart.getFullYear()));
+        // setDay(pad(defaultStart.getDate()));
+        // setMonth(MONTHS[defaultStart.getMonth()]);
+        // setYear(String(defaultStart.getFullYear()));
+        if (eventToEdit) {
+            const [savedDay, savedMonth, savedYear] = eventToEdit.date.split("/");
+            setDay(pad(savedDay));
+            setMonth(MONTHS[Number(savedMonth) - 1]);
+            setYear(savedYear);
+        } else {
+            setDay(pad(defaultStart.getDate()));
+            setMonth(MONTHS[defaultStart.getMonth()]);
+            setYear(String(defaultStart.getFullYear()));
+        }
 
         setDescription(lastEvent?.description || "");
         setLocation(lastEvent?.location || "");
@@ -288,6 +324,18 @@ function CreateEvent() {
 
         // const updatedEvents = [...existingEvents, newEvent];
         // localStorage.setItem("events", JSON.stringify(updatedEvents));
+        // Edit Event: replace the same event, keeping its id and the people who joined
+        if (isEdit) {
+            updateEvent({
+                ...editingEvent,
+                ...newEvent,
+                participants_id: editingEvent.participants_id,
+                pending_id: editingEvent.pending_id
+            });
+            navigate(-1);
+            return;
+        }
+
         addEvent(newEvent);
 
         navigate("/events/created");
@@ -482,9 +530,18 @@ function CreateEvent() {
                         className="w-60 mx-auto"
                         value={participants}
                         onChange={(value) => setParticipants(digitsOnly(value, 2))}
-                        onIncrement={() => setParticipants(String(clampNumber(participants, 1, 1, 50)))}
-                        onDecrement={() => setParticipants(String(clampNumber(participants, -1, 1, 50)))}
+                        // onIncrement={() => setParticipants(String(clampNumber(participants, 1, 1, 50)))}
+                        // onDecrement={() => setParticipants(String(clampNumber(participants, -1, 1, 50)))}
+                        onIncrement={() => setParticipants(String(clampNumber(participants, 1, minSlots, 50)))}
+                        onDecrement={() => setParticipants(String(clampNumber(participants, -1, minSlots, 50)))}
+                        decrementDisabled={Number(participants) <= minSlots}
                     />
+
+                    {Number(participants) < minSlots && (
+                        <p className="text-center text-sm text-red-600">
+                            {minSlots > 1 ? `Must be at least ${minSlots}, as ${minSlots} people have already joined.` : "Please enter at least 1 participant."}
+                        </p>
+                    )}
 
                     <EventOverviewCard details={[
                         "Board Games on 01 October 2026 at 11:45PM.",
@@ -492,7 +549,8 @@ function CreateEvent() {
                         "You will meet the participants at Hougang MRT Gantry."
                     ]} />
 
-                    <ActionButton title="Complete" className="self-center" onClick={handleCompleteClick} />
+                    {/* <ActionButton title="Complete" className="self-center" onClick={handleCompleteClick} /> */}
+                    <ActionButton title="Complete" className="self-center" disabled={Number(participants) < minSlots} onClick={handleCompleteClick} />
                 </>
             )}
         </main>

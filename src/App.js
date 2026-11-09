@@ -38,6 +38,7 @@ function App() {
           <Route path="/eventparticipants/:id" element={<EventParticipants />} />
           <Route path="/messages/:id" element={<MessageChat />} />
           <Route path="/createevent" element={<CreateEvent />} />
+          <Route path="/editevent/:id" element={<CreateEvent key="edit" isEdit />} />
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
         </Routes>

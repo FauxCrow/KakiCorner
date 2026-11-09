@@ -8,7 +8,8 @@ import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
 import ActionButton from "../components/ActionButton";
 import ActivityIcon from "../components/ActivityIcon";
-import { formatDate } from "../utils/date";
+// import { formatDate } from "../utils/date";
+import { formatDate, isPastEvent } from "../utils/date";
 
 function EventDetails() {
     const { id } = useParams();
@@ -28,8 +29,12 @@ function EventDetails() {
 
     const isParticipating = selectedEvent?.participants_id?.includes(Number(pID)) || selectedEvent?.pending_id?.includes(Number(pID));
 
+    // Past events can still be viewed, but nothing can be changed
+    const isPast = selectedEvent ? isPastEvent(selectedEvent) : false;
+
     const handleEditClick = () => {
-        navigate(`/createevent`);
+        // navigate(`/createevent`);
+        navigate(`/editevent/${selectedEvent.id}`);
     };
 
     const handleDeleteClick = () => {
@@ -77,12 +82,28 @@ function EventDetails() {
         setEvents(updatedEvents);
     };
 
+    // e.g. pressing Back after deleting it
+    if (!selectedEvent) {
+        return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
+            <AccessibilityBar></AccessibilityBar>
+
+            <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
+                <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+                <p className="text-gray-500">This event no longer exists.</p>
+            </main>
+        </div>;
+    }
+
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
             <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
             <h1 className="text-left font-bold text-xl">{selectedEvent.tag}</h1>
+
+            {isPast && (
+                <p className="text-sm text-gray-500 -mt-2">This event has ended.</p>
+            )}
             {/* <img src={selectedEvent.img} className="rounded-xl"></img> */}
             <ActivityIcon tag={selectedEvent.tag} size={72} className="w-full h-40 rounded-xl" />
             <h3 className="text-justify">{selectedEvent.description}</h3>
@@ -110,18 +131,22 @@ function EventDetails() {
                 <ActionButton title="See Participants" className="self-center bg-gray-300" onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} />
             </div>
 
-            {(selectedEvent.host === Number(pID)) && (
+            {/* Edit / Delete / Leave / Join are hidden once the event has passed */}
+            {/* {(selectedEvent.host === Number(pID)) && ( */}
+            {(selectedEvent.host === Number(pID) && !isPast) && (
                 <div className="flex items-center justify-between w-full gap-2">
                     <ActionButton title="Edit" className="self-center text-right" onClick={() => handleEditClick()} />
                     <ActionButton title="Delete" className="self-center text-right" onClick={() => handleDeleteClick()} />
                 </div>
             )}
 
-            {(isParticipating) && (
+            {/* {(isParticipating) && ( */}
+            {(isParticipating && !isPast) && (
                 <ActionButton title="Leave" className="self-center text-right" onClick={() => handleLeaveClick()} />
             )}
 
-            {(!isParticipating && selectedEvent.host !== Number(pID)) && (
+            {/* {(!isParticipating && selectedEvent.host !== Number(pID)) && ( */}
+            {(!isParticipating && selectedEvent.host !== Number(pID) && !isPast) && (
                 <ActionButton title="Join" className="self-center text-right" onClick={() => handleJoinClick()} />
             )}
 
