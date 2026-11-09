@@ -2,6 +2,7 @@ import ActionButton from '../components/ActionButton';
 import StepIndicator from '../components/StepIndicator';
 import OptionCard from '../components/OptionCard';
 import CheckboxCard from '../components/CheckboxCard';
+import AddButton from '../components/AddButton';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import activityData from "../content/activities.json";
@@ -34,9 +35,17 @@ function NewUser() {
     const [interests, setInterests] = useState([]);
     const [personality, setPersonality] = useState(null);
     const [dietary, setDietary] = useState([]);
+    const [customDietary, setCustomDietary] = useState([]);
+
+    const othersStyle = dietaryData.others || {};
 
     const handleBackClick = () => {
-        setStep(step - 1);
+        // setStep(step - 1);
+        if (step === 1) {
+            navigate("/");
+        } else {
+            setStep(step - 1);
+        }
     };
 
     const handleNextClick = () => {
@@ -57,6 +66,15 @@ function NewUser() {
         setList(list.includes(item) ? list.filter((i) => i !== item) : [...list, item]);
     };
 
+    // "Others" dietary rows: each is { id, text, isChecked } and starts ticked
+    const handleAddCustomDietary = () => {
+        setCustomDietary([...customDietary, { id: Date.now(), text: "", isChecked: true }]);
+    };
+
+    const updateCustomDietary = (id, changes) => {
+        setCustomDietary(customDietary.map((item) => (item.id === id ? { ...item, ...changes } : item)));
+    };
+
     const handleCompleteClick = () => {
         // const savedProfiles = JSON.parse(localStorage.getItem("profiles")) || profiles;
 
@@ -71,7 +89,11 @@ function NewUser() {
             age: localStorage.getItem("age"),
             personality: personality,
             interests: interests,
-            dietery_restrictions: dietary
+            // dietery_restrictions: dietary
+            dietery_restrictions: [
+                ...dietary,
+                ...customDietary.filter((item) => item.isChecked && item.text.trim()).map((item) => item.text.trim())
+            ]
         };
 
         // const updatedProfiles = [...savedProfiles, newProfile];
@@ -95,6 +117,8 @@ function NewUser() {
 
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">
+
+            <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} />
 
             {/* Page 1: Language */}
             {step === 1 && (
@@ -129,7 +153,7 @@ function NewUser() {
             {/* Pages 3-5: Survey header */}
             {step > SURVEY_OFFSET && (
                 <>
-                    <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} />
+                    {/* <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} /> */}
                     <StepIndicator current={step - SURVEY_OFFSET} total={SURVEY_STEPS} />
                 </>
             )}
@@ -138,13 +162,16 @@ function NewUser() {
             {step === 3 && (
                 <>
                     <h1 className="text-center text-xl">What are your interests?</h1>
+                    <p className="text-center text-sm text-gray-500">Leave unselected if none apply to you.</p>
 
                     <div className="flex flex-col gap-y-2">
                         {activities.map((item) => (
                             <CheckboxCard
                                 key={item.id}
                                 title={item.title}
-                                img={item.img}
+                                // img={item.img}
+                                icon={item.icon}
+                                color={item.color}
                                 isChecked={interests.includes(item.title)}
                                 onChange={() => toggleItem(interests, setInterests, item.title)}
                             />
@@ -178,17 +205,41 @@ function NewUser() {
             {step === 5 && (
                 <>
                     <h1 className="text-center text-xl">Do you have dietary restrictions?</h1>
+                    <p className="text-center text-sm text-gray-500">Leave unselected if none apply to you.</p>
 
                     <div className="flex flex-col gap-y-2">
                         {dietaryOptions.map((item) => (
                             <CheckboxCard
                                 key={item.id}
                                 title={item.title}
-                                img={item.img}
+                                // img={item.img}
+                                icon={item.icon}
+                                color={item.color}
                                 isChecked={dietary.includes(item.title)}
                                 onChange={() => toggleItem(dietary, setDietary, item.title)}
                             />
                         ))}
+
+                        {/* Others: typed in by the user */}
+                        {customDietary.map((item) => (
+                            <CheckboxCard
+                                key={item.id}
+                                icon={othersStyle.icon}
+                                color={othersStyle.color}
+                                isChecked={item.isChecked}
+                                onChange={() => updateCustomDietary(item.id, { isChecked: !item.isChecked })}
+                            >
+                                <input
+                                    type="text"
+                                    value={item.text}
+                                    onChange={(e) => updateCustomDietary(item.id, { text: e.target.value })}
+                                    placeholder="e.g. Peanut allergy"
+                                    className="w-full p-2 rounded-xl border-2 border-gray-200 bg-white text-center text-sm focus:outline-none"
+                                />
+                            </CheckboxCard>
+                        ))}
+
+                        <AddButton title="Others" onClick={handleAddCustomDietary} />
                     </div>
 
                     <ActionButton title="Complete" className="self-center" onClick={handleCompleteClick} />

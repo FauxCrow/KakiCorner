@@ -3,42 +3,58 @@
         {
             "id": 1,
             "title": "Board Games",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Dices",
+            "color": "#DC2626"
         },
         {
             "id": 2,
             "title": "Exercise",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Dumbbell",
+            "color": "#2563EB"
         },
         {
             "id": 3,
             "title": "Art & Crafts",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Palette",
+            "color": "#DB2777"
         },
         {
             "id": 4,
             "title": "Music",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Music",
+            "color": "#7C3AED"
         },
         {
             "id": 5,
             "title": "Puzzles",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Puzzle",
+            "color": "#0891B2"
         },
         {
             "id": 6,
             "title": "Baking",
-            "img": "https://"
+            "img": "https://",
+            "icon": "CakeSlice",
+            "color": "#D97706"
         },
         {
             "id": 7,
             "title": "Cooking",
-            "img": "https://"
+            "img": "https://",
+            "icon": "CookingPot",
+            "color": "#EA580C"
         },
         {
             "id": 8,
             "title": "Gardening",
-            "img": "https://"
+            "img": "https://",
+            "icon": "Sprout",
+            "color": "#16A34A"
         }
     ]
 }
