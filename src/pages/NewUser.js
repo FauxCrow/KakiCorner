@@ -4,17 +4,21 @@ import OptionCard from '../components/OptionCard';
 import CheckboxCard from '../components/CheckboxCard';
 import AddButton from '../components/AddButton';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+import { useState } from "react";
 import activityData from "../content/activities.json";
 import dietaryData from "../content/dietary.json";
 // import profileData from "../content/profile.json";
+import languageData from "../content/languages.json";
 import { addProfile, setCurrentUserId } from "../utils/db";
+import { randomPerson } from "../utils/randomProfile";
+import { useLanguage } from '../hooks/UseLanguage';
 
 // Pages 1-2 are setup, pages 3-5 are the 3-step survey
 const SURVEY_OFFSET = 2;
 const SURVEY_STEPS = 3;
 
-const LANGUAGES = ["English", "Chinese", "Malay", "Tamil"];
+// const LANGUAGES = ["English", "Chinese", "Malay", "Tamil"];
 
 const PERSONALITIES = [
     "I like to make new friends.",
@@ -28,10 +32,17 @@ function NewUser() {
     const activities = activityData.activities || [];
     const dietaryOptions = dietaryData.dietary || [];
     // const profiles = profileData.profiles || [];
+    const languages = languageData.languages || [];
+    const { changeLanguage } = useLanguage();
 
-    const [step, setStep] = useState(1);
+    // If translating had to reload the page, carry on from page 2 with the language already picked
+    const savedLanguage = sessionStorage.getItem("newuser_language");
 
-    const [language, setLanguage] = useState(null);
+    // const [step, setStep] = useState(1);
+    const [step, setStep] = useState(savedLanguage ? 2 : 1);
+
+    // const [language, setLanguage] = useState(null);
+    const [language, setLanguage] = useState(savedLanguage);
     const [interests, setInterests] = useState([]);
     const [personality, setPersonality] = useState(null);
     const [dietary, setDietary] = useState([]);
@@ -42,6 +53,7 @@ function NewUser() {
     const handleBackClick = () => {
         // setStep(step - 1);
         if (step === 1) {
+            sessionStorage.removeItem("newuser_language");
             navigate("/");
         } else {
             setStep(step - 1);
@@ -52,9 +64,15 @@ function NewUser() {
         setStep(step + 1);
     };
 
-    const handleLanguageClick = (item) => {
-        setLanguage(item);
+    // const handleLanguageClick = (item) => {
+    //     setLanguage(item);
+    //     handleNextClick();
+    // };
+    const handleLanguageClick = (code) => {
+        setLanguage(code);
+        sessionStorage.setItem("newuser_language", code);
         handleNextClick();
+        changeLanguage(code);
     };
 
     const handlePersonalityClick = (item) => {
@@ -84,9 +102,11 @@ function NewUser() {
         // id is now given by addProfile()
         const newProfile = {
             // id: nextId,
-            name: localStorage.getItem("name"),
-            gender: localStorage.getItem("gender"),
-            age: localStorage.getItem("age"),
+            // name: localStorage.getItem("name"),
+            // gender: localStorage.getItem("gender"),
+            // age: localStorage.getItem("age"),
+            ...randomPerson(),
+            language: language || "en",
             personality: personality,
             interests: interests,
             // dietery_restrictions: dietary
@@ -101,19 +121,21 @@ function NewUser() {
         // localStorage.setItem("profile_id", nextId);
         const savedProfile = addProfile(newProfile);
         setCurrentUserId(savedProfile.id);
+        sessionStorage.removeItem("newuser_language");
 
         // navigate("/");
         navigate("/home");
     };
 
-    useEffect(() => {
-        const createProfile = async () => {
-            localStorage.setItem("name", "John Doe");
-            localStorage.setItem("age", 0);
-            localStorage.setItem("gender", "M");
-        };
-        createProfile();
-    }, []);
+    // Placeholder details, replaced by randomPerson() in handleCompleteClick
+    // useEffect(() => {
+    //     const createProfile = async () => {
+    //         localStorage.setItem("name", "John Doe");
+    //         localStorage.setItem("age", 0);
+    //         localStorage.setItem("gender", "M");
+    //     };
+    //     createProfile();
+    // }, []);
 
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">
@@ -129,12 +151,20 @@ function NewUser() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
-                        {LANGUAGES.map((item) => (
+                        {/* {LANGUAGES.map((item) => (
                             <OptionCard
                                 key={item}
                                 title={item}
                                 isSelected={language === item}
                                 onClick={() => handleLanguageClick(item)}
+                            />
+                        ))} */}
+                        {languages.map((item) => (
+                            <OptionCard
+                                key={item.code}
+                                title={item.label}
+                                isSelected={language === item.code}
+                                onClick={() => handleLanguageClick(item.code)}
                             />
                         ))}
                     </div>

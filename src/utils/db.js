@@ -2,7 +2,7 @@ import eventData from "../content/events.json";
 import profileData from "../content/profile.json";
 
 // Bump this whenever the JSON files change, so the browser reloads them
-const DB_VERSION = "1";
+const DB_VERSION = "2";
 
 // Copies the JSON files into localStorage on first run (or after a version bump)
 function seed() {

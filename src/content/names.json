@@ -1,0 +1,15 @@
+{
+    "chinese": {
+        "surnames": ["Tan", "Lim", "Lee", "Ng", "Ong", "Wong", "Goh", "Chua", "Chan", "Koh", "Teo", "Ang", "Yeo", "Tay", "Ho", "Low", "Sim", "Chong"],
+        "male": ["Jun Jie", "Wei Ming", "Kok Leong", "Boon Hock", "Chee Keong", "Hock Seng", "Kian Huat", "Teck Soon", "Yong Sheng", "Ah Kow"],
+        "female": ["Mei Ling", "Siew Lan", "Bee Hoon", "Lay Hoon", "Geok Choo", "Swee Lian", "Poh Choo", "Hui Min", "Li Hua", "Ah Lian"]
+    },
+    "malay": {
+        "male": ["Ahmad", "Ismail", "Rahman", "Hassan", "Yusof", "Osman", "Kassim", "Salleh", "Abdullah", "Razak", "Hamid", "Jamal"],
+        "female": ["Aisyah", "Fatimah", "Rokiah", "Zainab", "Khadijah", "Halimah", "Salmah", "Aminah", "Mariam", "Noraini"]
+    },
+    "indian": {
+        "male": ["Rajaratnam", "Subramaniam", "Krishnan", "Muthu", "Ramasamy", "Govindasamy", "Selvaraj", "Arumugam", "Palaniappan", "Murugan", "Ganesan", "Raman"],
+        "female": ["Devi", "Lakshmi", "Kamala", "Saraswathy", "Meena", "Valli", "Parvathi", "Shanthi", "Vasantha", "Rani"]
+    }
+}
