@@ -13,7 +13,8 @@ export default function NavBar() {
             <div className="max-w-md mx-auto w-full">
                 <div className="grid grid-cols-3 gap-3 w-full">
                     <NavButton icon={MessageCircle} title='Chats' iconSize={isLarge ? 28 : 24 } onClick={() => navigate("/messages")} />
-                    <NavButton icon={House} title='Home' iconSize={isLarge ? 28 : 24 } onClick={() => navigate("/")} />
+                    {/* <NavButton icon={House} title='Home' iconSize={isLarge ? 28 : 24 } onClick={() => navigate("/")} /> */}
+                    <NavButton icon={House} title='Home' iconSize={isLarge ? 28 : 24 } onClick={() => navigate("/home")} />
                     <NavButton icon={UserRound} title='Me' iconSize={isLarge ? 28 : 24 } onClick={() => navigate("/profile")} />
                 </div>
             </div>

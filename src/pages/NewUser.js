@@ -80,7 +80,8 @@ function NewUser() {
         const savedProfile = addProfile(newProfile);
         setCurrentUserId(savedProfile.id);
 
-        navigate("/");
+        // navigate("/");
+        navigate("/home");
     };
 
     useEffect(() => {
