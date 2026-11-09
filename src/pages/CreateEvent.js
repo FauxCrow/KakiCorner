@@ -324,6 +324,7 @@ function CreateEvent({ isEdit = false }) {
             time: `${hour}:${minute} ${period}`,
             location: location || "TBD",
             pickup: pickup || "TBD",
+            region: "North" || "TBD", // Hardcoded for now, but if we have time can do a small dictionary of locations to match the region?
             pickup_options: pickupOptions,
             max_slots: Number(participants),
             participants_id: [],
