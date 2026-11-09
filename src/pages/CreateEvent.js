@@ -441,19 +441,27 @@ function CreateEvent() {
                     <SuggestionList suggestions={suggestions} onSelect={handleSuggestionClick} />
 
                     <h2 className="text-left text-base">Pickup Location:</h2>
-                    <p className="text-left text-sm text-gray-500 -mt-4">Further details will be announced in the group chat.</p>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        {/* {PICKUP_LOCATIONS.map((item) => ( */}
-                        {pickupOptions.map((item) => (
-                            <OptionCard
-                                key={item}
-                                title={item}
-                                isSelected={pickup === item}
-                                onClick={() => setPickup(item)}
-                            />
-                        ))}
-                    </div>
+                    {/* Pickup cards only appear once an address has been entered */}
+                    {location.trim() ? (
+                        <>
+                            <p className="text-left text-sm text-gray-500 -mt-4">Further details will be announced in the group chat.</p>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                {/* {PICKUP_LOCATIONS.map((item) => ( */}
+                                {pickupOptions.map((item) => (
+                                    <OptionCard
+                                        key={item}
+                                        title={item}
+                                        isSelected={pickup === item}
+                                        onClick={() => setPickup(item)}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <p className="text-left text-sm text-gray-500 -mt-4">Please add an address to select a pickup point.</p>
+                    )}
 
                     <EventOverviewCard details={["Board Games on 01 October 2026 at 11:45PM."]} />
 
