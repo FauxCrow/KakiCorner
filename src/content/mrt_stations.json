@@ -3,962 +3,1148 @@
         {
             "name": "Admiralty MRT Station (NS10)",
             "lat": 1.440589,
-            "lng": 103.800991
+            "lng": 103.800991,
+            "region": "North"
         },
         {
             "name": "Aljunied MRT Station (EW9)",
             "lat": 1.316433,
-            "lng": 103.882906
+            "lng": 103.882906,
+            "region": "East"
         },
         {
             "name": "Ang Mo Kio MRT Station (NS16)",
             "lat": 1.369933,
-            "lng": 103.849558
+            "lng": 103.849558,
+            "region": "Central"
         },
         {
             "name": "Bakau LRT Station (SE3)",
             "lat": 1.387994,
-            "lng": 103.905415
+            "lng": 103.905415,
+            "region": "Northeast"
         },
         {
             "name": "Bangkit LRT Station (BP9)",
             "lat": 1.380022,
-            "lng": 103.772647
+            "lng": 103.772647,
+            "region": "West"
         },
         {
             "name": "Bartley MRT Station (CC12)",
             "lat": 1.342501,
-            "lng": 103.880178
+            "lng": 103.880178,
+            "region": "Central"
         },
         {
             "name": "Bayfront MRT Station (DT16 / CC34)",
             "lat": 1.281874,
-            "lng": 103.85908
+            "lng": 103.85908,
+            "region": "South"
         },
         {
             "name": "Bayshore MRT Station (TE29)",
             "lat": 1.313122,
-            "lng": 103.94231
+            "lng": 103.94231,
+            "region": "East"
         },
         {
             "name": "Beach LRT Station (S4)",
             "lat": 1.25129,
-            "lng": 103.817802
+            "lng": 103.817802,
+            "region": "South"
         },
         {
             "name": "Beauty World MRT Station (DT5)",
             "lat": 1.341223,
-            "lng": 103.775794
+            "lng": 103.775794,
+            "region": "Central"
         },
         {
             "name": "Bedok MRT Station (EW5)",
             "lat": 1.32398,
-            "lng": 103.929984
+            "lng": 103.929984,
+            "region": "East"
         },
         {
             "name": "Bedok North MRT Station (DT29)",
             "lat": 1.334742,
-            "lng": 103.917978
+            "lng": 103.917978,
+            "region": "East"
         },
         {
             "name": "Bedok Reservoir MRT Station (DT30)",
             "lat": 1.336608,
-            "lng": 103.932235
+            "lng": 103.932235,
+            "region": "East"
         },
         {
             "name": "Bedok South MRT Station (TE30)",
             "lat": 1.316684,
-            "lng": 103.949311
+            "lng": 103.949311,
+            "region": "East"
         },
         {
             "name": "Bencoolen MRT Station (DT21)",
             "lat": 1.298918,
-            "lng": 103.850354
+            "lng": 103.850354,
+            "region": "Central"
         },
         {
             "name": "Bendemeer MRT Station (DT23)",
             "lat": 1.313673,
-            "lng": 103.862978
+            "lng": 103.862978,
+            "region": "Central"
         },
         {
             "name": "Bishan MRT Station (NS17)",
             "lat": 1.350839,
-            "lng": 103.848144
+            "lng": 103.848144,
+            "region": "Central"
         },
         {
             "name": "Boon Keng MRT Station (NE9)",
             "lat": 1.319336,
-            "lng": 103.861569
+            "lng": 103.861569,
+            "region": "Central"
         },
         {
             "name": "Boon Lay MRT Station (EW27)",
             "lat": 1.338604,
-            "lng": 103.706065
+            "lng": 103.706065,
+            "region": "West"
         },
         {
             "name": "Botanic Gardens MRT Station (CC19)",
             "lat": 1.322114,
-            "lng": 103.814985
+            "lng": 103.814985,
+            "region": "Central"
         },
         {
             "name": "Braddell MRT Station (NS18)",
             "lat": 1.340469,
-            "lng": 103.846799
+            "lng": 103.846799,
+            "region": "Central"
         },
         {
             "name": "Bright Hill MRT Station (TE7)",
             "lat": 1.363283,
-            "lng": 103.832894
+            "lng": 103.832894,
+            "region": "Central"
         },
         {
             "name": "Buangkok MRT Station (NE15)",
             "lat": 1.38287,
-            "lng": 103.893123
+            "lng": 103.893123,
+            "region": "Northeast"
         },
         {
             "name": "Bugis MRT Station (DT14)",
             "lat": 1.299314,
-            "lng": 103.857126
+            "lng": 103.857126,
+            "region": "Central"
         },
         {
             "name": "Bukit Batok MRT Station (NS2)",
             "lat": 1.349033,
-            "lng": 103.749566
+            "lng": 103.749566,
+            "region": "West"
         },
         {
             "name": "Bukit Brown MRT Station (CC18)",
             "lat": 1.333729,
-            "lng": 103.83069
+            "lng": 103.83069,
+            "region": "Central"
         },
         {
             "name": "Bukit Gombak MRT Station (NS3)",
             "lat": 1.358612,
-            "lng": 103.751791
+            "lng": 103.751791,
+            "region": "West"
         },
         {
             "name": "Bukit Panjang MRT Station (DT1)",
             "lat": 1.379002,
-            "lng": 103.761535
+            "lng": 103.761535,
+            "region": "West"
         },
         {
             "name": "Buona Vista MRT Station (CC22)",
             "lat": 1.306635,
-            "lng": 103.790709
+            "lng": 103.790709,
+            "region": "West"
         },
         {
             "name": "Caldecott MRT Station (TE9)",
             "lat": 1.337246,
-            "lng": 103.840162
+            "lng": 103.840162,
+            "region": "Central"
         },
         {
             "name": "Canberra MRT Station (NS12)",
             "lat": 1.443077,
-            "lng": 103.829703
+            "lng": 103.829703,
+            "region": "North"
         },
         {
             "name": "Cantonment MRT Station (CC31)",
             "lat": 1.272872,
-            "lng": 103.837062
+            "lng": 103.837062,
+            "region": "Central"
         },
         {
             "name": "Cashew MRT Station (DT2)",
             "lat": 1.369815,
-            "lng": 103.764439
+            "lng": 103.764439,
+            "region": "West"
         },
         {
             "name": "Changi Airport MRT Station (CG2)",
             "lat": 1.357479,
-            "lng": 103.987884
+            "lng": 103.987884,
+            "region": "East"
         },
         {
             "name": "Cheng Lim LRT Station (SW1)",
             "lat": 1.396278,
-            "lng": 103.893797
+            "lng": 103.893797,
+            "region": "Northeast"
         },
         {
             "name": "Chinatown MRT Station (DT19)",
             "lat": 1.284224,
-            "lng": 103.845144
+            "lng": 103.845144,
+            "region": "Central"
         },
         {
             "name": "Chinese Garden MRT Station (EW25)",
             "lat": 1.342353,
-            "lng": 103.732597
+            "lng": 103.732597,
+            "region": "West"
         },
         {
             "name": "Choa Chu Kang MRT Station (NS4)",
             "lat": 1.385363,
-            "lng": 103.744371
+            "lng": 103.744371,
+            "region": "West"
         },
         {
             "name": "City Hall MRT Station (EW13 / NS25)",
             "lat": 1.292937,
-            "lng": 103.852586
+            "lng": 103.852586,
+            "region": "Central"
         },
         {
             "name": "Clarke Quay MRT Station (NE5)",
             "lat": 1.288386,
-            "lng": 103.846555
+            "lng": 103.846555,
+            "region": "Central"
         },
         {
             "name": "Clementi MRT Station (EW23)",
             "lat": 1.315116,
-            "lng": 103.765191
+            "lng": 103.765191,
+            "region": "West"
         },
         {
             "name": "Commonwealth MRT Station (EW20)",
             "lat": 1.302502,
-            "lng": 103.798229
+            "lng": 103.798229,
+            "region": "Central"
         },
         {
             "name": "Compassvale LRT Station (SE1)",
             "lat": 1.394493,
-            "lng": 103.900492
+            "lng": 103.900492,
+            "region": "Northeast"
         },
         {
             "name": "Coral Edge LRT Station (PE3)",
             "lat": 1.393909,
-            "lng": 103.912581
+            "lng": 103.912581,
+            "region": "Northeast"
         },
         {
             "name": "Cove LRT Station (PE1)",
             "lat": 1.399282,
-            "lng": 103.905962
+            "lng": 103.905962,
+            "region": "Northeast"
         },
         {
             "name": "Dakota MRT Station (CC8)",
             "lat": 1.308548,
-            "lng": 103.889065
+            "lng": 103.889065,
+            "region": "Central"
         },
         {
             "name": "Damai LRT Station (PE7)",
             "lat": 1.405235,
-            "lng": 103.908604
+            "lng": 103.908604,
+            "region": "Northeast"
         },
         {
             "name": "Dhoby Ghaut MRT Station (CC1)",
             "lat": 1.298912,
-            "lng": 103.846293
+            "lng": 103.846293,
+            "region": "Central"
         },
         {
             "name": "Dover MRT Station (EW22)",
             "lat": 1.311405,
-            "lng": 103.778638
+            "lng": 103.778638,
+            "region": "West"
         },
         {
             "name": "Downtown MRT Station (DT17)",
             "lat": 1.279446,
-            "lng": 103.852841
+            "lng": 103.852841,
+            "region": "Central"
         },
         {
             "name": "Esplanade MRT Station (CC3)",
             "lat": 1.293658,
-            "lng": 103.855081
+            "lng": 103.855081,
+            "region": "Central"
         },
         {
             "name": "Eunos MRT Station (EW7)",
             "lat": 1.319784,
-            "lng": 103.903226
+            "lng": 103.903226,
+            "region": "East"
         },
         {
             "name": "Expo MRT Station (CG1)",
             "lat": 1.33455,
-            "lng": 103.961548
+            "lng": 103.961548,
+            "region": "East"
         },
         {
             "name": "Fajar LRT Station (BP10)",
             "lat": 1.384573,
-            "lng": 103.770887
+            "lng": 103.770887,
+            "region": "West"
         },
         {
             "name": "Farmway LRT Station (SW2)",
             "lat": 1.39717,
-            "lng": 103.889305
+            "lng": 103.889305,
+            "region": "Northeast"
         },
         {
             "name": "Farrer Park MRT Station (NE8)",
             "lat": 1.311906,
-            "lng": 103.853478
+            "lng": 103.853478,
+            "region": "Central"
         },
         {
             "name": "Farrer Road MRT Station (CC20)",
             "lat": 1.317439,
-            "lng": 103.807379
+            "lng": 103.807379,
+            "region": "Central"
         },
         {
             "name": "Fernvale LRT Station (SW5)",
             "lat": 1.391886,
-            "lng": 103.876309
+            "lng": 103.876309,
+            "region": "Northeast"
         },
         {
             "name": "Fort Canning MRT Station (DT20)",
             "lat": 1.292482,
-            "lng": 103.844331
+            "lng": 103.844331,
+            "region": "Central"
         },
         {
             "name": "Gardens By The Bay MRT Station (TE22)",
             "lat": 1.278487,
-            "lng": 103.867455
+            "lng": 103.867455,
+            "region": "Central"
         },
         {
             "name": "Geylang Bahru MRT Station (DT24)",
             "lat": 1.321301,
-            "lng": 103.871623
+            "lng": 103.871623,
+            "region": "Central"
         },
         {
             "name": "Great World MRT Station (TE15)",
             "lat": 1.293948,
-            "lng": 103.833721
+            "lng": 103.833721,
+            "region": "Central"
         },
         {
             "name": "Gul Circle MRT Station (EW30)",
             "lat": 1.319471,
-            "lng": 103.66053
+            "lng": 103.66053,
+            "region": "West"
         },
         {
             "name": "Harbourfront MRT Station (NE1 / CC29)",
             "lat": 1.265389,
-            "lng": 103.82153
+            "lng": 103.82153,
+            "region": "Central"
         },
         {
             "name": "Havelock MRT Station (TE16)",
             "lat": 1.288505,
-            "lng": 103.833586
+            "lng": 103.833586,
+            "region": "Central"
         },
         {
             "name": "Haw Par Villa MRT Station (CC25)",
             "lat": 1.282571,
-            "lng": 103.781753
+            "lng": 103.781753,
+            "region": "Central"
         },
         {
             "name": "Hillview MRT Station (DT3)",
             "lat": 1.362345,
-            "lng": 103.767418
+            "lng": 103.767418,
+            "region": "West"
         },
         {
             "name": "Holland Village MRT Station (CC21)",
             "lat": 1.31224,
-            "lng": 103.796399
+            "lng": 103.796399,
+            "region": "Central"
         },
         {
             "name": "Hougang MRT Station",
             "lat": 1.370335,
-            "lng": 103.892262
+            "lng": 103.892262,
+            "region": "Northeast"
         },
         {
             "name": "Hume MRT Station (DT4)",
             "lat": 1.354595,
-            "lng": 103.769119
+            "lng": 103.769119,
+            "region": "West"
         },
         {
             "name": "Imbiah LRT Station (S3)",
             "lat": 1.253916,
-            "lng": 103.819453
+            "lng": 103.819453,
+            "region": "South"
         },
         {
             "name": "Jalan Besar MRT Station (DT22)",
             "lat": 1.305171,
-            "lng": 103.855296
+            "lng": 103.855296,
+            "region": "Central"
         },
         {
             "name": "Jelapang LRT Station (BP12)",
             "lat": 1.386739,
-            "lng": 103.764534
+            "lng": 103.764534,
+            "region": "West"
         },
         {
             "name": "Joo Koon MRT Station (EW29)",
             "lat": 1.327717,
-            "lng": 103.678375
+            "lng": 103.678375,
+            "region": "West"
         },
         {
             "name": "Jurong East MRT Station (EW24 / NS1)",
             "lat": 1.333028,
-            "lng": 103.74237
+            "lng": 103.74237,
+            "region": "West"
         },
         {
             "name": "Kadaloor LRT Station (PE5)",
             "lat": 1.399509,
-            "lng": 103.916575
+            "lng": 103.916575,
+            "region": "Northeast"
         },
         {
             "name": "Kaki Bukit MRT Station (DT28)",
             "lat": 1.334967,
-            "lng": 103.908459
+            "lng": 103.908459,
+            "region": "East"
         },
         {
             "name": "Kallang MRT Station (EW10)",
             "lat": 1.311489,
-            "lng": 103.871387
+            "lng": 103.871387,
+            "region": "Central"
         },
         {
             "name": "Kangkar LRT Station (SE4)",
             "lat": 1.383959,
-            "lng": 103.902225
+            "lng": 103.902225,
+            "region": "Northeast"
         },
         {
             "name": "Katong Park MRT Station (TE24)",
             "lat": 1.297831,
-            "lng": 103.886179
+            "lng": 103.886179,
+            "region": "Central"
         },
         {
             "name": "Keat Hong LRT Station (BP3)",
             "lat": 1.378603,
-            "lng": 103.749056
+            "lng": 103.749056,
+            "region": "West"
         },
         {
             "name": "Kembangan MRT Station (EW6)",
             "lat": 1.321038,
-            "lng": 103.912948
+            "lng": 103.912948,
+            "region": "East"
         },
         {
             "name": "Kent Ridge MRT Station (CC24)",
             "lat": 1.293533,
-            "lng": 103.784573
+            "lng": 103.784573,
+            "region": "Central"
         },
         {
             "name": "Keppel MRT Station (CC30)",
             "lat": 1.269772,
-            "lng": 103.830031
+            "lng": 103.830031,
+            "region": "Central"
         },
         {
             "name": "Khatib MRT Station (NS14)",
             "lat": 1.417383,
-            "lng": 103.83298
+            "lng": 103.83298,
+            "region": "North"
         },
         {
             "name": "King Albert Park MRT Station (DT6)",
             "lat": 1.335662,
-            "lng": 103.783399
+            "lng": 103.783399,
+            "region": "Central"
         },
         {
             "name": "Kovan MRT Station (NE13)",
             "lat": 1.360179,
-            "lng": 103.885065
+            "lng": 103.885065,
+            "region": "Northeast"
         },
         {
             "name": "Kranji MRT Station (NS7)",
             "lat": 1.425087,
-            "lng": 103.762137
+            "lng": 103.762137,
+            "region": "North"
         },
         {
             "name": "Kupang LRT Station (SW3)",
             "lat": 1.398213,
-            "lng": 103.881256
+            "lng": 103.881256,
+            "region": "Northeast"
         },
         {
             "name": "Labrador Park MRT Station (CC27)",
             "lat": 1.272254,
-            "lng": 103.802632
+            "lng": 103.802632,
+            "region": "Central"
         },
         {
             "name": "Lakeside MRT Station (EW26)",
             "lat": 1.344259,
-            "lng": 103.720949
+            "lng": 103.720949,
+            "region": "West"
         },
         {
             "name": "Lavender MRT Station (EW11)",
             "lat": 1.307378,
-            "lng": 103.862768
+            "lng": 103.862768,
+            "region": "Central"
         },
         {
             "name": "Layar LRT Station (SW6)",
             "lat": 1.39208,
-            "lng": 103.88003
+            "lng": 103.88003,
+            "region": "Northeast"
         },
         {
             "name": "Lentor MRT Station (TE5)",
             "lat": 1.385507,
-            "lng": 103.835744
+            "lng": 103.835744,
+            "region": "North"
         },
         {
             "name": "Little India MRT Station (DT12)",
             "lat": 1.307018,
-            "lng": 103.848661
+            "lng": 103.848661,
+            "region": "Central"
         },
         {
             "name": "Lorong Chuan MRT Station (CC14)",
             "lat": 1.351612,
-            "lng": 103.864152
-        },
-        {
-            "name": "M(-A-)Ki San Woodlands MRT Station",
-            "lat": 1.436979,
-            "lng": 103.78599
+            "lng": 103.864152,
+            "region": "Central"
         },
         {
             "name": "Macpherson MRT Station (CC10)",
             "lat": 1.326078,
-            "lng": 103.890391
+            "lng": 103.890391,
+            "region": "Central"
         },
         {
             "name": "Marina Bay MRT Station (NS27)",
             "lat": 1.27641,
-            "lng": 103.854596
+            "lng": 103.854596,
+            "region": "Central"
         },
         {
             "name": "Marina South MRT Station (TE21)",
             "lat": 1.274555,
-            "lng": 103.863574
+            "lng": 103.863574,
+            "region": "Central"
         },
         {
             "name": "Marina South Pier MRT Station (NS28)",
             "lat": 1.271027,
-            "lng": 103.862448
+            "lng": 103.862448,
+            "region": "Central"
         },
         {
             "name": "Marine Parade MRT Station (TE26)",
             "lat": 1.302612,
-            "lng": 103.904983
+            "lng": 103.904983,
+            "region": "Central"
         },
         {
             "name": "Marine Terrace MRT Station (TE27)",
             "lat": 1.306665,
-            "lng": 103.915107
+            "lng": 103.915107,
+            "region": "Central"
         },
         {
             "name": "Marsiling MRT Station (NS8)",
             "lat": 1.432521,
-            "lng": 103.774075
+            "lng": 103.774075,
+            "region": "North"
         },
         {
             "name": "Marymount MRT Station (CC16)",
             "lat": 1.348707,
-            "lng": 103.839423
+            "lng": 103.839423,
+            "region": "Central"
         },
         {
             "name": "Mattar MRT Station (DT25)",
             "lat": 1.326877,
-            "lng": 103.883248
+            "lng": 103.883248,
+            "region": "Central"
         },
         {
             "name": "Maxwell MRT Station (TE18)",
             "lat": 1.280533,
-            "lng": 103.843884
+            "lng": 103.843884,
+            "region": "Central"
         },
         {
             "name": "Mayflower MRT Station (TE6)",
             "lat": 1.371463,
-            "lng": 103.836568
+            "lng": 103.836568,
+            "region": "Central"
         },
         {
             "name": "Meridian LRT Station (PE2)",
             "lat": 1.396912,
-            "lng": 103.90895
+            "lng": 103.90895,
+            "region": "Northeast"
         },
         {
             "name": "Mount Pleasant MRT Station (TE10)",
             "lat": 1.328565,
-            "lng": 103.835189
+            "lng": 103.835189,
+            "region": "Central"
         },
         {
             "name": "Mountbatten MRT Station (CC7)",
             "lat": 1.306202,
-            "lng": 103.882528
+            "lng": 103.882528,
+            "region": "Central"
         },
         {
             "name": "Napier MRT Station (TE12)",
             "lat": 1.306782,
-            "lng": 103.818957
+            "lng": 103.818957,
+            "region": "Central"
         },
         {
             "name": "Newton MRT Station (DT11)",
             "lat": 1.313993,
-            "lng": 103.837715
+            "lng": 103.837715,
+            "region": "Central"
         },
         {
             "name": "Nibong LRT Station (PW5)",
             "lat": 1.411854,
-            "lng": 103.900339
+            "lng": 103.900339,
+            "region": "Northeast"
         },
         {
             "name": "Nicoll Highway MRT Station (CC5)",
             "lat": 1.299767,
-            "lng": 103.863637
+            "lng": 103.863637,
+            "region": "Central"
         },
         {
             "name": "Novena MRT Station (NS20)",
             "lat": 1.320441,
-            "lng": 103.843826
+            "lng": 103.843826,
+            "region": "Central"
         },
         {
             "name": "Oasis LRT Station (PE6)",
             "lat": 1.402287,
-            "lng": 103.912727
+            "lng": 103.912727,
+            "region": "Northeast"
         },
         {
             "name": "One-North MRT Station (CC23)",
             "lat": 1.29976,
-            "lng": 103.787458
+            "lng": 103.787458,
+            "region": "West"
         },
         {
             "name": "Orchard Boulevard MRT Station (TE13)",
             "lat": 1.302422,
-            "lng": 103.823869
+            "lng": 103.823869,
+            "region": "Central"
         },
         {
             "name": "Orchard MRT Station (NS22)",
             "lat": 1.30398,
-            "lng": 103.832245
+            "lng": 103.832245,
+            "region": "Central"
         },
         {
             "name": "Outram Park MRT Station (EW16)",
             "lat": 1.281405,
-            "lng": 103.839131
+            "lng": 103.839131,
+            "region": "Central"
         },
         {
             "name": "Pasir Panjang MRT Station (CC26)",
             "lat": 1.276214,
-            "lng": 103.79135
+            "lng": 103.79135,
+            "region": "Central"
         },
         {
             "name": "Pasir Ris MRT Station (EW1)",
             "lat": 1.373043,
-            "lng": 103.949285
+            "lng": 103.949285,
+            "region": "East"
         },
         {
             "name": "Paya Lebar MRT Station (CC9)",
             "lat": 1.317247,
-            "lng": 103.892261
+            "lng": 103.892261,
+            "region": "Central"
         },
         {
             "name": "Pending LRT Station (BP8)",
             "lat": 1.376136,
-            "lng": 103.771261
+            "lng": 103.771261,
+            "region": "West"
         },
         {
             "name": "Petir LRT Station (BP7)",
             "lat": 1.377772,
-            "lng": 103.766646
+            "lng": 103.766646,
+            "region": "West"
         },
         {
             "name": "Phoenix LRT Station (BP5)",
             "lat": 1.378615,
-            "lng": 103.757996
+            "lng": 103.757996,
+            "region": "West"
         },
         {
             "name": "Pioneer MRT Station (EW28)",
             "lat": 1.337587,
-            "lng": 103.697322
+            "lng": 103.697322,
+            "region": "West"
         },
         {
             "name": "Potong Pasir MRT Station (NE10)",
             "lat": 1.331379,
-            "lng": 103.869056
+            "lng": 103.869056,
+            "region": "Central"
         },
         {
             "name": "Prince Edward Road MRT Station (CC32)",
             "lat": 1.273157,
-            "lng": 103.847097
+            "lng": 103.847097,
+            "region": "Central"
         },
         {
             "name": "Promenade MRT Station (CC4)",
             "lat": 1.293998,
-            "lng": 103.86035
+            "lng": 103.86035,
+            "region": "Central"
         },
         {
             "name": "Punggol Coast MRT Station (NE18)",
             "lat": 1.414927,
-            "lng": 103.910166
+            "lng": 103.910166,
+            "region": "Northeast"
         },
         {
             "name": "Punggol MRT Station (NE17)",
             "lat": 1.404547,
-            "lng": 103.902073
+            "lng": 103.902073,
+            "region": "Northeast"
         },
         {
             "name": "Punggol Point LRT Station (PW3)",
             "lat": 1.416849,
-            "lng": 103.906651
+            "lng": 103.906651,
+            "region": "Northeast"
         },
         {
             "name": "Queenstown MRT Station (EW19)",
             "lat": 1.294551,
-            "lng": 103.806077
+            "lng": 103.806077,
+            "region": "Central"
         },
         {
             "name": "Raffles Place MRT Station (EW14 / NS26)",
             "lat": 1.284126,
-            "lng": 103.851462
+            "lng": 103.851462,
+            "region": "Central"
         },
         {
             "name": "Ranggung LRT Station (SE5)",
             "lat": 1.384234,
-            "lng": 103.897195
+            "lng": 103.897195,
+            "region": "Northeast"
         },
         {
             "name": "Redhill MRT Station (EW18)",
             "lat": 1.289635,
-            "lng": 103.816741
+            "lng": 103.816741,
+            "region": "Central"
         },
         {
             "name": "Renjong LRT Station (SW8)",
             "lat": 1.386701,
-            "lng": 103.890621
+            "lng": 103.890621,
+            "region": "Northeast"
         },
         {
             "name": "Riviera LRT Station (PE4)",
             "lat": 1.39452,
-            "lng": 103.916169
+            "lng": 103.916169,
+            "region": "Northeast"
         },
         {
             "name": "Rochor MRT Station (DT13)",
             "lat": 1.303852,
-            "lng": 103.852769
+            "lng": 103.852769,
+            "region": "Central"
         },
         {
             "name": "Rumbia LRT Station (SE2)",
             "lat": 1.391468,
-            "lng": 103.905974
+            "lng": 103.905974,
+            "region": "Northeast"
         },
         {
             "name": "Sam Kee LRT Station (PW1)",
             "lat": 1.409613,
-            "lng": 103.904832
+            "lng": 103.904832,
+            "region": "Northeast"
         },
         {
             "name": "Samudera LRT Station (PW4)",
             "lat": 1.415902,
-            "lng": 103.902156
+            "lng": 103.902156,
+            "region": "Northeast"
         },
         {
             "name": "Segar LRT Station (BP11)",
             "lat": 1.387785,
-            "lng": 103.7696
+            "lng": 103.7696,
+            "region": "West"
         },
         {
             "name": "Sembawang MRT Station (NS11)",
             "lat": 1.449051,
-            "lng": 103.820046
+            "lng": 103.820046,
+            "region": "North"
         },
         {
             "name": "Sengkang MRT Station (NE16)",
             "lat": 1.391695,
-            "lng": 103.895485
+            "lng": 103.895485,
+            "region": "Northeast"
         },
         {
             "name": "Senja LRT Station (BP13)",
             "lat": 1.382725,
-            "lng": 103.762344
+            "lng": 103.762344,
+            "region": "West"
         },
         {
             "name": "Serangoon MRT Station (CC13)",
             "lat": 1.350634,
-            "lng": 103.872772
+            "lng": 103.872772,
+            "region": "Northeast"
         },
         {
             "name": "Shenton Way MRT Station (TE19)",
             "lat": 1.277717,
-            "lng": 103.850368
+            "lng": 103.850368,
+            "region": "Central"
         },
         {
             "name": "Siglap MRT Station (TE28)",
             "lat": 1.310009,
-            "lng": 103.930026
+            "lng": 103.930026,
+            "region": "East"
         },
         {
             "name": "Simei MRT Station (EW3)",
             "lat": 1.343197,
-            "lng": 103.953377
+            "lng": 103.953377,
+            "region": "East"
         },
         {
             "name": "Sixth Avenue MRT Station (DT7)",
             "lat": 1.330858,
-            "lng": 103.796907
+            "lng": 103.796907,
+            "region": "Central"
         },
         {
             "name": "Somerset MRT Station (NS23)",
             "lat": 1.300264,
-            "lng": 103.839086
+            "lng": 103.839086,
+            "region": "Central"
         },
         {
             "name": "Soo Teck LRT Station (PW7)",
             "lat": 1.405323,
-            "lng": 103.897291
+            "lng": 103.897291,
+            "region": "Northeast"
         },
         {
             "name": "South View LRT Station (BP2)",
             "lat": 1.380298,
-            "lng": 103.745292
+            "lng": 103.745292,
+            "region": "West"
         },
         {
             "name": "Springleaf MRT Station (TE4)",
             "lat": 1.397581,
-            "lng": 103.817857
+            "lng": 103.817857,
+            "region": "North"
         },
         {
             "name": "Stadium MRT Station (CC6)",
             "lat": 1.302812,
-            "lng": 103.875338
+            "lng": 103.875338,
+            "region": "Central"
         },
         {
             "name": "Stevens MRT Station (DT10)",
             "lat": 1.320066,
-            "lng": 103.826024
+            "lng": 103.826024,
+            "region": "Central"
         },
         {
             "name": "Sumang LRT Station (PW6)",
             "lat": 1.408452,
-            "lng": 103.898558
+            "lng": 103.898558,
+            "region": "Northeast"
         },
         {
             "name": "Sungei Bedok MRT Station (TE31 / DT37)",
             "lat": 1.320401,
-            "lng": 103.957184
+            "lng": 103.957184,
+            "region": "East"
         },
         {
             "name": "Tai Seng MRT Station (CC11)",
             "lat": 1.335142,
-            "lng": 103.888389
+            "lng": 103.888389,
+            "region": "Central"
         },
         {
             "name": "Tampines East MRT Station (DT33)",
             "lat": 1.356191,
-            "lng": 103.954634
+            "lng": 103.954634,
+            "region": "East"
         },
         {
             "name": "Tampines MRT Station (DT32)",
             "lat": 1.35515,
-            "lng": 103.94301
+            "lng": 103.94301,
+            "region": "East"
         },
         {
             "name": "Tampines West MRT Station (DT31)",
             "lat": 1.345515,
-            "lng": 103.938437
+            "lng": 103.938437,
+            "region": "East"
         },
         {
             "name": "Tan Kah Kee MRT Station (DT8)",
             "lat": 1.325556,
-            "lng": 103.80776
+            "lng": 103.80776,
+            "region": "Central"
         },
         {
             "name": "Tanah Merah MRT Station (EW4)",
             "lat": 1.327187,
-            "lng": 103.946349
+            "lng": 103.946349,
+            "region": "East"
         },
         {
             "name": "Tanjong Katong MRT Station (TE25)",
             "lat": 1.299319,
-            "lng": 103.897369
+            "lng": 103.897369,
+            "region": "Central"
         },
         {
             "name": "Tanjong Pagar MRT Station (EW15)",
             "lat": 1.276561,
-            "lng": 103.845725
+            "lng": 103.845725,
+            "region": "Central"
         },
         {
             "name": "Tanjong Rhu MRT Station (TE23)",
             "lat": 1.297265,
-            "lng": 103.873453
+            "lng": 103.873453,
+            "region": "Central"
         },
         {
             "name": "Teck Lee LRT Station (PW2)",
             "lat": 1.412771,
-            "lng": 103.906578
+            "lng": 103.906578,
+            "region": "Northeast"
         },
         {
             "name": "Teck Whye LRT Station (BP4)",
             "lat": 1.376685,
-            "lng": 103.753712
+            "lng": 103.753712,
+            "region": "West"
         },
         {
             "name": "Telok Ayer MRT Station (DT18)",
             "lat": 1.282069,
-            "lng": 103.848649
+            "lng": 103.848649,
+            "region": "Central"
         },
         {
             "name": "Telok Blangah MRT Station (CC28)",
             "lat": 1.270706,
-            "lng": 103.809762
+            "lng": 103.809762,
+            "region": "Central"
         },
         {
             "name": "Thanggam LRT Station (SW4)",
             "lat": 1.397318,
-            "lng": 103.875635
+            "lng": 103.875635,
+            "region": "Northeast"
         },
         {
             "name": "Tiong Bahru MRT Station (EW17)",
             "lat": 1.286103,
-            "lng": 103.827445
+            "lng": 103.827445,
+            "region": "Central"
         },
         {
             "name": "Toa Payoh MRT Station (NS19)",
             "lat": 1.332629,
-            "lng": 103.847502
+            "lng": 103.847502,
+            "region": "Central"
         },
         {
             "name": "Tongkang LRT Station (SW7)",
             "lat": 1.389348,
-            "lng": 103.885844
+            "lng": 103.885844,
+            "region": "Northeast"
         },
         {
             "name": "Tuas Crescent MRT Station (EW31)",
             "lat": 1.321027,
-            "lng": 103.649078
+            "lng": 103.649078,
+            "region": "West"
         },
         {
             "name": "Tuas Link MRT Station (EW33)",
             "lat": 1.340882,
-            "lng": 103.636991
+            "lng": 103.636991,
+            "region": "West"
         },
         {
             "name": "Tuas West Road MRT Station (EW32)",
             "lat": 1.329985,
-            "lng": 103.639617
+            "lng": 103.639617,
+            "region": "West"
         },
         {
             "name": "Ubi MRT Station (DT27)",
             "lat": 1.329974,
-            "lng": 103.899227
+            "lng": 103.899227,
+            "region": "East"
         },
         {
             "name": "Upper Changi MRT Station (DT34)",
             "lat": 1.34174,
-            "lng": 103.961473
+            "lng": 103.961473,
+            "region": "East"
         },
         {
             "name": "Upper Thomson MRT Station (TE8)",
             "lat": 1.354416,
-            "lng": 103.832898
+            "lng": 103.832898,
+            "region": "Central"
         },
         {
             "name": "Woodlands MRT Station (NS9)",
             "lat": 1.43682,
-            "lng": 103.786067
+            "lng": 103.786067,
+            "region": "North"
         },
         {
             "name": "Woodlands North MRT Station (TE1)",
             "lat": 1.448292,
-            "lng": 103.785693
+            "lng": 103.785693,
+            "region": "North"
         },
         {
             "name": "Woodlands South MRT Station (TE3)",
             "lat": 1.427396,
-            "lng": 103.793264
+            "lng": 103.793264,
+            "region": "North"
         },
         {
             "name": "Woodleigh MRT Station (NE11)",
             "lat": 1.33919,
-            "lng": 103.870818
+            "lng": 103.870818,
+            "region": "Central"
         },
         {
             "name": "Xilin MRT Station (DT36)",
             "lat": 1.328907,
-            "lng": 103.964903
+            "lng": 103.964903,
+            "region": "East"
         },
         {
             "name": "Yew Tee MRT Station (NS5)",
             "lat": 1.397535,
-            "lng": 103.747405
+            "lng": 103.747405,
+            "region": "West"
         },
         {
             "name": "Yio Chu Kang MRT Station (NS15)",
             "lat": 1.381756,
-            "lng": 103.844947
+            "lng": 103.844947,
+            "region": "North"
         },
         {
             "name": "Yishun MRT Station (NS13)",
             "lat": 1.429443,
-            "lng": 103.835005
+            "lng": 103.835005,
+            "region": "North"
         }
     ]
 }

@@ -52,3 +52,10 @@ export function getPickupOptions(place) {
 
     return [atPlace, findNearestStation(place).name, "Nearest bus stop"];
 }
+
+// Get the appropriate region by location
+export async function getRegionForPlace(place) {
+    if (!place || !place.lat || !place.lng) return "Central";
+    const nearestStation = findNearestStation(place);
+    return nearestStation.region || "Central";
+}
