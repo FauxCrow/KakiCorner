@@ -76,7 +76,7 @@ function MessageChat() {
     <AccessibilityBar></AccessibilityBar>
 
     <div className="py-4 px-4 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-      <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+      <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(`/messages`)} />
       <div className="flex items-center w-full gap-6">
         {/* <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
           <img></img>

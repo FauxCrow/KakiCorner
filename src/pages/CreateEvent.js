@@ -127,6 +127,10 @@ function CreateEvent({ isEdit = false }) {
         }
     };
 
+    const handleCancelClick = () => {
+        navigate(-1);
+    };
+
     const handleNextClick = () => {
         setStep(step + 1);
     };
@@ -350,6 +354,8 @@ function CreateEvent({ isEdit = false }) {
 
         addEvent(newEvent);
 
+        alert('An SMS has been sent to your caretaker.');
+
         navigate("/events/created");
     };
 
@@ -357,7 +363,11 @@ function CreateEvent({ isEdit = false }) {
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">
-            <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} />
+            <div className="flex items-center justify-between w-full gap-2">
+                <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} />
+                <ActionButton id="back-button" title="Cancel" className="self-start px-6 py-2" onClick={handleCancelClick} />
+            </div>
+
 
             <StepIndicator current={step} total={TOTAL_STEPS} />
 

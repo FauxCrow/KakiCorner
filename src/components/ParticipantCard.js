@@ -4,6 +4,7 @@ import ActionButton from "../components/ActionButton";
 // import eventData from "../content/events.json";
 import { useState } from "react";
 import { getEvents, saveEvents, getProfiles } from "../utils/db";
+import Avatar from '../components/Avatar';
 
 export default function ParticipantCard({
     id = 1,
@@ -72,7 +73,7 @@ export default function ParticipantCard({
             <div className="flex flex-col w-full gap-y-4">
                 <div className="flex items-center w-full gap-6">
                     <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-                        <img></img>
+                        <Avatar iconSize={32} className = "w-16 h-16"></Avatar>
                     </div>
                     <div className="flex flex-col">
                         <h1 className="font=heading text-left text-lg">{profile.name}</h1>

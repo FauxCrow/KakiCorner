@@ -1,6 +1,6 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import eventData from "../content/events.json";
 import { getEvents, saveEvents, deleteEvent, getCurrentUserId } from "../utils/db";
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
@@ -28,6 +28,7 @@ function EventDetails() {
     const selectedEvent = events.find(event => event.id === Number(id));
 
     const isParticipating = selectedEvent?.participants_id?.includes(Number(pID)) || selectedEvent?.pending_id?.includes(Number(pID));
+    const isPending = selectedEvent?.pending_id?.includes(Number(pID));
 
     // Past events can still be viewed, but nothing can be changed
     const isPast = selectedEvent ? isPastEvent(selectedEvent) : false;
@@ -63,6 +64,8 @@ function EventDetails() {
         // localStorage.setItem("events", JSON.stringify(updatedEvents));
         saveEvents(updatedEvents);
         setEvents(updatedEvents);
+
+        alert('An SMS has been sent to your caretaker.');
     };
 
     const handleLeaveClick = () => {
@@ -80,6 +83,8 @@ function EventDetails() {
         // localStorage.setItem("events", JSON.stringify(updatedEvents));
         saveEvents(updatedEvents);
         setEvents(updatedEvents);
+
+        alert('An SMS has been sent to your caretaker.');
     };
 
     // e.g. pressing Back after deleting it
@@ -88,7 +93,11 @@ function EventDetails() {
             <AccessibilityBar></AccessibilityBar>
 
             <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-                <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+                <div className="flex items-center justify-between w-full gap-2">
+                    <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+                    <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
+                </div>
+
                 <p className="text-gray-500">This event no longer exists.</p>
             </main>
         </div>;
@@ -98,7 +107,10 @@ function EventDetails() {
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-            <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+            <div className="flex items-center justify-between w-full gap-2">
+                <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+                <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
+            </div>
             <h1 className="text-left font-bold text-xl">{selectedEvent.tag}</h1>
 
             {isPast && (
@@ -130,7 +142,7 @@ function EventDetails() {
 
                 <ProgressBar value={selectedEvent.participants_id.length} max={selectedEvent.max_slots}></ProgressBar>
 
-                <ActionButton title="See Participants" className="self-center bg-gray-300" onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} />
+                <ActionButton id="see-participants-button" title="See Participants" className="self-center bg-gray-300" onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} />
             </div>
 
             {/* Edit / Delete / Leave / Join are hidden once the event has passed */}
@@ -140,6 +152,10 @@ function EventDetails() {
                     <ActionButton title="Edit" className="self-center text-right" onClick={() => handleEditClick()} />
                     <ActionButton title="Delete" className="self-center text-right" onClick={() => handleDeleteClick()} />
                 </div>
+            )}
+
+            {isPending && (
+                <p className="text-sm font-semibold text-amber-600">Your join request is pending approval.</p>
             )}
 
             {/* {(isParticipating) && ( */}

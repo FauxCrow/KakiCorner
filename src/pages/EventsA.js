@@ -13,7 +13,7 @@ import FilterButton from "../components/FilterButton";
 import activityData from "../content/activities.json";
 import AccessibilityButton from '../components/AccessibilityButton';
 
-function Events() {
+function EventsA() {
     const { type } = useParams();
     const eventType = type || "all";
 
@@ -201,7 +201,7 @@ function Events() {
                     </div>
 
                     {(selectedFilterValue || selectedDateOption || selectedTimeOption) && !isFilterOpen && (
-                        <div className="flex flex-row items-center justify-between border border-black p-3 rounded-xl text-sm">
+                        <div className="flex flex-row items-center justify-between rounded-xl text-sm">
                             <span>
                                 Filtered by:{" "}
                                 <strong>{getFilterBadgeText()}</strong>
@@ -373,4 +373,4 @@ function Events() {
     );
 }
 
-export default Events;
+export default EventsA;
