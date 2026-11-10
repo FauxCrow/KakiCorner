@@ -1,7 +1,7 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // import eventData from "../content/events.json";
 import { getCurrentUserId, getCurrentUser } from "../utils/db";
 import MenuCard from '../components/MenuCard';
@@ -40,9 +40,9 @@ function Home() {
 
       <div className="grid grid-cols-2 gap-4">
         <MenuCard title="New Event" onClick={() => navigate("/createevent")} />
-        <MenuCard title="Created Events" onClick={() => navigate("/events/created")} />
-        <MenuCard title="Joined Events" onClick={() => navigate("/events/joined")} />
-        <MenuCard title="See All Events" onClick={() => navigate("/events/all")} />
+        <MenuCard title="Created Events" onClick={() => navigate("/eventsA/created")} />
+        <MenuCard title="Joined Events" onClick={() => navigate("/eventsA/joined")} />
+        <MenuCard id="all-event-button" title="See All Events" onClick={() => navigate("/eventsA/all")} />
       </div>
 
       {/* Old tiles, replaced by MenuCard above */}

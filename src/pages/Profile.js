@@ -37,7 +37,7 @@ function Profile() {
           <div className="flex items-center justify-between w-full gap-2">
             <h1 className="font=heading text-left text-lg">Interests</h1>
             {/* <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/newuser`)} /> */}
-            <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/editprofile`)} />
+            <ActionButton id="profile-edit-button" title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/editprofile`)} />
           </div>
 
           <div className="grid grid-cols-3 gap-2">

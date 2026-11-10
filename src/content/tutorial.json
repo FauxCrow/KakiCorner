@@ -1,0 +1,77 @@
+{
+    "tutorial": [
+        {
+            "id": 1,
+            "question": "How do I edit my preferences?",
+            "instruction": "Change your preferences.",
+            "steps": [
+                {
+                    "targetId": "back-button",
+                    "path": [
+                        "/eventparticipants"
+                    ]
+                },
+                {
+                    "targetId": "back-button",
+                    "path": [
+                        "/eventdetails",
+                        "/selectmessages",
+                        "/createevent"
+                    ]
+                },
+                {
+                    "targetId": "profile-button",
+                    "path": [
+                        "/home",
+                        "/messages",
+                        "/eventsA",
+                        "/eventsB"
+                    ]
+                },
+                {
+                    "targetId": "profile-edit-button",
+                    "path": "/profile"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "question": "How do I see event participants?",
+            "instruction": "See event participants.",
+            "steps": [
+                {
+                    "targetId": "back-button",
+                    "path": [
+                        "/selectmessages"
+                    ]
+                },
+                {
+                    "targetId": "home-button",
+                    "path": [
+                        "/messages",
+                        "/profile"
+                    ]
+                },
+                {
+                    "targetId": "all-event-button",
+                    "path": [
+                        "/home"
+                    ]
+                },
+                {
+                    "targetId": "see-details-button",
+                    "path": [
+                        "/eventsA",
+                        "/eventsB"
+                    ]
+                },
+                {
+                    "targetId": "see-participants-button",
+                    "path": [
+                        "/eventdetails"
+                    ]
+                }
+            ]
+        }
+    ]
+}

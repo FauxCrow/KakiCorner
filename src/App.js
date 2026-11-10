@@ -1,10 +1,12 @@
 import './App.css';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import { GuideProvider } from './hooks/TutorialGuide';
 import Survey from './pages/Survey';
 import Home from './pages/Home';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
-import Events from './pages/Events';
+import EventsA from './pages/EventsA';
+import EventsB from './pages/EventsB';
 import EventDetails from './pages/EventDetails'
 import EventParticipants from './pages/EventParticipants';
 import MessageChat from './pages/MessageChat';
@@ -25,26 +27,29 @@ if (!sessionStorage.getItem("session_started")) {
 
 function App() {
   return (
-    <HashRouter> 
-      <div className="App">
-        <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/" element={<Start />} />
-          <Route path="/selectuser" element={<SelectUser />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/survey" element={<Survey />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/events/:type" element={<Events />} />
-          <Route path="/eventdetails/:id" element={<EventDetails />} />
-          <Route path="/eventparticipants/:id" element={<EventParticipants />} />
-          <Route path="/messages/:id" element={<MessageChat />} />
-          <Route path="/createevent" element={<CreateEvent />} />
-          <Route path="/editevent/:id" element={<CreateEvent key="edit" isEdit />} />
-          <Route path="/newuser" element={<NewUser />} />
-          <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
-        </Routes>
-      </div>
+    <HashRouter>
+      <GuideProvider>
+        <div className="App">
+          <Routes>
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/" element={<Start />} />
+            <Route path="/selectuser" element={<SelectUser />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/survey" element={<Survey />} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/eventsA/:type" element={<EventsA />} />
+            <Route path="/eventsB/:type" element={<EventsB />} />
+            <Route path="/eventdetails/:id" element={<EventDetails />} />
+            <Route path="/eventparticipants/:id" element={<EventParticipants />} />
+            <Route path="/selectmessages/:id" element={<MessageChat />} />
+            <Route path="/createevent" element={<CreateEvent />} />
+            <Route path="/editevent/:id" element={<CreateEvent key="edit" isEdit />} />
+            <Route path="/newuser" element={<NewUser />} />
+            <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
+          </Routes>
+        </div>
+      </GuideProvider>
     </HashRouter>
   );
 }

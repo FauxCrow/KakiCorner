@@ -26,7 +26,7 @@ function EventParticipants() {
             <AccessibilityBar></AccessibilityBar>
 
             <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-                <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+                <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
                 <p className="text-gray-500">This event no longer exists.</p>
             </main>
         </div>;
@@ -36,7 +36,7 @@ function EventParticipants() {
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-            <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+            <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
             <h1 className="text-left font-bold text-xl">Participants</h1>
 
             {selectedEvent.participants_id.length > 0 ? (
