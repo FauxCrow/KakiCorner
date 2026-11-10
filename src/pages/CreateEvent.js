@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // import { useState } from "react";
 import { useState, useEffect } from "react";
 import SuggestionList from '../components/SuggestionList';
-import { DEFAULT_PICKUPS, searchAddress, getPickupOptions } from "../utils/location";
+import { DEFAULT_PICKUPS, searchAddress, getPickupOptions, getRegionForPlace } from "../utils/location";
 import activityData from "../content/activities.json";
 // import eventData from "../content/events.json";
 // import { addEvent, getCurrentUserId } from "../utils/db";
@@ -97,6 +97,7 @@ function CreateEvent({ isEdit = false }) {
     const [period, setPeriod] = useState(defaultStart.getHours() >= 12 ? "PM" : "AM");
 
     const [location, setLocation] = useState("");
+    const [selectedPlace, setSelectedPlace] = useState(null);
     const [pickup, setPickup] = useState(null);
     const [pickupOptions, setPickupOptions] = useState(DEFAULT_PICKUPS);
 
@@ -226,6 +227,7 @@ function CreateEvent({ isEdit = false }) {
     const handleLocationChange = (value) => {
         setLocation(value);
         setSearchText(value);
+        setSelectedPlace(null);
 
         // Typing again means the earlier address's pickup choices no longer apply
         if (pickupOptions !== DEFAULT_PICKUPS) {
@@ -236,6 +238,7 @@ function CreateEvent({ isEdit = false }) {
 
     const handleSuggestionClick = (place) => {
         setLocation(place.address);
+        setSelectedPlace(place);
         setSearchText("");
         setSuggestions([]);
         setPickupOptions(getPickupOptions(place));
@@ -324,7 +327,7 @@ function CreateEvent({ isEdit = false }) {
             time: `${hour}:${minute} ${period}`,
             location: location || "TBD",
             pickup: pickup || "TBD",
-            region: "North" || "TBD", // Hardcoded for now, but if we have time can do a small dictionary of locations to match the region?
+            region: selectedPlace ? getRegionForPlace(selectedPlace) : "Central",
             pickup_options: pickupOptions,
             max_slots: Number(participants),
             participants_id: [],

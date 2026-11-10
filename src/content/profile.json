@@ -9,7 +9,7 @@
             "age": 64,
             "personality": "I prefer small, quiet groups.",
             "interests": [
-                "Board Games",
+                "Exercise",
                 "Cooking"
             ],
             "dietery_restrictions": [
@@ -25,7 +25,8 @@
             "personality": "I like to make new friends.",
             "interests": [
                 "Board Games",
-                "Cooking"
+                "Baking",
+                "Music"
             ],
             "dietery_restrictions": [
                 "Halal"
@@ -40,11 +41,27 @@
             "age": 76,
             "personality": "I enjoy trying new things.",
             "interests": [
-                "Board Games",
+                "Gardening",
                 "Cooking"
             ],
             "dietery_restrictions": [
-                "Halal"
+                "Vegetarian"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Joseph De Silva",
+            "first_name": "Joseph",
+            "language": "en",
+            "gender": "M",
+            "age": 81,
+            "personality": "I like learning from others.",
+            "interests": [
+                "Art & Crafts",
+                "Baking"
+            ],
+            "dietery_restrictions": [
+                "Vegan"
             ]
         }
     ]
