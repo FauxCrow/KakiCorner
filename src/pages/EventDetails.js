@@ -7,6 +7,7 @@ import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
 import ActionButton from "../components/ActionButton";
+import { useNotifyCaretaker } from "../hooks/Toast";
 import ActivityIcon from "../components/ActivityIcon";
 // import { formatDate } from "../utils/date";
 import { formatDate, isPastEvent } from "../utils/date";
@@ -17,6 +18,7 @@ function EventDetails() {
     const pID = getCurrentUserId();
 
     const navigate = useNavigate();
+    const notifyCaretaker = useNotifyCaretaker();
 
     // const getStoredEvents = () => {
     //     const saved = localStorage.getItem("events");
@@ -65,7 +67,8 @@ function EventDetails() {
         saveEvents(updatedEvents);
         setEvents(updatedEvents);
 
-        alert('An SMS has been sent to your caretaker.');
+        // alert('An SMS has been sent to your caretaker.');
+        notifyCaretaker();
     };
 
     const handleLeaveClick = () => {
@@ -84,7 +87,8 @@ function EventDetails() {
         saveEvents(updatedEvents);
         setEvents(updatedEvents);
 
-        alert('An SMS has been sent to your caretaker.');
+        // Leaving doesn't notify the caretaker
+        // alert('An SMS has been sent to your caretaker.');
     };
 
     // e.g. pressing Back after deleting it
@@ -95,7 +99,8 @@ function EventDetails() {
             <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
                 <div className="flex items-center justify-between w-full gap-2">
                     <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
-                    <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
+                    {/* No chat for a deleted event, and selectedEvent is empty here so tapping it crashed */}
+                    {/* <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} /> */}
                 </div>
 
                 <p className="text-gray-500">This event no longer exists.</p>

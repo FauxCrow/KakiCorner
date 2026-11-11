@@ -1,5 +1,6 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import ActionButton from '../components/ActionButton';
+import { useNotifyCaretaker } from '../hooks/Toast';
 import StepIndicator from '../components/StepIndicator';
 import ActivityCard from '../components/ActivityCard';
 import OptionCard from '../components/OptionCard';
@@ -68,6 +69,7 @@ const getDefaultStart = () => {
 // function CreateEvent() {
 function CreateEvent({ isEdit = false }) {
     const navigate = useNavigate();
+    const notifyCaretaker = useNotifyCaretaker();
 
     // Edit Event reuses this wizard: load the event once, using the id in the address
     const { id } = useParams();
@@ -349,7 +351,8 @@ function CreateEvent({ isEdit = false }) {
                 pending_id: editingEvent.pending_id
             });
 
-            alert('An SMS has been sent to your caretaker.');
+            // alert('An SMS has been sent to your caretaker.');
+            notifyCaretaker();
 
             navigate(-1);
             return;
@@ -357,9 +360,12 @@ function CreateEvent({ isEdit = false }) {
 
         addEvent(newEvent);
 
-        alert('An SMS has been sent to your caretaker.');
+        // alert('An SMS has been sent to your caretaker.');
+        notifyCaretaker();
 
-        navigate("/events/created");
+        // "/events" was renamed to "/eventsA" (same page Home's Created Events tile opens)
+        // navigate("/events/created");
+        navigate("/eventsA/created");
     };
 
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">

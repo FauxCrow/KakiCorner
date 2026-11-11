@@ -1,6 +1,7 @@
 import './App.css';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { GuideProvider } from './hooks/TutorialGuide';
+import { ToastProvider } from './hooks/Toast';
 import Survey from './pages/Survey';
 import Home from './pages/Home';
 import Messages from './pages/Messages';
@@ -29,6 +30,7 @@ function App() {
   return (
     <HashRouter>
       <GuideProvider>
+        <ToastProvider>
         <div className="App">
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
@@ -49,6 +51,7 @@ function App() {
             <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
           </Routes>
         </div>
+        </ToastProvider>
       </GuideProvider>
     </HashRouter>
   );
