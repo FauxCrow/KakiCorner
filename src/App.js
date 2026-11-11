@@ -15,6 +15,7 @@ import CreateEvent from './pages/CreateEvent';
 import NewUser from './pages/NewUser';
 import Start from './pages/Start';
 import SelectUser from './pages/SelectUser';
+import Feedback from './pages/Feedback';
 import { resetLanguageToEnglish } from './hooks/UseLanguage';
 
 // Note: HashRouter is used to bypass github 404 error, even if it makes the url look ugly :(
@@ -47,6 +48,7 @@ function App() {
             <Route path="/selectmessages/:id" element={<MessageChat />} />
             <Route path="/createevent" element={<CreateEvent />} />
             <Route path="/editevent/:id" element={<CreateEvent key="edit" isEdit />} />
+            <Route path="/feedback/:id" element={<Feedback />} />
             <Route path="/newuser" element={<NewUser />} />
             <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
           </Routes>

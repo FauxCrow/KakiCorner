@@ -11,6 +11,7 @@ function seed() {
     localStorage.setItem("events", JSON.stringify(eventData.events || []));
     localStorage.setItem("profiles", JSON.stringify(profileData.profiles || []));
     localStorage.removeItem("profile_id");
+    localStorage.removeItem("feedback");
     localStorage.setItem("db_version", DB_VERSION);
 }
 
@@ -80,3 +81,18 @@ export const getCurrentUserId = () => {
 export const setCurrentUserId = (id) => localStorage.setItem("profile_id", id);
 
 export const getCurrentUser = () => getProfileById(getCurrentUserId());
+
+// ---------- Feedback ----------
+// Each entry: { id, event_id, user_id, rating (1 Bad - 4 Great), liked, join_again, comment }
+
+export const getFeedback = () => read("feedback");
+
+export const addFeedback = (entry) => {
+    const feedback = getFeedback();
+    const newEntry = { ...entry, id: nextId(feedback) };
+    write("feedback", [...feedback, newEntry]);
+    return newEntry;
+};
+
+export const hasGivenFeedback = (eventId, userId) =>
+    getFeedback().some((entry) => entry.event_id === Number(eventId) && entry.user_id === Number(userId));

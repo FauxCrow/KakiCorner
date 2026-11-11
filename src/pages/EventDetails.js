@@ -2,7 +2,8 @@ import AccessibilityBar from '../components/AccessibilityBar';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 // import eventData from "../content/events.json";
-import { getEvents, saveEvents, deleteEvent, getCurrentUserId } from "../utils/db";
+// import { getEvents, saveEvents, deleteEvent, getCurrentUserId } from "../utils/db";
+import { getEvents, saveEvents, deleteEvent, getCurrentUserId, hasGivenFeedback } from "../utils/db";
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
@@ -34,6 +35,10 @@ function EventDetails() {
 
     // Past events can still be viewed, but nothing can be changed
     const isPast = selectedEvent ? isPastEvent(selectedEvent) : false;
+
+    // Feedback is for people who took part, once the event is over, and only once each
+    const canGiveFeedback = isPast && selectedEvent?.participants_id?.includes(Number(pID));
+    const feedbackGiven = selectedEvent ? hasGivenFeedback(selectedEvent.id, pID) : false;
 
     const handleEditClick = () => {
         // navigate(`/createevent`);
@@ -171,6 +176,20 @@ function EventDetails() {
             {/* {(!isParticipating && selectedEvent.host !== Number(pID)) && ( */}
             {(!isParticipating && selectedEvent.host !== Number(pID) && !isPast) && (
                 <ActionButton title="Join" className="self-center text-right" onClick={() => handleJoinClick()} />
+            )}
+
+            {canGiveFeedback && (
+                <>
+                    <ActionButton
+                        title="Leave Feedback"
+                        className="self-center"
+                        disabled={feedbackGiven}
+                        onClick={() => navigate(`/feedback/${selectedEvent.id}`)}
+                    />
+                    {feedbackGiven && (
+                        <p className="text-center text-sm text-gray-500 -mt-2">Thank you, your feedback has been received.</p>
+                    )}
+                </>
             )}
 
         </main>
