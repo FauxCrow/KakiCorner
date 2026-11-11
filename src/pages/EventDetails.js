@@ -2,11 +2,13 @@ import AccessibilityBar from '../components/AccessibilityBar';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 // import eventData from "../content/events.json";
-import { getEvents, saveEvents, deleteEvent, getCurrentUserId } from "../utils/db";
+// import { getEvents, saveEvents, deleteEvent, getCurrentUserId } from "../utils/db";
+import { getEvents, saveEvents, deleteEvent, getCurrentUserId, hasGivenFeedback } from "../utils/db";
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import EventIconLine from '../components/EventIconLine';
 import ProgressBar from '../components/ProgressBar';
 import ActionButton from "../components/ActionButton";
+import { useNotifyCaretaker } from "../hooks/Toast";
 import ActivityIcon from "../components/ActivityIcon";
 // import { formatDate } from "../utils/date";
 import { formatDate, isPastEvent } from "../utils/date";
@@ -17,6 +19,7 @@ function EventDetails() {
     const pID = getCurrentUserId();
 
     const navigate = useNavigate();
+    const notifyCaretaker = useNotifyCaretaker();
 
     // const getStoredEvents = () => {
     //     const saved = localStorage.getItem("events");
@@ -32,6 +35,10 @@ function EventDetails() {
 
     // Past events can still be viewed, but nothing can be changed
     const isPast = selectedEvent ? isPastEvent(selectedEvent) : false;
+
+    // Feedback is for people who took part, once the event is over, and only once each
+    const canGiveFeedback = isPast && selectedEvent?.participants_id?.includes(Number(pID));
+    const feedbackGiven = selectedEvent ? hasGivenFeedback(selectedEvent.id, pID) : false;
 
     const handleEditClick = () => {
         // navigate(`/createevent`);
@@ -65,7 +72,8 @@ function EventDetails() {
         saveEvents(updatedEvents);
         setEvents(updatedEvents);
 
-        alert('An SMS has been sent to your caretaker.');
+        // alert('An SMS has been sent to your caretaker.');
+        notifyCaretaker();
     };
 
     const handleLeaveClick = () => {
@@ -84,7 +92,8 @@ function EventDetails() {
         saveEvents(updatedEvents);
         setEvents(updatedEvents);
 
-        alert('An SMS has been sent to your caretaker.');
+        // Leaving doesn't notify the caretaker
+        // alert('An SMS has been sent to your caretaker.');
     };
 
     // e.g. pressing Back after deleting it
@@ -95,7 +104,8 @@ function EventDetails() {
             <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
                 <div className="flex items-center justify-between w-full gap-2">
                     <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
-                    <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
+                    {/* No chat for a deleted event, and selectedEvent is empty here so tapping it crashed */}
+                    {/* <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} /> */}
                 </div>
 
                 <p className="text-gray-500">This event no longer exists.</p>
@@ -166,6 +176,20 @@ function EventDetails() {
             {/* {(!isParticipating && selectedEvent.host !== Number(pID)) && ( */}
             {(!isParticipating && selectedEvent.host !== Number(pID) && !isPast) && (
                 <ActionButton title="Join" className="self-center text-right" onClick={() => handleJoinClick()} />
+            )}
+
+            {canGiveFeedback && (
+                <>
+                    <ActionButton
+                        title="Leave Feedback"
+                        className="self-center"
+                        disabled={feedbackGiven}
+                        onClick={() => navigate(`/feedback/${selectedEvent.id}`)}
+                    />
+                    {feedbackGiven && (
+                        <p className="text-center text-sm text-gray-500 -mt-2">Thank you, your feedback has been received.</p>
+                    )}
+                </>
             )}
 
         </main>
