@@ -348,6 +348,9 @@ function CreateEvent({ isEdit = false }) {
                 participants_id: editingEvent.participants_id,
                 pending_id: editingEvent.pending_id
             });
+
+            alert('An SMS has been sent to your caretaker.');
+
             navigate(-1);
             return;
         }
