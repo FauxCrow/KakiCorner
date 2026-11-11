@@ -4,6 +4,7 @@ import OptionCard from '../components/OptionCard';
 import CheckboxCard from '../components/CheckboxCard';
 import AddButton from '../components/AddButton';
 import { useNavigate } from 'react-router-dom';
+import { Check, X } from 'lucide-react';
 // import { useState, useEffect } from "react";
 import { useState } from "react";
 import activityData from "../content/activities.json";
@@ -16,8 +17,15 @@ import { randomPerson } from "../utils/randomProfile";
 import { useLanguage } from '../hooks/UseLanguage';
 
 // Pages 1-2 are setup, pages 3-5 are the 3-step survey
+// const SURVEY_OFFSET = 2;
+// const SURVEY_STEPS = 3;
+
+// Pages: 1 language, 2 Singpass, 3 caretaker, 4 caretaker's phone, 5 interests, 6 personality, 7 dietary
 const SURVEY_OFFSET = 2;
-const SURVEY_STEPS = 3;
+const SURVEY_STEPS = 4;
+
+// Survey circle to highlight for each page (both caretaker pages count as circle 1)
+const SURVEY_NUMBER = { 3: 1, 4: 1, 5: 2, 6: 3, 7: 4 };
 
 // const LANGUAGES = ["English", "Chinese", "Malay", "Tamil"];
 
@@ -48,7 +56,16 @@ function NewUser({ isEdit = false }) {
 
     // const [step, setStep] = useState(1);
     // const [step, setStep] = useState(savedLanguage ? 2 : 1);
-    const [step, setStep] = useState(isEdit ? 3 : savedLanguage ? 2 : 1);
+    // const [step, setStep] = useState(isEdit ? 3 : savedLanguage ? 2 : 1);
+    const [step, setStep] = useState(isEdit ? 5 : savedLanguage ? 2 : 1);
+
+    // null = not answered yet, true = has a caretaker, false = no caretaker
+    const [hasCaretaker, setHasCaretaker] = useState(null);
+    const [caretakerPhone, setCaretakerPhone] = useState("");
+
+    // Singapore numbers: 8 digits starting with 6, 8 or 9
+    // const isValidPhone = /^[689]\d{7}$/.test(caretakerPhone);
+    const isValidPhone = /^\d{8}$/.test(caretakerPhone);
 
     // const [language, setLanguage] = useState(null);
     const [language, setLanguage] = useState(savedLanguage);
@@ -69,14 +86,24 @@ function NewUser({ isEdit = false }) {
 
     const handleBackClick = () => {
         // setStep(step - 1);
-        if (isEdit && step === 3) {
+        // if (isEdit && step === 3) {
+        if (isEdit && step === 5) {
             navigate("/profile");
         } else if (step === 1) {
             sessionStorage.removeItem("newuser_language");
             navigate("/");
+        } else if (step === 5 && !hasCaretaker) {
+            // No caretaker means the phone page was skipped, so go back to the yes/no page
+            setStep(3);
         } else {
             setStep(step - 1);
         }
+    };
+
+    // Yes goes to the phone number page; No skips straight to interests
+    const handleCaretakerClick = (answer) => {
+        setHasCaretaker(answer);
+        setStep(answer ? 4 : 5);
     };
 
     const handleNextClick = () => {
@@ -139,6 +166,8 @@ function NewUser({ isEdit = false }) {
             // age: localStorage.getItem("age"),
             ...randomPerson(),
             language: language || "en",
+            has_caretaker: hasCaretaker === true,
+            caretaker_phone: hasCaretaker ? caretakerPhone : "",
             personality: personality,
             interests: interests,
             // dietery_restrictions: dietary
@@ -217,12 +246,71 @@ function NewUser({ isEdit = false }) {
             {step > SURVEY_OFFSET && (
                 <>
                     {/* <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} /> */}
-                    <StepIndicator current={step - SURVEY_OFFSET} total={SURVEY_STEPS} />
+                    {/* <StepIndicator current={step - SURVEY_OFFSET} total={SURVEY_STEPS} /> */}
+                    <StepIndicator current={SURVEY_NUMBER[step]} total={SURVEY_STEPS} />
+                </>
+            )}
+
+            {/* Page 3: Caretaker yes/no */}
+            {step === 3 && (
+                <>
+                    <h1 className="text-center text-xl">Do you have a caretaker?</h1>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <OptionCard
+                            title={<span className="flex flex-col items-center gap-y-2"><Check size={48} /> Yes</span>}
+                            className="min-h-[130px]"
+                            isSelected={hasCaretaker === true}
+                            onClick={() => handleCaretakerClick(true)}
+                        />
+                        <OptionCard
+                            title={<span className="flex flex-col items-center gap-y-2"><X size={48} /> No</span>}
+                            className="min-h-[130px]"
+                            isSelected={hasCaretaker === false}
+                            onClick={() => handleCaretakerClick(false)}
+                        />
+                    </div>
+                </>
+            )}
+
+            {/* Page 4: Caretaker's phone number (only if they said yes) */}
+            {step === 4 && (
+                <>
+                    <h1 className="text-center text-xl">What is the caretaker's phone number?</h1>
+
+                    {/* <input
+                        type="tel"
+                        inputMode="numeric"
+                        value={caretakerPhone}
+                        onChange={(e) => setCaretakerPhone(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                        placeholder="Phone Number..."
+                        className="w-full p-4 rounded-2xl border-2 border-gray-200 text-base placeholder:text-gray-400 focus:outline-none"
+                    /> */}
+
+                    {/* "+65" is fixed text beside the box, so only the 8 digits are typed and saved */}
+                    <div className="w-full flex items-center rounded-2xl border-2 border-gray-200 overflow-hidden">
+                        <span className="notranslate px-4 py-4 bg-gray-100 text-base text-gray-600 border-r-2 border-gray-200">+65</span>
+                        <input
+                            type="tel"
+                            inputMode="numeric"
+                            value={caretakerPhone}
+                            onChange={(e) => setCaretakerPhone(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                            placeholder="Phone Number..."
+                            className="flex-1 min-w-0 p-4 text-base placeholder:text-gray-400 focus:outline-none"
+                        />
+                    </div>
+
+                    {/* {!isValidPhone && (
+                        <p className="text-center text-sm text-gray-500">Please enter an 8-digit number starting with 6, 8 or 9.</p>
+                    )} */}
+
+                    <ActionButton title="Next" className="self-center" disabled={!isValidPhone} onClick={handleNextClick} />
                 </>
             )}
 
             {/* Page 3: Interests */}
-            {step === 3 && (
+            {/* {step === 3 && ( */}
+            {step === 5 && (
                 <>
                     <h1 className="text-center text-xl">What are your interests?</h1>
                     <p className="text-center text-sm text-gray-500">Leave unselected if none apply to you.</p>
@@ -246,7 +334,8 @@ function NewUser({ isEdit = false }) {
             )}
 
             {/* Page 4: Personality */}
-            {step === 4 && (
+            {/* {step === 4 && ( */}
+            {step === 6 && (
                 <>
                     <h1 className="text-center text-xl">What describes you best?</h1>
 
@@ -265,7 +354,8 @@ function NewUser({ isEdit = false }) {
             )}
 
             {/* Page 5: Dietary Restrictions */}
-            {step === 5 && (
+            {/* {step === 5 && ( */}
+            {step === 7 && (
                 <>
                     <h1 className="text-center text-xl">Do you have dietary restrictions?</h1>
                     <p className="text-center text-sm text-gray-500">Leave unselected if none apply to you.</p>
