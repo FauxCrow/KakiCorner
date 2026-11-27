@@ -8,6 +8,7 @@ import { getEventById, getCurrentUserId, addFeedback, hasGivenFeedback } from ".
 // import { formatDate } from "../utils/date";
 import { formatDate, isPastEvent } from "../utils/date";
 import { useToast } from "../hooks/Toast";
+import { getBlockingStep } from "../utils/wizard";
 import { useTranslation } from 'react-i18next';
 
 const TOTAL_STEPS = 4;
@@ -58,6 +59,23 @@ function Feedback() {
     const handlePick = (setAnswer, value) => {
         setAnswer(value);
         setStep(step + 1);
+    };
+
+    // Steps 1-3 need an answer; step 4 (comments) is optional
+    const isStepComplete = (number) => {
+        if (number === 1) return rating !== null;
+        if (number === 2) return liked !== null;
+        if (number === 3) return joinAgain !== null;
+        return true;
+    };
+
+    const handleStepClick = (target) => {
+        const blockingStep = getBlockingStep(target, isStepComplete);
+        if (blockingStep) {
+            showToast(`Please complete step ${blockingStep} first.`);
+            return;
+        }
+        setStep(target);
     };
 
     const handleBackClick = () => {
@@ -113,7 +131,8 @@ function Feedback() {
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">
             <ActionButton translate="no" title={t('back')} className="self-start px-6 py-2" onClick={handleBackClick} />
 
-            <StepIndicator current={step} total={TOTAL_STEPS} />
+            {/* <StepIndicator current={step} total={TOTAL_STEPS} /> */}
+            <StepIndicator current={step} total={TOTAL_STEPS} onStepClick={handleStepClick} />
 
             <div className="flex flex-col gap-y-1 text-center">
                 <h1 className="text-xl">{STEP_TITLES[step - 1]}</h1>

@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ActionButton from "../components/ActionButton";
 import ActivityIcon from "./ActivityIcon";
+import HostInfo from "./HostInfo";
+import LocationInfo from "./LocationInfo";
 import { formatDate } from "../utils/date";
 
 export default function EventCard({
@@ -19,6 +21,14 @@ export default function EventCard({
                 {/* <img src={event.img}></img> */}
                 <ActivityIcon tag={event.tag} size={56} className="w-full h-28 rounded-xl" />
                 <h3 className="line-clamp-2 text-justify">{event.description}</h3>
+
+                <div className="pt-1">
+                    <LocationInfo region={event.region} location={event.location} />
+                </div>
+
+                <div className="py-1">
+                    <HostInfo hostId={event.host} />
+                </div>
                 <div className="flex items-center justify-between w-full gap-2">
                     <div className="flex flex-col">
                         {/* <h1 className="font=heading text-left text-lg">{event.date}</h1> */}

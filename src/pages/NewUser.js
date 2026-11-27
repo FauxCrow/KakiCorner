@@ -15,6 +15,8 @@ import languageData from "../content/languages.json";
 import { addProfile, setCurrentUserId, getCurrentUser, updateProfile } from "../utils/db";
 import { randomPerson } from "../utils/randomProfile";
 import { useLanguage } from '../hooks/UseLanguage';
+import { useToast } from '../hooks/Toast';
+import { getBlockingStep } from '../utils/wizard';
 import { useTranslation } from 'react-i18next';
 
 // Pages 1-2 are setup, pages 3-5 are the 3-step survey
@@ -27,6 +29,9 @@ const SURVEY_STEPS = 4;
 
 // Survey circle to highlight for each page (both caretaker pages count as circle 1)
 const SURVEY_NUMBER = { 3: 1, 4: 1, 5: 2, 6: 3, 7: 4 };
+
+// Page to open when a circle is tapped (circle 1 opens the yes/no caretaker page)
+const SURVEY_PAGE = { 1: 3, 2: 5, 3: 6, 4: 7 };
 
 // const LANGUAGES = ["English", "Chinese", "Malay", "Tamil"];
 
@@ -62,8 +67,12 @@ function NewUser({ isEdit = false }) {
     const [step, setStep] = useState(isEdit ? 5 : savedLanguage ? 2 : 1);
 
     // null = not answered yet, true = has a caretaker, false = no caretaker
-    const [hasCaretaker, setHasCaretaker] = useState(null);
-    const [caretakerPhone, setCaretakerPhone] = useState("");
+    // const [hasCaretaker, setHasCaretaker] = useState(null);
+    // const [caretakerPhone, setCaretakerPhone] = useState("");
+    // Edit Profile starts with the user's saved answer, so tapping circle 1 shows it already picked
+    const [hasCaretaker, setHasCaretaker] = useState(isEdit ? Boolean(currentUser?.has_caretaker) : null);
+    const [caretakerPhone, setCaretakerPhone] = useState(currentUser?.caretaker_phone || "");
+    const { showToast } = useToast();
 
     // Singapore numbers: 8 digits starting with 6, 8 or 9
     // const isValidPhone = /^[689]\d{7}$/.test(caretakerPhone);
@@ -89,7 +98,9 @@ function NewUser({ isEdit = false }) {
     const handleBackClick = () => {
         // setStep(step - 1);
         // if (isEdit && step === 3) {
-        if (isEdit && step === 5) {
+        // if (isEdit && step === 5) {
+        // Edit Profile never shows the language/Singpass pages, so Back from its first pages leaves to Profile
+        if (isEdit && (step === 5 || step === 3)) {
             navigate("/profile");
         } else if (step === 1) {
             sessionStorage.removeItem("newuser_language");
@@ -106,6 +117,24 @@ function NewUser({ isEdit = false }) {
     const handleCaretakerClick = (answer) => {
         setHasCaretaker(answer);
         setStep(answer ? 4 : 5);
+    };
+
+    // ---------- Clickable step numbers ----------
+
+    // Circle 1 caretaker (plus a valid number if yes) and circle 3 personality are needed; 2 and 4 are optional
+    const isStepComplete = (number) => {
+        if (number === 1) return hasCaretaker === false || (hasCaretaker === true && isValidPhone);
+        if (number === 3) return personality !== null;
+        return true;
+    };
+
+    const handleStepClick = (target) => {
+        const blockingStep = getBlockingStep(target, isStepComplete);
+        if (blockingStep) {
+            showToast(`Please complete step ${blockingStep} first.`);
+            return;
+        }
+        setStep(SURVEY_PAGE[target]);
     };
 
     const handleNextClick = () => {
@@ -150,7 +179,15 @@ function NewUser({ isEdit = false }) {
 
         // Edit Profile: update the same user instead of creating a new one
         if (isEdit) {
-            updateProfile({ ...currentUser, personality: personality, interests: interests, dietery_restrictions: dietaryList });
+            // updateProfile({ ...currentUser, personality: personality, interests: interests, dietery_restrictions: dietaryList });
+            updateProfile({
+                ...currentUser,
+                personality: personality,
+                interests: interests,
+                dietery_restrictions: dietaryList,
+                has_caretaker: hasCaretaker === true,
+                caretaker_phone: hasCaretaker ? caretakerPhone : ""
+            });
             navigate("/profile");
             return;
         }
@@ -249,7 +286,8 @@ function NewUser({ isEdit = false }) {
                 <>
                     {/* <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} /> */}
                     {/* <StepIndicator current={step - SURVEY_OFFSET} total={SURVEY_STEPS} /> */}
-                    <StepIndicator current={SURVEY_NUMBER[step]} total={SURVEY_STEPS} />
+                    {/* <StepIndicator current={SURVEY_NUMBER[step]} total={SURVEY_STEPS} /> */}
+                    <StepIndicator current={SURVEY_NUMBER[step]} total={SURVEY_STEPS} onStepClick={handleStepClick} />
                 </>
             )}
 
