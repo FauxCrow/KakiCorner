@@ -44,7 +44,7 @@ function Home() {
         <MenuCard title={t('create')}  onClick={() => navigate("/createevent")} />
         <MenuCard title={t('created')}  onClick={() => navigate("/eventsA/created")} />
         <MenuCard title={t('joined')}  onClick={() => navigate("/eventsA/joined")} />
-        <MenuCard id={t('all')}  title="See All Events" onClick={() => navigate("/eventsA/all")} />
+        <MenuCard id={t('all')}  title={t('all')} onClick={() => navigate("/eventsA/all")} />
       </div>
 
       {/* Old tiles, replaced by MenuCard above */}
