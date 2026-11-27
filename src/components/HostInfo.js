@@ -11,7 +11,8 @@ export default function HostInfo({
     const hostName = isYou ? "You" : (host?.name || "Unknown host");
 
     return (
-        <div className="flex flex-col gap-y-1">
+        // text-left: the app is centred by default (App.css)
+        <div className="flex flex-col gap-y-1 text-left">
             <span className="text-sm text-gray-700">Event Host</span>
 
             <div className="flex items-center gap-x-3">
