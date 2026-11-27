@@ -43,5 +43,12 @@
   "cancel": "取消",
   "next": "下一步",
   "complete": "完成",
-  "submit": "提交"
+  "submit": "提交",
+  "home-create": "创建新活动",
+  "home-find": "查找并参加活动",
+  "home-hosting": "我主办的活动",
+  "home-attending": "我参加的活动",
+  "cancel-request": "取消申请",
+  "cancel-spot": "取消我的名额",
+  "logout": "退出登录"
 }

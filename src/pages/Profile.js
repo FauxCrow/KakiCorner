@@ -75,7 +75,8 @@ function Profile() {
       </div>
 
       {/* Sits right under the Interests / Dietary box */}
-      <ActionButton title="Log out" onClick={handleLogoutClick} />
+      {/* <ActionButton title="Log out" onClick={handleLogoutClick} /> */}
+      <ActionButton translate="no" title={t('logout')} className="notranslate" onClick={handleLogoutClick} />
 
     </main>
 

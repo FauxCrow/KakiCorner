@@ -43,5 +43,12 @@
   "cancel": "Batal",
   "next": "Seterusnya",
   "complete": "Selesai",
-  "submit": "Hantar"
+  "submit": "Hantar",
+  "home-create": "Cipta Acara Baharu",
+  "home-find": "Cari & Sertai Acara",
+  "home-hosting": "Acara Anjuran Saya",
+  "home-attending": "Acara Yang Saya Hadiri",
+  "cancel-request": "Batalkan Permintaan",
+  "cancel-spot": "Batalkan Tempat Saya",
+  "logout": "Log Keluar"
 }
