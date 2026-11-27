@@ -48,10 +48,15 @@ function Home() {
         <MenuCard id="all-event-button" title="See All Events" onClick={() => navigate("/eventsA/all")} /> */}
 
         {/* Actions start with a verb; lists start with "Events I'm..." so "create"/"join" each appear only once */}
-        <MenuCard icon={CirclePlus} isPrimary title="Create a New Event" onClick={() => navigate("/createevent")} />
+        {/* <MenuCard icon={CirclePlus} isPrimary title="Create a New Event" onClick={() => navigate("/createevent")} />
         <MenuCard id="all-event-button" icon={Search} isPrimary title="Find & Join Events" onClick={() => navigate("/eventsA/all")} />
         <MenuCard icon={ClipboardList} title="Events I'm Hosting" onClick={() => navigate("/eventsA/created")} />
-        <MenuCard icon={CalendarCheck} title="Events I'm Attending" onClick={() => navigate("/eventsA/joined")} />
+        <MenuCard icon={CalendarCheck} title="Events I'm Attending" onClick={() => navigate("/eventsA/joined")} /> */}
+        {/* Labels come from src/locales so they change with the language (Home is "notranslate" for Google Translate) */}
+        <MenuCard icon={CirclePlus} isPrimary title={t('home-create')} onClick={() => navigate("/createevent")} />
+        <MenuCard id="all-event-button" icon={Search} isPrimary title={t('home-find')} onClick={() => navigate("/eventsA/all")} />
+        <MenuCard icon={ClipboardList} title={t('home-hosting')} onClick={() => navigate("/eventsA/created")} />
+        <MenuCard icon={CalendarCheck} title={t('home-attending')} onClick={() => navigate("/eventsA/joined")} />
       </div>
 
       {/* Old tiles, replaced by MenuCard above */}
