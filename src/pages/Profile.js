@@ -5,14 +5,16 @@ import { getProfiles, getCurrentUserId } from "../utils/db";
 import ActionButton from "../components/ActionButton";
 import { useNavigate } from 'react-router-dom';
 import Avatar from '../components/Avatar';
+import { useTranslation } from 'react-i18next';
 
 function Profile() {
+  const { t } = useTranslation();
   // const pID = localStorage.getItem("profile_id");
   // const profiles = JSON.parse(localStorage.getItem("profiles")) || profileData.profiles;
   const pID = getCurrentUserId();
   const profiles = getProfiles();
   const profile = profiles.find((p) => p.id === Number(pID)) || profiles[0];
-  const gender = profile.gender === "M" ? "Male" : "Female";
+  const gender = profile.gender === "M" ? "male" : "female";
   const navigate = useNavigate();
 
   return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
@@ -26,8 +28,8 @@ function Profile() {
 
 
       <div className="flex flex-col gap-y-2 items-center">
-        <h1 className="font=heading text-left text-lg">{profile.name}</h1>
-        <h3 className="font=heading text-left text-sm">{gender}</h3>
+        <h1 translate="no" className="notranslate font=heading text-left text-lg">{profile.name}</h1>
+        <h3 translate="no" className="notranslate font=heading text-left text-sm">{t(gender)} </h3>
         <h3 className="font=heading text-left text-sm">{profile.age}</h3>
         <h3 className="font=heading text-left text-sm">{profile.personality}</h3>
       </div>
@@ -35,9 +37,9 @@ function Profile() {
       <div className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0">
         <div className="flex flex-col gap-y-4">
           <div className="flex items-center justify-between w-full gap-2">
-            <h1 className="font=heading text-left text-lg">Interests</h1>
+            <h1 translate="no" className="notranslate font=heading text-left text-lg">{t('interests')}</h1>
             {/* <ActionButton title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/newuser`)} /> */}
-            <ActionButton id="profile-edit-button" title="Edit" className="self-center text-left bg-gray-300" onClick={() => navigate(`/editprofile`)} />
+            <ActionButton translate="no" id="profile-edit-button" title={t('edit')} className="notranslate self-center text-left bg-gray-300" onClick={() => navigate(`/editprofile`)} />
           </div>
 
           <div className="grid grid-cols-3 gap-2">
@@ -46,12 +48,12 @@ function Profile() {
                 <div key={interests} className="bg-white rounded-xl flex items-center justify-center font-bold text-md shadow-md min-h-[75px]">{interests}</div>
               ))
             ) : (
-              <p className="text-gray-500 text-left col-span-full">No listed interests.</p>
+              <p translate="no" className="notranslate text-gray-500 text-left col-span-full">{t('no-interests')} </p>
             )}
           </div>
 
 
-          <h1 className="font=heading text-left text-lg">Dietery Restrictions</h1>
+          <h1 translate="no" className="notranslate font=heading text-left text-lg">{t('dietary')}</h1>
 
           <div className="grid grid-cols-3 gap-2">
             {profile.dietery_restrictions.length > 0 ? (
@@ -59,7 +61,7 @@ function Profile() {
                 <div key={dietery} className="bg-white rounded-xl flex items-center justify-center font-bold text-md shadow-md min-h-[75px]">{dietery}</div>
               ))
             ) : (
-              <p className="text-gray-500 text-left col-span-full">No listed dietery restrictions.</p>
+              <p translate="no" className="notranslate text-gray-500 text-left col-span-full">{t('no-dietary')} </p>
             )}
           </div>
         </div>

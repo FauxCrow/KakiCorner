@@ -1,7 +1,6 @@
 import './App.css';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { GuideProvider } from './hooks/TutorialGuide';
-import Survey from './pages/Survey';
 import Home from './pages/Home';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
@@ -15,6 +14,7 @@ import NewUser from './pages/NewUser';
 import Start from './pages/Start';
 import SelectUser from './pages/SelectUser';
 import { resetLanguageToEnglish } from './hooks/UseLanguage';
+import './utils/i18n';
 
 // Note: HashRouter is used to bypass github 404 error, even if it makes the url look ugly :(
 
@@ -22,7 +22,7 @@ import { resetLanguageToEnglish } from './hooks/UseLanguage';
 if (!sessionStorage.getItem("session_started")) {
   sessionStorage.setItem("session_started", "true");
   window.location.hash = "#/";
-  resetLanguageToEnglish();
+  //resetLanguageToEnglish();
 }
 
 function App() {
@@ -35,7 +35,6 @@ function App() {
             <Route path="/" element={<Start />} />
             <Route path="/selectuser" element={<SelectUser />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/survey" element={<Survey />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/eventsA/:type" element={<EventsA />} />

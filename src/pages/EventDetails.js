@@ -10,8 +10,10 @@ import ActionButton from "../components/ActionButton";
 import ActivityIcon from "../components/ActivityIcon";
 // import { formatDate } from "../utils/date";
 import { formatDate, isPastEvent } from "../utils/date";
+import { useTranslation } from 'react-i18next';
 
 function EventDetails() {
+    const { t } = useTranslation();
     const { id } = useParams();
     // const pID = localStorage.getItem("profile_id");
     const pID = getCurrentUserId();
@@ -93,9 +95,9 @@ function EventDetails() {
             <AccessibilityBar></AccessibilityBar>
 
             <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-                <div className="flex items-center justify-between w-full gap-2">
-                    <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
-                    <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
+                <div translate="no" className="flex items-center justify-between w-full gap-2">
+                    <ActionButton translate="no" id="back-button" title={t('back')} className="notranslate w-fit text-left" onClick={() => navigate(-1)} />
+                    <ActionButton translate="no" title={t('chat')} className="notranslate self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
                 </div>
 
                 <p className="text-gray-500">This event no longer exists.</p>
@@ -107,9 +109,9 @@ function EventDetails() {
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-            <div className="flex items-center justify-between w-full gap-2">
-                <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
-                <ActionButton title="Chat" className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
+            <div translate="no" className="flex items-center justify-between w-full gap-2">
+                <ActionButton id="back-button" title={t('back')} className="w-fit text-left" onClick={() => navigate(-1)} />
+                <ActionButton title={t('chat')} className="self-center text-right" onClick={() => navigate(`/selectmessages/${selectedEvent.id}`)} />
             </div>
             <h1 className="text-left font-bold text-xl">{selectedEvent.tag}</h1>
 
@@ -125,7 +127,7 @@ function EventDetails() {
             <EventIconLine icon={Clock} info={selectedEvent.time}></EventIconLine>
             <EventIconLine icon={MapPin} info={selectedEvent.pickup}></EventIconLine>
 
-            <h2 className="text-left font-bold">Participants</h2>
+            <h2 translate="no" className="text-left font-bold">{t('participants')}</h2>
 
             <div className="w-full mx-auto max-w-md p-6 bg-gray-100 rounded-2xl shadow-sm flex-shrink-0 flex flex-col gap-y-4">
                 <div className="flex items-center justify-between w-full gap-2">
@@ -142,15 +144,15 @@ function EventDetails() {
 
                 <ProgressBar value={selectedEvent.participants_id.length} max={selectedEvent.max_slots}></ProgressBar>
 
-                <ActionButton id="see-participants-button" title="See Participants" className="self-center bg-gray-300" onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} />
+                <ActionButton id="see-participants-button" translate="no" title={t('see-participants')} className="self-center bg-gray-300" onClick={() => navigate(`/eventparticipants/${selectedEvent.id}`)} />
             </div>
 
             {/* Edit / Delete / Leave / Join are hidden once the event has passed */}
             {/* {(selectedEvent.host === Number(pID)) && ( */}
             {(selectedEvent.host === Number(pID) && !isPast) && (
-                <div className="flex items-center justify-between w-full gap-2">
-                    <ActionButton title="Edit" className="self-center text-right" onClick={() => handleEditClick()} />
-                    <ActionButton title="Delete" className="self-center text-right" onClick={() => handleDeleteClick()} />
+                <div translate="no" className="flex items-center justify-between w-full gap-2">
+                    <ActionButton title={t('edit')} className="self-center text-right" onClick={() => handleEditClick()} />
+                    <ActionButton title={t('delete')} className="self-center text-right" onClick={() => handleDeleteClick()} />
                 </div>
             )}
 
@@ -160,12 +162,12 @@ function EventDetails() {
 
             {/* {(isParticipating) && ( */}
             {(isParticipating && !isPast) && (
-                <ActionButton title="Leave" className="self-center text-right" onClick={() => handleLeaveClick()} />
+                <ActionButton translate="no" title={t('leave')}  className="self-center text-right" onClick={() => handleLeaveClick()} />
             )}
 
             {/* {(!isParticipating && selectedEvent.host !== Number(pID)) && ( */}
             {(!isParticipating && selectedEvent.host !== Number(pID) && !isPast) && (
-                <ActionButton title="Join" className="self-center text-right" onClick={() => handleJoinClick()} />
+                <ActionButton translate="no" title={t('join')}  className="self-center text-right" onClick={() => handleJoinClick()} />
             )}
 
         </main>

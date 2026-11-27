@@ -5,8 +5,10 @@ import { getEvents, getCurrentUserId } from "../utils/db";
 import chatData from "../content/chats.json";
 import { useEffect, useState } from "react";
 import ChatCard from '../components/ChatCard';
+import { useTranslation } from 'react-i18next';
 
 function Messages() {
+  const { t } = useTranslation();
   const [activeChats, setActiveChats] = useState([]);
   const [archivedChats, setArchivedChats] = useState([]);
 
@@ -78,7 +80,7 @@ function Messages() {
     <AccessibilityBar></AccessibilityBar>
 
     <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md items-center">
-      <h1 className="text-left font-bold text-xl w-full mx-auto max-w-md">Active Chats</h1>
+      <h1 translate="no" className="notranslate text-left font-bold text-xl w-full mx-auto max-w-md">{t('active')}</h1>
       {activeChats.length > 0 ? (
         activeChats.map((chat) => (
           <ChatCard
@@ -91,10 +93,10 @@ function Messages() {
           />
         ))
       ) : (
-        <p className="text-gray-500">No active chats.</p>
+        <p translate="no" className="notranslate text-gray-500">{t('no-active')}</p>
       )}
 
-      <h1 className="text-left font-bold text-xl w-full mx-auto max-w-md">Archived Chats</h1>
+      <h1 translate="no" className="notranslate text-left font-bold text-xl w-full mx-auto max-w-md">{t('archived')}</h1>
 
       {archivedChats.length > 0 ? (
         archivedChats.map((chat) => (
@@ -108,7 +110,7 @@ function Messages() {
           />
         ))
       ) : (
-        <p className="text-gray-500">No archived chats.</p>
+        <p translate="no" className="notranslate text-gray-500">{t('no-archived')}</p>
       )}
     </main>
 
