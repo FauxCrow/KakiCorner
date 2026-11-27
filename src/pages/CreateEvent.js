@@ -418,7 +418,7 @@ function CreateEvent({ isEdit = false }) {
                     )}
 
                     {/* <ActionButton title="Next" className="self-center" onClick={handleNextClick} /> */}
-                    <ActionButton title="Next" className="self-center" disabled={!description.trim()} onClick={handleNextClick} />
+                    <ActionButton translate="no" title={t('next')} className="self-center" disabled={!description.trim()} onClick={handleNextClick} />
                 </>
             )}
 
@@ -497,7 +497,7 @@ function CreateEvent({ isEdit = false }) {
                     )}
 
                     {/* <ActionButton title="Next" className="self-center" onClick={handleNextClick} /> */}
-                    <ActionButton title="Next" className="self-center" disabled={!!dateError} onClick={handleNextClick} />
+                    <ActionButton translate="no" title={t('next')}  className="self-center" disabled={!!dateError} onClick={handleNextClick} />
                 </>
             )}
 
@@ -552,7 +552,7 @@ function CreateEvent({ isEdit = false }) {
                     )}
 
                     {/* <ActionButton title="Next" className="self-center" onClick={handleNextClick} /> */}
-                    <ActionButton title="Next" className="self-center" disabled={!location.trim()} onClick={handleNextClick} />
+                    <ActionButton translate="no" title={t('next')}  className="self-center" disabled={!location.trim()} onClick={handleNextClick} />
                 </>
             )}
 
@@ -585,7 +585,7 @@ function CreateEvent({ isEdit = false }) {
                     <EventOverviewCard details={[whenText, whereText, pickupText]} />
 
                     {/* <ActionButton title="Complete" className="self-center" onClick={handleCompleteClick} /> */}
-                    <ActionButton title="Complete" className="self-center" disabled={Number(participants) < minSlots} onClick={handleCompleteClick} />
+                    <ActionButton translate="no" title={t('complete')}className="self-center" disabled={Number(participants) < minSlots} onClick={handleCompleteClick} />
                 </>
             )}
         </main>

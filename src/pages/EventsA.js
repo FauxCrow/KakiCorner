@@ -99,13 +99,13 @@ function EventsA() {
         let baseEvents = [];
         if (eventType === "created") {
             baseEvents = events.filter(event => event.host === pID);
-            setTypeTitle("My Created");
+            setTypeTitle(t('created'));
         } else if (eventType === "joined") {
             baseEvents = events.filter(event => event.participants_id?.includes(pID));
-            setTypeTitle("My Joined");
+            setTypeTitle(t('joined'));
         } else {
             baseEvents = events;
-            setTypeTitle("All");
+            setTypeTitle(t('all'));
         }
 
         // Tab filter for created/joined

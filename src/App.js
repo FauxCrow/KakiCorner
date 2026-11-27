@@ -14,6 +14,7 @@ import NewUser from './pages/NewUser';
 import Start from './pages/Start';
 import SelectUser from './pages/SelectUser';
 import Feedback from './pages/Feedback';
+import { ToastProvider } from './hooks/Toast';
 import { resetLanguageToEnglish } from './hooks/UseLanguage';
 import './utils/i18n';
 
@@ -23,7 +24,7 @@ import './utils/i18n';
 if (!sessionStorage.getItem("session_started")) {
   sessionStorage.setItem("session_started", "true");
   window.location.hash = "#/";
-  //resetLanguageToEnglish();
+  // resetLanguageToEnglish();
 }
 
 function App() {

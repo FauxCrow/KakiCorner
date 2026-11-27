@@ -40,5 +40,8 @@
   "see-participants": "查看参与者",
   "leave": "退出活动",
   "join": "参加活动",
-  "cancel": "取消"
+  "cancel": "取消",
+  "next": "下一步",
+  "complete": "完成",
+  "submit": "提交"
 }

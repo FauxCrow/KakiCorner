@@ -40,5 +40,8 @@
   "see-participants": "See Participants",
   "leave": "Leave",
   "join": "Join",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "next": "Next",
+  "complete": "Complete",
+  "submit": "Submit"
 }
