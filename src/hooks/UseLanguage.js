@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // Deletes the saved language cookie so the page loads in English (used on a fresh open)
 export function resetLanguageToEnglish() {
@@ -9,10 +10,10 @@ export function resetLanguageToEnglish() {
 }
 
 export function useLanguage() {
+    const { i18n } = useTranslation();
     const [isLangOpen, setIsLangOpen] = useState(false);
     const menuRef = useRef(null);
 
-    // Closes popup when clicking outside of it
     useEffect(() => {
         function handleClickOutside(event) {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -23,9 +24,18 @@ export function useLanguage() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // Function to trigger GTranslate
-    const changeLanguage = (langCode) => {
+    const changeLanguage = async (langCode) => {
         setIsLangOpen(false);
+
+        // 1. Update i18next for static UI text
+        if (typeof i18n?.changeLanguage === 'function') {
+            await i18n.changeLanguage(langCode);
+        }
+
+        // 2. Trigger GTranslate for dynamic/unmarked text
+        if (langCode === 'en') {
+            resetLanguageToEnglish();
+        }
 
         if (typeof window.doGTranslate === 'function') {
             window.doGTranslate(`en|${langCode}`);
@@ -44,5 +54,6 @@ export function useLanguage() {
         menuRef,
         changeLanguage,
         toggleLangMenu,
+        currentLanguage: i18n.language,
     };
 }
