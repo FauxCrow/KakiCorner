@@ -5,8 +5,10 @@ import { useEffect } from "react";
 // import eventData from "../content/events.json";
 import { getCurrentUserId, getCurrentUser } from "../utils/db";
 import MenuCard from '../components/MenuCard';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const user = getCurrentUser();
 
@@ -30,19 +32,19 @@ function Home() {
     loadInitialData();
   }, [navigate]);
 
-  return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
+  return <div translate="no" className="notranslate flex flex-col h-[100dvh] w-full overflow-hidden text-base">
     <AccessibilityBar></AccessibilityBar>
 
     <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-8 w-full mx-auto max-w-md">
       <h1 className="text-center text-2xl pt-4">
-        Hello, <span className="notranslate">{user?.first_name || user?.name}</span>!
+        {t('hello')},  <span className="notranslate">{user?.first_name || user?.name}</span>!
       </h1>
 
       <div className="grid grid-cols-2 gap-4">
-        <MenuCard title="New Event" onClick={() => navigate("/createevent")} />
-        <MenuCard title="Created Events" onClick={() => navigate("/eventsA/created")} />
-        <MenuCard title="Joined Events" onClick={() => navigate("/eventsA/joined")} />
-        <MenuCard id="all-event-button" title="See All Events" onClick={() => navigate("/eventsA/all")} />
+        <MenuCard title={t('create')}  onClick={() => navigate("/createevent")} />
+        <MenuCard title={t('created')}  onClick={() => navigate("/eventsA/created")} />
+        <MenuCard title={t('joined')}  onClick={() => navigate("/eventsA/joined")} />
+        <MenuCard id={t('all')}  title="See All Events" onClick={() => navigate("/eventsA/all")} />
       </div>
 
       {/* Old tiles, replaced by MenuCard above */}

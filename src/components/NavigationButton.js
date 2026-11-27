@@ -26,7 +26,7 @@ export default function NavButton({
         <button
             id={id}
             onClick={handleClick}
-            className={`w-full rounded-xl p-4 mx-auto text-center flex flex-col flex-1 sm:flex-none gap-y-2 text-sm items-center justify-center hover:scale-105 transition ${
+            className={`notranslate w-full rounded-xl p-4 mx-auto text-center flex flex-col flex-1 sm:flex-none gap-y-2 text-sm items-center justify-center hover:scale-105 transition ${
                 isTarget
                     ? 'bg-yellow-400 text-black ring-4 ring-yellow-500 animate-pulse font-bold scale-105 z-50'
                     : ''

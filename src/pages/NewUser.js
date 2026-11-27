@@ -15,6 +15,7 @@ import languageData from "../content/languages.json";
 import { addProfile, setCurrentUserId, getCurrentUser, updateProfile } from "../utils/db";
 import { randomPerson } from "../utils/randomProfile";
 import { useLanguage } from '../hooks/UseLanguage';
+import { useTranslation } from 'react-i18next';
 
 // Pages 1-2 are setup, pages 3-5 are the 3-step survey
 // const SURVEY_OFFSET = 2;
@@ -38,6 +39,7 @@ const PERSONALITIES = [
 
 // function NewUser() {
 function NewUser({ isEdit = false }) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const activities = activityData.activities || [];
     const dietaryOptions = dietaryData.dietary || [];
@@ -202,7 +204,7 @@ function NewUser({ isEdit = false }) {
     return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">
 
-            <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} />
+            <ActionButton translate="no" title={t('back')} className="self-start px-6 py-2" onClick={handleBackClick} />
 
             {/* Page 1: Language */}
             {step === 1 && (

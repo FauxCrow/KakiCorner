@@ -10,8 +10,10 @@ import { Send } from 'lucide-react';
 import { useEffect, useState, useRef } from "react";
 import ActionButton from "../components/ActionButton";
 import ActivityIcon from "../components/ActivityIcon";
+import { useTranslation } from 'react-i18next';
 
 function MessageChat() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
@@ -76,7 +78,7 @@ function MessageChat() {
     <AccessibilityBar></AccessibilityBar>
 
     <div className="py-4 px-4 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-      <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(`/messages`)} />
+      <ActionButton id="back-button" translate="no" title={t('back')} className="notranslate w-fit text-left" onClick={() => navigate(`/messages`)} />
       <div className="flex items-center w-full gap-6">
         {/* <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
           <img></img>
@@ -116,8 +118,9 @@ function MessageChat() {
 
     <footer className="w-full p-4 z-50 bg-white shadow-sm flex-shrink-0 flex items-center gap-2 mx-auto max-w-md">
         <textarea id="message" rows="1" value={inputText} onChange={(e) => setInputText(e.target.value)} onKeyDown={(e) => {if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSendMessage(); }}}
-          className="rounded-xl border border-2 border-gray-200 text-heading text-sm block w-full p-3 placeholder:text-gray-400 resize-none focus:outline-none whitespace-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" 
-          placeholder="Type a message..."
+          className="notranslate rounded-xl border border-2 border-gray-200 text-heading text-sm block w-full p-3 placeholder:text-gray-400 resize-none focus:outline-none whitespace-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" 
+          translate="no"
+          placeholder={t('type')}
         ></textarea>
         
         <button className="bg-gray-400 text-white p-3 rounded-full flex items-center justify-center flex-shrink-0 transition-colors shadow-md" onClick={handleSendMessage} >

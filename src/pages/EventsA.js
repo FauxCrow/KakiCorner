@@ -12,8 +12,10 @@ import { Funnel, UserGroup, CalendarClock, MapPinned, Dices, Dumbbell, Palette, 
 import FilterButton from "../components/FilterButton";
 import activityData from "../content/activities.json";
 import AccessibilityButton from '../components/AccessibilityButton';
+import { useTranslation } from 'react-i18next';
 
 function EventsA() {
+    const { t } = useTranslation();
     const { type } = useParams();
     const eventType = type || "all";
 
@@ -195,34 +197,35 @@ function EventsA() {
                             className="flex flex-row gap-x-2 items-center cursor-pointer select-none"
                             onClick={() => { setIsFilterOpen(!isFilterOpen); setActiveFilterCategory(null); }}
                         >
-                            <span className="text-sm font-semibold">Filter</span>
+                            <span translate="no" lassName="notranslate text-sm font-semibold">{t('filter')}</span>
                             <Funnel size={30} />
                         </div>
                     </div>
 
                     {(selectedFilterValue || selectedDateOption || selectedTimeOption) && !isFilterOpen && (
-                        <div className="flex flex-row items-center justify-between rounded-xl text-sm">
+                        <div translate="no" className="notranslate flex flex-row items-center justify-between rounded-xl text-sm">
                             <span>
-                                Filtered by:{" "}
-                                <strong>{getFilterBadgeText()}</strong>
+                                {t('filter-by')}{" "}
+                                <strong translate="yes">{getFilterBadgeText()}</strong>
                             </span>
                             <button
                                 onClick={resetFilters}
-                                className="text-blue-600 font-bold underline text-md px-2 py-1"
+                                translate="no"
+                                className="notranslate text-blue-600 font-bold underline text-md px-2 py-1"
                             >
-                                Clear Filter
+                                {t('filter-clear')}
                             </button>
                         </div>
                     )}
 
                     {!isFilterOpen && (
                         <>
-                            <h1 className="text-left font-bold text-xl w-full">{typeTitle} Events</h1>
+                            <h1 translate="no" className="text-left font-bold text-xl w-full">{typeTitle}</h1>
 
                             {(eventType === "created" || eventType === "joined") && (
                                 <div className="text-left flex flex-row gap-x-4 w-full">
-                                    <ActionButton title="Current" className="self-center" onClick={() => handleOptionClick(true)} />
-                                    <ActionButton title="Past" className="self-center" onClick={() => handleOptionClick(false)} />
+                                    <ActionButton translate="no" title={t('current')} className="self-center" onClick={() => handleOptionClick(true)} />
+                                    <ActionButton translate="no" title={t('past')} className="self-center" onClick={() => handleOptionClick(false)} />
                                 </div>
                             )}
                         </>
@@ -235,9 +238,9 @@ function EventsA() {
                         <>
                             {!activeFilterCategory && (
                                 <>
-                                    <ActionButton title="Back" className="w-fit text-left" onClick={() => setIsFilterOpen(!isFilterOpen)} />
+                                    <ActionButton translate="no" title={t('back')} className="w-fit text-left" onClick={() => setIsFilterOpen(!isFilterOpen)} />
                                     <div className="flex flex-col gap-y-4 max-w-xs mx-auto items-center w-full">
-                                        <h2 className="font-bold text-lg mb-1">Choose Filter Type</h2>
+                                        <h2 translate="no" className="font-bold text-lg mb-1">{t('filter-choose')}</h2>
                                         <FilterButton icon={UserGroup} title='Sort By Activity' iconSize={40} onClick={() => setActiveFilterCategory('activity')} />
                                         <FilterButton icon={CalendarClock} title='Sort By Date / Time' iconSize={40} onClick={() => setActiveFilterCategory('date')} />
                                         <FilterButton icon={MapPinned} title='Sort By Location' iconSize={40} onClick={() => setActiveFilterCategory('location')} />

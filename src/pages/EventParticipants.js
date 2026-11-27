@@ -6,8 +6,10 @@ import { getEvents, getCurrentUserId } from "../utils/db";
 import ParticipantCard from '../components/ParticipantCard';
 import ActionButton from "../components/ActionButton";
 import { isPastEvent } from "../utils/date";
+import { useTranslation } from 'react-i18next';
 
 function EventParticipants() {
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ function EventParticipants() {
             <AccessibilityBar></AccessibilityBar>
 
             <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-                <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
+                <ActionButton translate="no" id="back-button" title={t('back')} className="w-fit text-left" onClick={() => navigate(-1)} />
                 <p className="text-gray-500">This event no longer exists.</p>
             </main>
         </div>;
@@ -36,8 +38,8 @@ function EventParticipants() {
         <AccessibilityBar></AccessibilityBar>
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-4 w-full mx-auto max-w-md">
-            <ActionButton id="back-button" title="Back" className="w-fit text-left" onClick={() => navigate(-1)} />
-            <h1 className="text-left font-bold text-xl">Participants</h1>
+            <ActionButton translate="no" id="back-button" title={t('back')} className="w-fit text-left" onClick={() => navigate(-1)} />
+            <h1 translate="no" className="text-left font-bold text-xl">{t('participants')}</h1>
 
             {selectedEvent.participants_id.length > 0 ? (
                 selectedEvent.participants_id.map((participant) => (

@@ -19,6 +19,7 @@ import activityData from "../content/activities.json";
 import { addEvent, getCurrentUserId, getEvents, getEventById, updateEvent } from "../utils/db";
 // import { toDateTime } from "../utils/date";
 import { toDateTime, formatDate } from "../utils/date";
+import { useTranslation } from 'react-i18next';
 
 const TOTAL_STEPS = 5;
 
@@ -68,6 +69,7 @@ const getDefaultStart = () => {
 
 // function CreateEvent() {
 function CreateEvent({ isEdit = false }) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const notifyCaretaker = useNotifyCaretaker();
 
@@ -373,8 +375,8 @@ function CreateEvent({ isEdit = false }) {
 
         <main className="flex-1 py-4 px-4 overflow-y-auto min-h-0 flex flex-col gap-y-6 w-full mx-auto max-w-md">
             <div className="flex items-center justify-between w-full gap-2">
-                <ActionButton title="Back" className="self-start px-6 py-2" onClick={handleBackClick} />
-                <ActionButton id="back-button" title="Cancel" className="self-start px-6 py-2" onClick={handleCancelClick} />
+                <ActionButton translate="no" title={t('back')} className="self-start px-6 py-2" onClick={handleBackClick} />
+                <ActionButton translate="no" id="back-button" title={t('cancel')} className="self-start px-6 py-2" onClick={handleCancelClick} />
             </div>
 
 
