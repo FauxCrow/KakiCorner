@@ -13,6 +13,7 @@ import CreateEvent from './pages/CreateEvent';
 import NewUser from './pages/NewUser';
 import Start from './pages/Start';
 import SelectUser from './pages/SelectUser';
+import Feedback from './pages/Feedback';
 import { resetLanguageToEnglish } from './hooks/UseLanguage';
 import './utils/i18n';
 
@@ -29,6 +30,7 @@ function App() {
   return (
     <HashRouter>
       <GuideProvider>
+        <ToastProvider>
         <div className="App">
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
@@ -44,10 +46,12 @@ function App() {
             <Route path="/selectmessages/:id" element={<MessageChat />} />
             <Route path="/createevent" element={<CreateEvent />} />
             <Route path="/editevent/:id" element={<CreateEvent key="edit" isEdit />} />
+            <Route path="/feedback/:id" element={<Feedback />} />
             <Route path="/newuser" element={<NewUser />} />
             <Route path="/editprofile" element={<NewUser key="edit" isEdit />} />
           </Routes>
         </div>
+        </ToastProvider>
       </GuideProvider>
     </HashRouter>
   );
