@@ -22,7 +22,7 @@
             "name": "Bakau LRT Station (SE3)",
             "lat": 1.387994,
             "lng": 103.905415,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Bangkit LRT Station (BP9)",
@@ -136,7 +136,7 @@
             "name": "Buangkok MRT Station (NE15)",
             "lat": 1.38287,
             "lng": 103.893123,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Bugis MRT Station (DT14)",
@@ -208,7 +208,7 @@
             "name": "Cheng Lim LRT Station (SW1)",
             "lat": 1.396278,
             "lng": 103.893797,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Chinatown MRT Station (DT19)",
@@ -256,19 +256,19 @@
             "name": "Compassvale LRT Station (SE1)",
             "lat": 1.394493,
             "lng": 103.900492,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Coral Edge LRT Station (PE3)",
             "lat": 1.393909,
             "lng": 103.912581,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Cove LRT Station (PE1)",
             "lat": 1.399282,
             "lng": 103.905962,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Dakota MRT Station (CC8)",
@@ -280,7 +280,7 @@
             "name": "Damai LRT Station (PE7)",
             "lat": 1.405235,
             "lng": 103.908604,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Dhoby Ghaut MRT Station (CC1)",
@@ -328,7 +328,7 @@
             "name": "Farmway LRT Station (SW2)",
             "lat": 1.39717,
             "lng": 103.889305,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Farrer Park MRT Station (NE8)",
@@ -346,7 +346,7 @@
             "name": "Fernvale LRT Station (SW5)",
             "lat": 1.391886,
             "lng": 103.876309,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Fort Canning MRT Station (DT20)",
@@ -412,7 +412,7 @@
             "name": "Hougang MRT Station",
             "lat": 1.370335,
             "lng": 103.892262,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Hume MRT Station (DT4)",
@@ -454,7 +454,7 @@
             "name": "Kadaloor LRT Station (PE5)",
             "lat": 1.399509,
             "lng": 103.916575,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Kaki Bukit MRT Station (DT28)",
@@ -472,7 +472,7 @@
             "name": "Kangkar LRT Station (SE4)",
             "lat": 1.383959,
             "lng": 103.902225,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Katong Park MRT Station (TE24)",
@@ -520,7 +520,7 @@
             "name": "Kovan MRT Station (NE13)",
             "lat": 1.360179,
             "lng": 103.885065,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Kranji MRT Station (NS7)",
@@ -532,7 +532,7 @@
             "name": "Kupang LRT Station (SW3)",
             "lat": 1.398213,
             "lng": 103.881256,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Labrador Park MRT Station (CC27)",
@@ -556,7 +556,7 @@
             "name": "Layar LRT Station (SW6)",
             "lat": 1.39208,
             "lng": 103.88003,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Lentor MRT Station (TE5)",
@@ -646,7 +646,7 @@
             "name": "Meridian LRT Station (PE2)",
             "lat": 1.396912,
             "lng": 103.90895,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Mount Pleasant MRT Station (TE10)",
@@ -676,7 +676,7 @@
             "name": "Nibong LRT Station (PW5)",
             "lat": 1.411854,
             "lng": 103.900339,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Nicoll Highway MRT Station (CC5)",
@@ -694,7 +694,7 @@
             "name": "Oasis LRT Station (PE6)",
             "lat": 1.402287,
             "lng": 103.912727,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "One-North MRT Station (CC23)",
@@ -784,19 +784,19 @@
             "name": "Punggol Coast MRT Station (NE18)",
             "lat": 1.414927,
             "lng": 103.910166,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Punggol MRT Station (NE17)",
             "lat": 1.404547,
             "lng": 103.902073,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Punggol Point LRT Station (PW3)",
             "lat": 1.416849,
             "lng": 103.906651,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Queenstown MRT Station (EW19)",
@@ -814,7 +814,7 @@
             "name": "Ranggung LRT Station (SE5)",
             "lat": 1.384234,
             "lng": 103.897195,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Redhill MRT Station (EW18)",
@@ -826,13 +826,13 @@
             "name": "Renjong LRT Station (SW8)",
             "lat": 1.386701,
             "lng": 103.890621,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Riviera LRT Station (PE4)",
             "lat": 1.39452,
             "lng": 103.916169,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Rochor MRT Station (DT13)",
@@ -844,19 +844,19 @@
             "name": "Rumbia LRT Station (SE2)",
             "lat": 1.391468,
             "lng": 103.905974,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Sam Kee LRT Station (PW1)",
             "lat": 1.409613,
             "lng": 103.904832,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Samudera LRT Station (PW4)",
             "lat": 1.415902,
             "lng": 103.902156,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Segar LRT Station (BP11)",
@@ -874,7 +874,7 @@
             "name": "Sengkang MRT Station (NE16)",
             "lat": 1.391695,
             "lng": 103.895485,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Senja LRT Station (BP13)",
@@ -886,7 +886,7 @@
             "name": "Serangoon MRT Station (CC13)",
             "lat": 1.350634,
             "lng": 103.872772,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Shenton Way MRT Station (TE19)",
@@ -922,7 +922,7 @@
             "name": "Soo Teck LRT Station (PW7)",
             "lat": 1.405323,
             "lng": 103.897291,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "South View LRT Station (BP2)",
@@ -952,7 +952,7 @@
             "name": "Sumang LRT Station (PW6)",
             "lat": 1.408452,
             "lng": 103.898558,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Sungei Bedok MRT Station (TE31 / DT37)",
@@ -1018,7 +1018,7 @@
             "name": "Teck Lee LRT Station (PW2)",
             "lat": 1.412771,
             "lng": 103.906578,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Teck Whye LRT Station (BP4)",
@@ -1042,7 +1042,7 @@
             "name": "Thanggam LRT Station (SW4)",
             "lat": 1.397318,
             "lng": 103.875635,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Tiong Bahru MRT Station (EW17)",
@@ -1060,7 +1060,7 @@
             "name": "Tongkang LRT Station (SW7)",
             "lat": 1.389348,
             "lng": 103.885844,
-            "region": "Northeast"
+            "region": "North-East"
         },
         {
             "name": "Tuas Crescent MRT Station (EW31)",
