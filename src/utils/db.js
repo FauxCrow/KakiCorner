@@ -80,6 +80,9 @@ export const getCurrentUserId = () => {
 
 export const setCurrentUserId = (id) => localStorage.setItem("profile_id", id);
 
+// Log out: nobody is logged in until a user is picked or created again
+export const clearCurrentUserId = () => localStorage.removeItem("profile_id");
+
 export const getCurrentUser = () => getProfileById(getCurrentUserId());
 
 // ---------- Feedback ----------

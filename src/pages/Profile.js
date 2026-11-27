@@ -1,7 +1,8 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
 // import profileData from "../content/profile.json";
-import { getProfiles, getCurrentUserId } from "../utils/db";
+// import { getProfiles, getCurrentUserId } from "../utils/db";
+import { getProfiles, getCurrentUserId, clearCurrentUserId } from "../utils/db";
 import ActionButton from "../components/ActionButton";
 import { useNavigate } from 'react-router-dom';
 import Avatar from '../components/Avatar';
@@ -14,6 +15,12 @@ function Profile() {
   const profile = profiles.find((p) => p.id === Number(pID)) || profiles[0];
   const gender = profile.gender === "M" ? "Male" : "Female";
   const navigate = useNavigate();
+
+  // Logs out and goes back to the New User / Existing User start screen
+  const handleLogoutClick = () => {
+    clearCurrentUserId();
+    navigate("/");
+  };
 
   return <div className="flex flex-col h-[100dvh] w-full overflow-hidden text-base">
     <AccessibilityBar></AccessibilityBar>
@@ -64,6 +71,9 @@ function Profile() {
           </div>
         </div>
       </div>
+
+      {/* Sits right under the Interests / Dietary box */}
+      <ActionButton title="Log out" onClick={handleLogoutClick} />
 
     </main>
 
