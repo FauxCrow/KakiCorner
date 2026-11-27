@@ -1,6 +1,8 @@
 import AccessibilityBar from '../components/AccessibilityBar';
 import ActionButton from '../components/ActionButton';
-import { useNotifyCaretaker } from '../hooks/Toast';
+// import { useNotifyCaretaker } from '../hooks/Toast';
+import { useNotifyCaretaker, useToast } from '../hooks/Toast';
+import { getBlockingStep } from '../utils/wizard';
 import StepIndicator from '../components/StepIndicator';
 import ActivityCard from '../components/ActivityCard';
 import OptionCard from '../components/OptionCard';
@@ -70,6 +72,7 @@ const getDefaultStart = () => {
 function CreateEvent({ isEdit = false }) {
     const navigate = useNavigate();
     const notifyCaretaker = useNotifyCaretaker();
+    const { showToast } = useToast();
 
     // Edit Event reuses this wizard: load the event once, using the id in the address
     const { id } = useParams();
@@ -299,6 +302,27 @@ function CreateEvent({ isEdit = false }) {
 
     const dateError = getDateError();
 
+    // ---------- Clickable step numbers ----------
+
+    // Same rules as each page's Next button (pickup point is optional)
+    const isStepComplete = (number) => {
+        if (number === 1) return Boolean(activity);
+        if (number === 2) return description.trim() !== "";
+        if (number === 3) return !dateError;
+        if (number === 4) return location.trim() !== "";
+        if (number === 5) return Number(participants) >= minSlots;
+        return true;
+    };
+
+    const handleStepClick = (target) => {
+        const blockingStep = getBlockingStep(target, isStepComplete);
+        if (blockingStep) {
+            showToast(`Please complete step ${blockingStep} first.`);
+            return;
+        }
+        setStep(target);
+    };
+
     // ---------- Event overview ----------
 
     // e.g. "Cooking on 12 December 2027 at 10:00 PM."
@@ -378,7 +402,8 @@ function CreateEvent({ isEdit = false }) {
             </div>
 
 
-            <StepIndicator current={step} total={TOTAL_STEPS} />
+            {/* <StepIndicator current={step} total={TOTAL_STEPS} /> */}
+            <StepIndicator current={step} total={TOTAL_STEPS} onStepClick={handleStepClick} />
 
             <h1 className="text-center text-xl">{STEP_TITLES[step - 1]}</h1>
 
