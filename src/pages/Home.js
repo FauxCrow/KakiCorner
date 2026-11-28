@@ -5,6 +5,7 @@ import { useEffect } from "react";
 // import eventData from "../content/events.json";
 import { getCurrentUserId, getCurrentUser } from "../utils/db";
 import MenuCard from '../components/MenuCard';
+import { CirclePlus, Search, ClipboardList, CalendarCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 function Home() {
@@ -41,10 +42,21 @@ function Home() {
       </h1>
 
       <div className="grid grid-cols-2 gap-4">
-        <MenuCard title={t('create')}  onClick={() => navigate("/createevent")} />
-        <MenuCard title={t('created')}  onClick={() => navigate("/eventsA/created")} />
-        <MenuCard title={t('joined')}  onClick={() => navigate("/eventsA/joined")} />
-        <MenuCard id={t('all')}  title={t('all')} onClick={() => navigate("/eventsA/all")} />
+        {/* <MenuCard title="New Event" onClick={() => navigate("/createevent")} />
+        <MenuCard title="Created Events" onClick={() => navigate("/eventsA/created")} />
+        <MenuCard title="Joined Events" onClick={() => navigate("/eventsA/joined")} />
+        <MenuCard id="all-event-button" title="See All Events" onClick={() => navigate("/eventsA/all")} /> */}
+
+        {/* Actions start with a verb; lists start with "Events I'm..." so "create"/"join" each appear only once */}
+        {/* <MenuCard icon={CirclePlus} isPrimary title="Create a New Event" onClick={() => navigate("/createevent")} />
+        <MenuCard id="all-event-button" icon={Search} isPrimary title="Find & Join Events" onClick={() => navigate("/eventsA/all")} />
+        <MenuCard icon={ClipboardList} title="Events I'm Hosting" onClick={() => navigate("/eventsA/created")} />
+        <MenuCard icon={CalendarCheck} title="Events I'm Attending" onClick={() => navigate("/eventsA/joined")} /> */}
+        {/* Labels come from src/locales so they change with the language (Home is "notranslate" for Google Translate) */}
+        <MenuCard icon={CirclePlus} isPrimary title={t('home-create')} onClick={() => navigate("/createevent")} />
+        <MenuCard id="all-event-button" icon={Search} isPrimary title={t('home-find')} onClick={() => navigate("/eventsA/all")} />
+        <MenuCard icon={ClipboardList} title={t('home-hosting')} onClick={() => navigate("/eventsA/created")} />
+        <MenuCard icon={CalendarCheck} title={t('home-attending')} onClick={() => navigate("/eventsA/joined")} />
       </div>
 
       {/* Old tiles, replaced by MenuCard above */}

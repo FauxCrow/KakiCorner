@@ -54,7 +54,9 @@ export function getPickupOptions(place) {
 }
 
 // Get the appropriate region by location
-export async function getRegionForPlace(place) {
+// "async" made this return a Promise, which was saved as region: {} (nothing here needs to wait)
+// export async function getRegionForPlace(place) {
+export function getRegionForPlace(place) {
     if (!place || !place.lat || !place.lng) return "Central";
     const nearestStation = findNearestStation(place);
     return nearestStation.region || "Central";

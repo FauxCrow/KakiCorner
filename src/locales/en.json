@@ -43,5 +43,12 @@
   "cancel": "Cancel",
   "next": "Next",
   "complete": "Complete",
-  "submit": "Submit"
+  "submit": "Submit",
+  "home-create": "Create a New Event",
+  "home-find": "Find & Join Events",
+  "home-hosting": "Events I'm Hosting",
+  "home-attending": "Events I'm Attending",
+  "cancel-request": "Cancel Request",
+  "cancel-spot": "Cancel My Spot",
+  "logout": "Log out"
 }

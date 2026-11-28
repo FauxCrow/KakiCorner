@@ -2,7 +2,7 @@ import eventData from "../content/events.json";
 import profileData from "../content/profile.json";
 
 // Bump this whenever the JSON files change, so the browser reloads them
-const DB_VERSION = "4";
+const DB_VERSION = "5";
 
 // Copies the JSON files into localStorage on first run (or after a version bump)
 function seed() {
@@ -79,6 +79,9 @@ export const getCurrentUserId = () => {
 };
 
 export const setCurrentUserId = (id) => localStorage.setItem("profile_id", id);
+
+// Log out: nobody is logged in until a user is picked or created again
+export const clearCurrentUserId = () => localStorage.removeItem("profile_id");
 
 export const getCurrentUser = () => getProfileById(getCurrentUserId());
 

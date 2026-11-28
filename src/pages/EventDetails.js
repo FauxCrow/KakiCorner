@@ -173,7 +173,10 @@ function EventDetails() {
 
             {/* {(isParticipating) && ( */}
             {(isParticipating && !isPast) && (
-                <ActionButton translate="no" title={t('leave')}  className="self-center text-right" onClick={() => handleLeaveClick()} />
+                // "Leave" was mistaken for "leave this page", so the wording now says exactly what happens
+                // <ActionButton title="Leave" className="self-center text-right" onClick={() => handleLeaveClick()} />
+                // <ActionButton title={isPending ? "Cancel Request" : "Cancel My Spot"} className="self-center text-right" onClick={() => handleLeaveClick()} />
+                <ActionButton translate="no" title={isPending ? t('cancel-request') : t('cancel-spot')} className="notranslate self-center text-right" onClick={() => handleLeaveClick()} />
             )}
 
             {/* {(!isParticipating && selectedEvent.host !== Number(pID)) && ( */}

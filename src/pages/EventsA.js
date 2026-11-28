@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AccessibilityBar from '../components/AccessibilityBar';
 import NavBar from '../components/NavigationBar';
@@ -17,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 function EventsA() {
     const { t } = useTranslation();
     const { type } = useParams();
+    const navigate = useNavigate();
     const eventType = type || "all";
 
     const activities = activityData.activities || [];
@@ -191,6 +193,10 @@ function EventsA() {
             {/* Main Container, non-scrolling*/}
             <main className="flex-1 min-h-0 flex flex-col w-full mx-auto max-w-md px-4 py-4 gap-y-4">
                 <div className="flex flex-col gap-y-4 w-full shrink-0">
+                    {/* Always goes to Home, even if the user arrived here from another page */}
+                    {/* <ActionButton title="Back" className="w-fit text-left" onClick={() => navigate("/home")} /> */}
+                    <ActionButton translate="no" title={t('back')} className="notranslate w-fit text-left" onClick={() => navigate("/home")} />
+
                     <div className="w-full flex flex-row gap-x-4 items-center">
                         <SearchBar onSearch={handleSearch} />
                         <div
